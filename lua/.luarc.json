@@ -1,0 +1,7 @@
+{
+    "diagnostics.globals": [
+        "persistence",
+        "tree",
+        "ok"
+    ]
+}
