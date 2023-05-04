@@ -1,5 +1,6 @@
 <p align="center">Space-Nvim</p>
 <a href='https://postimg.cc/QKgRcR6R' target='_blank'><img src='https://i.postimg.cc/QKgRcR6R/IMG-20230501-192206.jpg' border='0' alt='IMG-20230501-192206'/></a>
+# 此space-nvim非彼spacevim
 
 ## Dependencies
 ### Main
