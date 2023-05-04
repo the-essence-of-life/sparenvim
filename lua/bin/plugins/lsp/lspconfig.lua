@@ -4,6 +4,7 @@ lspconfig.lua_ls.setup {}
 lspconfig.bashls.setup {}
 lspconfig.pyright.setup {}
 lspconfig.quick_lint_js.setup {}
+lspconfig.jdtls.setup {}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

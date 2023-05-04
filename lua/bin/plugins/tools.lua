@@ -1,4 +1,3 @@
-do
   return {
     {
       "nvim-tree/nvim-tree.lua",
@@ -178,15 +177,3 @@ do
     --    end
     -- },
   }
-end
-
-local a = {
-  "autoclose",
-  "trouble",
-}
-for i, v in ipairs(a) do
-  local ok = pcall(require, i, v)
-  if not ok then
-    return
-  end
-end

@@ -11,7 +11,7 @@ return {
       'hrsh7th/vim-vsnip',
       {
         'onsails/lspkind.nvim',
-        init = function ()
+        init = function()
           require('bin.plugins.lsp.lspkind')
         end
       },
@@ -64,6 +64,14 @@ return {
     end,
   },
   {
+    'mfussenegger/nvim-jdtls',
+    ft = 'java',
+    dependencies = 'neovim/nvim-lspconfig',
+    config = function ()
+      require('bin.plugins.lsp.jdtls')
+    end
+  },
+  {
     'mfussenegger/nvim-dap',
     dependencies = {
       'rcarriga/nvim-dap-ui',
@@ -93,13 +101,13 @@ return {
       { "neovim/nvim-lspconfig" },
     }
   },
-  {
-    'folke/neodev.nvim',
-    ft = "lua",
-    config = function ()
-      require('bin.plugins.lsp.neodev')
-    end
-  },
+  -- {
+  --   'folke/neodev.nvim',
+  --   ft = "lua",
+  --   config = function()
+  --     require('bin.plugins.lsp.neodev')
+  --   end
+  -- },
   {
     'neovim/nvim-lspconfig',
     config = function()

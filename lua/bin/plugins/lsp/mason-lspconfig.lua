@@ -21,6 +21,7 @@ local servers = {
   'pyright',
   'lua_ls',
   'quick_lint_js',
+  'jdtls',
   -- 'rust_analyzer',
 }
 for _, lsp in ipairs(servers) do
@@ -46,17 +47,46 @@ require("mason-lspconfig").setup_handlers {
     lspconfig.lua_ls.setup {
       settings = {
         Lua = {
-          completion = {
-            callSnippet = "Replace"
-          }
-        }
-      }
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { 'vim' },
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+        },
+      },
     }
   end,
   ["bashls"] = function()
     lspconfig.bashls.setup {}
   end,
   ["pyright"] = function()
-    lspconfig.pyright.setup {}
+    lspconfig.pyright.setup {
+      settings = {
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            diagnosticMode = "workspace",
+            useLibraryCodeForTypes = true
+          }
+        }
+      }
+
+    }
+  end,
+  ["jdtls"] = function()
+    lspconfig.jdtls.setup {
+      cmd = { 'jdtls' }
+    }
   end,
 }
