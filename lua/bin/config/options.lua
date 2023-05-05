@@ -56,3 +56,4 @@ end
 vim.g.markdown_recommended_style = 0
 
 vim.cmd("filetype plugin indent on")
+vim.o.foldtext = ''
