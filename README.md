@@ -1,16 +1,23 @@
-<p align="center">Space-Nvim</p>
+<div align="center">
+
+# _Space-Nvim
 <a href='https://postimg.cc/QKgRcR6R' target='_blank'><img src='https://i.postimg.cc/QKgRcR6R/IMG-20230501-192206.jpg' border='0' alt='IMG-20230501-192206'/></a>
+### 此space-nvim非彼spacevim
+</div>
 
-# 此space-nvim非彼spacevim
+# Features
+* You can DIY your config.
+* Easy to setup.
+* 60+ plugins support!
 
-## Dependencies
-### Main
+# Dependencies
+## Main
 ![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)
 
-### Language Support
+## Language Support
 ![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
@@ -113,5 +120,6 @@ return {
 ```
 
 # THANKS SO
-> All people helps me.
-> 所有帮助过我的人
+>All people helps me.  
+>所有帮助过我的人  
+>No need money!用爱发电!  
