@@ -18,11 +18,13 @@ local lspconfig = require('lspconfig')
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = {
   'bashls',
-  'pyright',
+  -- 'pyright',
   'lua_ls',
   'quick_lint_js',
   'jdtls',
   'clangd',
+  'pylsp',
+  'gopls',
   -- 'rust_analyzer',
 }
 for _, lsp in ipairs(servers) do
@@ -88,6 +90,20 @@ require("mason-lspconfig").setup_handlers {
       filetypes = 'py',
     }
   end,
+  ["pylsp"] = function()
+    lspconfig.pylsp.setup {
+      settings = {
+        pylsp = {
+          plugins = {
+            pycodestyle = {
+              ignore = { 'W391' },
+              maxLineLength = 100
+            }
+          }
+        }
+      }
+    }
+  end,
   -- ["jdtls"] = function()
   --   lspconfig.jdtls.setup {
   --     cmd = { 'jdtls' }
@@ -98,7 +114,7 @@ require("mason-lspconfig").setup_handlers {
       require("clangd_extensions").setup {
         server = {
           -- options to pass to nvim-lspconfig
-          require("lspconfig").clangd.setup{}
+          require("lspconfig").clangd.setup {}
         },
         extensions = {
           -- defaults:
@@ -171,5 +187,11 @@ require("mason-lspconfig").setup_handlers {
         'cc',
       }
     }
+  end,
+  ["gopls"] = function ()
+    lspconfig.gopls.setup {}
+  end,
+  ["golangci_lint_ls"] = function ()
+    lspconfig.golangci_lint_ls.setup{}
   end,
 }

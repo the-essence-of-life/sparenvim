@@ -2,9 +2,12 @@
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {}
 lspconfig.bashls.setup {}
-lspconfig.pyright.setup {}
+lspconfig.pylsp.setup {}
+-- lspconfig.pyright.setup {}
 lspconfig.quick_lint_js.setup {}
 lspconfig.jdtls.setup {}
+lspconfig.gopls.setup {}
+lspconfig.golangci_lint_ls.setup{}
 -- WARN:Please on command line to input 'clangd' to check it can successfully run.
 -- Easy to check:clang version>=11
 lspconfig.clangd.setup {}

@@ -1,5 +1,11 @@
+local echo = function(str)
+  vim.cmd "redraw"
+  vim.api.nvim_echo({ { str, "Bold" } }, true, {})
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
+  echo " Installing the lazy.nvim to ~/.local/share/nvim/lazy/lazy.nvim..."
   vim.fn.system({
     "git",
     "clone",

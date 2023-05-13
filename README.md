@@ -32,8 +32,8 @@ mv ~/.local/state/nvim/ ~/.local/state/nvim.bak/
 rm -rf ~/.cache/nvim/
 
 # Clone the repo and change the links.
-git clone -b master https://ay1.us/https://github.com/the-essence-of-life/space-nvim/ ~/.config/nvim/
-rm ~/.config/nvim/plugins/
+git clone --depth=1 https://ay1.us/https://github.com/the-essence-of-life/space-nvim/ ~/.config/nvim/
+ln -s ~/.config/nvim/lua/bin/plugins/ ~/.config/nvim/lua/plugins/
 
 # Finally,start your neovim!
 nvim
@@ -102,6 +102,10 @@ nvim
 * tokyonight.nvim
 * trouble.nvim
 * vim-vsnip
+</details>
+<details>
+<summary>Cilck it to learn more about lua grammer.</summary>
+<iframe loading="lazy" width="400" height="800" src="https://www.runoob.com/lua/lua-tutorial.html"></iframe>
 </details>
 
 # Plugin Install & Setup

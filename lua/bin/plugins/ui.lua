@@ -1,44 +1,26 @@
 return {
-  -- {
-  --   "savq/melange-nvim",
-  --   init = function ()
-  --     vim.opt.termguicolors = true
-  --     vim.cmd.colorscheme 'melange'
-  --   end
-  -- },
-  -- {
-  -- 	"folke/tokyonight.nvim",
-  -- 	init = function()
-  -- 		vim.cmd.colorscheme("tokyonight-storm")
-  -- 	end,
-  -- },
-  -- {
-  --   'catppuccin/nvim',
-  --   name = 'Catppuccin',
-  --   lazy = false,
-  --   priority = 1000,
-  --   init = function()
-  --     vim.g.catppuccin_flavour = "macchiato"
-  --     vim.cmd 'colorscheme catppuccin'
-  --   end
-  -- },
   {
-    'rmehri01/onenord.nvim',
-    name = 'uc-onenord',
-    lazy = false,
-    priority = 1000,
-    init = function()
-      vim.cmd([[colorscheme onenord]])
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
+    config = function()
+      vim.cmd("colorscheme onedark_vivid")
     end
   },
   -- {
-  --   'LunarVim/synthwave84.nvim',
-  --   name = 'uc-synthwave84',
+  --   'marko-cerovac/material.nvim',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd("colorscheme material")
+  --     vim.g.material_style = "palenight"
+  --   end
+  -- },
+  -- {
+  --   'rmehri01/onenord.nvim',
+  --   name = 'uc-onenord',
   --   lazy = false,
   --   priority = 1000,
-  --   init = function ()
-  --     require 'synthwave84'.setup({})
-  --     vim.cmd[[colorscheme synthwave84]]
+  --   init = function()
+  --     vim.cmd([[colorscheme onenord]])
   --   end
   -- },
   {
@@ -58,24 +40,31 @@ return {
   --     require('bin.plugins.ui.wilder')
   --   end
   -- },
+  -- {
+  --   'romgrk/barbar.nvim',
+  --   cond = false,
+  --   event = "UIEnter",
+  --   dependencies = 'nvim-tree/nvim-web-devicons',
+  --   init = function()
+  --     vim.g.barbar_auto_setup = false
+  --     vim.opt.mouse = 'a'
+  --     local map = vim.api.nvim_set_keymap
+  --     local opts = { noremap = true, silent = true }
+  --
+  --     -- Move to previous/next
+  --     map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+  --     map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+  --   end,
+  --   config = function()
+  --     require('bin.plugins.ui.barbar')
+  --   end,
+  --   version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  -- },
   {
-    'romgrk/barbar.nvim',
-    event = "UIEnter",
+    'akinsho/bufferline.nvim',
+    version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
-    init = function()
-      vim.g.barbar_auto_setup = false
-      vim.opt.mouse = 'a'
-      local map = vim.api.nvim_set_keymap
-      local opts = { noremap = true, silent = true }
-
-      -- Move to previous/next
-      map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-      map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-    end,
-    config = function()
-      require('bin.plugins.ui.barbar')
-    end,
-    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    config = true,
   },
   {
     'rebelot/heirline.nvim',

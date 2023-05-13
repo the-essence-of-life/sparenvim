@@ -48,7 +48,7 @@ require("noice").setup({
     -- :Noice errors
     errors = {
       -- options for the message history that you get with `:Noice`
-      view = "popup",
+      view = "notify",
       opts = { enter = true, format = "details" },
       filter = { error = true },
       filter_opts = { reverse = true },
