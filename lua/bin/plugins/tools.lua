@@ -1,6 +1,7 @@
 return {
   {
     "nvim-tree/nvim-tree.lua",
+    event = "VeryLazy",
     -- keys = {
     --   { "<c-n>", "<cmd>NvimTreeToggle<cr>", desc = "NeoTree" },
     -- },
@@ -29,7 +30,54 @@ return {
     config = true,
   },
   {
+    'tanvirtin/vgit.nvim',
+    cmd = {
+      "VGit setup",
+      "VGit hunk_up",
+      "VGit hunk_down",
+      "VGit buffer_hunk_preview",
+      "VGit buffer_diff_preview",
+      "VGit buffer_history_preview",
+      "VGit buffer_blame_preview",
+      "VGit buffer_gutter_blame_preview",
+      "VGit buffer_diff_staged_preview",
+      "VGit buffer_hunk_staged_preview",
+      "VGit buffer_hunk_stage",
+      "VGit buffer_unstage",
+      "VGit buffer_reset",
+      "VGit project_diff_preview",
+      "VGit project_commit_preview",
+      "VGit project_stash_preview",
+      "VGit project_hunks_preview",
+      "VGit project_hunks_staged_preview",
+      "VGit project_debug_preview",
+      "VGit project_hunks_qf",
+      "VGit project_stage_all",
+      "VGit project_unstage_all",
+      "VGit project_reset_all",
+      "VGit toggle_diff_preference",
+      "VGit toggle_live_gutter",
+      "VGit toggle_live_blame",
+      "VGit toggle_authorship_code_lens",
+      "VGit toggle_tracing",
+      "VGit toggle_tracing",
+      "VGit debug_preview infos",
+      "VGit debug_preview warnings",
+      "VGit debug_preview errors",
+    },
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      vim.o.updatetime = 300
+      vim.o.incsearch = false
+      vim.wo.signcolumn = 'yes'
+      require('bin.plugins.tools.vgit')
+    end
+  },
+  {
     'kevinhwang91/nvim-ufo',
+    event = "VeryLazy",
     dependencies = 'kevinhwang91/promise-async',
     config = function()
       require('bin.plugins.tools.ufo')
@@ -39,6 +87,8 @@ return {
     "nvim-telescope/telescope.nvim",
     keys = {
       { "m", "<cmd>Telescope menu<cr>", mode = "n" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
+      { "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
     },
     tag = "0.1.1",
     dependencies = {
@@ -67,6 +117,7 @@ return {
   },
   {
     "uga-rosa/ccc.nvim",
+    event = "VeryLazy",
     config = function()
       require("bin.plugins.tools.ccc")
     end,
@@ -93,6 +144,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
     config = true,
   },
 
@@ -106,6 +158,7 @@ return {
   },
   {
     "folke/todo-comments.nvim",
+    event = "UIEnter",
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("bin.plugins.tools.todo-comments")
@@ -113,6 +166,7 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
+    ft = "md",
     build = "cd app && npm install",
     config = function()
       vim.g.mkdp_filetypes = { "markdown" }
@@ -120,14 +174,14 @@ return {
   },
   {
     "ixru/nvim-markdown",
-    -- ft = "md",
+    ft = "md",
     config = function()
       require("bin.plugins.tools.markdown")
     end,
   },
   {
     "phaazon/hop.nvim",
-    branch = "v2",   -- optional but strongly recommended
+    branch = "v2", -- optional but strongly recommended
     keys = {
       { "<a-m>", "<cmd>HopChar2<cr>" },
     },
@@ -139,12 +193,14 @@ return {
   },
   {
     'm4xshen/autoclose.nvim',
+    event = "VeryLazy",
     config = function()
       require('bin.plugins.tools.autoclose')
     end
   },
   {
     'nvim-pack/nvim-spectre',
+    event = "VeryLazy",
     dependencies = {
       'nvim-lua/plenary.nvim'
     },
@@ -154,12 +210,37 @@ return {
   },
   {
     "ziontee113/icon-picker.nvim",
+    event = "VeryLazy",
     dependencies = {
       "stevearc/dressing.nvim"
     },
     config = function()
       require("icon-picker").setup({
         disable_legacy_commands = true
+      })
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup({
+        window = {
+          border = "none",          -- none, single, double, shadow
+          position = "bottom",      -- bottom, top
+          margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+          padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
+          winblend = 0,             -- value between 0-100 0 for fully opaque and 100 for fully transparent
+          zindex = 1000,            -- positive value to position WhichKey above other floating windows.
+        },
+        layout = {
+          height = { min = 4, max = 6 }, -- min and max height of the columns
+          width = { min = 20, max = 50 }, -- min and max width of the columns
+          spacing = 3,              -- spacing between columns
+          align = "left",           -- align columns left, center or right
+        },
       })
     end,
   },

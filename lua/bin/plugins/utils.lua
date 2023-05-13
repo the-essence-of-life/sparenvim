@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "UIEnter",
     dependencies = {
       "HiPhish/nvim-ts-rainbow2",
       "windwp/nvim-ts-autotag",
@@ -26,12 +27,7 @@ return {
     end,
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      {
-        "MunifTanjim/nui.nvim",
-        config = function()
-          -- require("bin.plugins.utils.nui")
-        end,
-      },
+      "MunifTanjim/nui.nvim",
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
@@ -40,7 +36,7 @@ return {
   },
   {
     "folke/persistence.nvim",
-    -- event = "BufReadPre",   -- this will only start session saving when an actual file was opened
+    event = "VeryLazy",   -- this will only start session saving when an actual file was opened
     -- module = "persistence",
     config = function()
       require("bin.plugins.utils.persistence")
@@ -61,6 +57,8 @@ return {
   -- },
   {
     "stevearc/dressing.nvim",
+    event = "VeryLazy",
     config = true,
   },
+  -- { dir = "~/workspace/lazy.nvim" },
 }

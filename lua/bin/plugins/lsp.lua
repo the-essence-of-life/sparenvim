@@ -1,6 +1,7 @@
 return {
   {
     'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
     dependencies = {
       'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
@@ -73,6 +74,7 @@ return {
   },
   {
     'mfussenegger/nvim-dap',
+    event = "VeryLazy",
     dependencies = {
       'rcarriga/nvim-dap-ui',
       {
@@ -101,6 +103,11 @@ return {
       { "neovim/nvim-lspconfig" },
     }
   },
+  {
+    'p00f/clangd_extensions.nvim',
+    ft = 'c',
+    dependencies = "neovim/nvim-lspconfig",
+  },
   -- {
   --   'folke/neodev.nvim',
   --   ft = "lua",
@@ -110,6 +117,7 @@ return {
   -- },
   {
     'neovim/nvim-lspconfig',
+    event = "VeryLazy",
     config = function()
       require('bin.plugins.lsp.lspconfig')
     end,

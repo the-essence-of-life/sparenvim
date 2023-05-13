@@ -31,6 +31,16 @@ return {
       vim.cmd([[colorscheme onenord]])
     end
   },
+  -- {
+  --   'LunarVim/synthwave84.nvim',
+  --   name = 'uc-synthwave84',
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function ()
+  --     require 'synthwave84'.setup({})
+  --     vim.cmd[[colorscheme synthwave84]]
+  --   end
+  -- },
   {
     "nvim-zh/colorful-winsep.nvim",
     config = true,
@@ -50,6 +60,7 @@ return {
   -- },
   {
     'romgrk/barbar.nvim',
+    event = "UIEnter",
     dependencies = 'nvim-tree/nvim-web-devicons',
     init = function()
       vim.g.barbar_auto_setup = false
@@ -109,6 +120,7 @@ return {
   -- },
   {
     "DaikyXendo/nvim-material-icon",
+    event = "UIEnter",
     init = function()
       local web_devicons_ok, web_devicons = pcall(require, "nvim-web-devicons")
       if not web_devicons_ok then
@@ -127,6 +139,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "UIEnter",
     config = function()
       require("bin.plugins.ui.indent-blankline")
     end,

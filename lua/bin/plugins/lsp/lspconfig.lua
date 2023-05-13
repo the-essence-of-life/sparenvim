@@ -5,6 +5,9 @@ lspconfig.bashls.setup {}
 lspconfig.pyright.setup {}
 lspconfig.quick_lint_js.setup {}
 lspconfig.jdtls.setup {}
+-- WARN:Please on command line to input 'clangd' to check it can successfully run.
+-- Easy to check:clang version>=11
+lspconfig.clangd.setup {}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
