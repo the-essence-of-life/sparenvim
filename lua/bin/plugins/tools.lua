@@ -33,37 +33,10 @@ return {
     'tanvirtin/vgit.nvim',
     cmd = {
       "VGit setup",
-      "VGit hunk_up",
-      "VGit hunk_down",
-      "VGit buffer_hunk_preview",
-      "VGit buffer_diff_preview",
-      "VGit buffer_history_preview",
-      "VGit buffer_blame_preview",
-      "VGit buffer_gutter_blame_preview",
-      "VGit buffer_diff_staged_preview",
-      "VGit buffer_hunk_staged_preview",
-      "VGit buffer_hunk_stage",
-      "VGit buffer_unstage",
-      "VGit buffer_reset",
-      "VGit project_diff_preview",
-      "VGit project_commit_preview",
-      "VGit project_stash_preview",
-      "VGit project_hunks_preview",
-      "VGit project_hunks_staged_preview",
-      "VGit project_debug_preview",
-      "VGit project_hunks_qf",
-      "VGit project_stage_all",
-      "VGit project_unstage_all",
-      "VGit project_reset_all",
       "VGit toggle_diff_preference",
       "VGit toggle_live_gutter",
       "VGit toggle_live_blame",
       "VGit toggle_authorship_code_lens",
-      "VGit toggle_tracing",
-      "VGit toggle_tracing",
-      "VGit debug_preview infos",
-      "VGit debug_preview warnings",
-      "VGit debug_preview errors",
     },
     dependencies = {
       'nvim-lua/plenary.nvim'
@@ -86,8 +59,8 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      { "m", "<cmd>Telescope menu<cr>", mode = "n" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
+      { "m",          "<cmd>Telescope menu<cr>",                      mode = "n" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>",                mode = "n" },
       { "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
     },
     tag = "0.1.1",
@@ -96,6 +69,7 @@ return {
       "octarect/telescope-menu.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
       "LinArcX/telescope-command-palette.nvim",
+      "tsakirist/telescope-lazy.nvim",
       {
         "nvim-telescope/telescope-frecency.nvim",
         dependencies = { "kkharji/sqlite.lua" },
@@ -107,6 +81,7 @@ return {
       require("telescope").load_extension("frecency")
       require("telescope").load_extension("file_browser")
       require("telescope").load_extension("command_palette")
+      require("telescope").load_extension "lazy"
       vim.keymap.set("n", "<s-t>", "<cmd>Telescope<cr>")
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
@@ -115,6 +90,19 @@ return {
       vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
     end,
   },
+  -- {
+  --   'jonarrien/telescope-cmdline.nvim',
+  --   keys = {
+  --     { ":", "<cmd>Telescope cmdline<cr>", mode = "n" },
+  --   },
+  --   dependencies = {
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  --   config = function()
+  --     require("bin.plugins.tools.telescope")
+  --     require("telescope").load_extension('cmdline')
+  --   end
+  -- },
   {
     "uga-rosa/ccc.nvim",
     event = "VeryLazy",
@@ -236,10 +224,10 @@ return {
           zindex = 1000,            -- positive value to position WhichKey above other floating windows.
         },
         layout = {
-          height = { min = 4, max = 6 }, -- min and max height of the columns
+          height = { min = 4, max = 6 },  -- min and max height of the columns
           width = { min = 20, max = 50 }, -- min and max width of the columns
-          spacing = 3,              -- spacing between columns
-          align = "left",           -- align columns left, center or right
+          spacing = 3,                    -- spacing between columns
+          align = "left",                 -- align columns left, center or right
         },
       })
     end,

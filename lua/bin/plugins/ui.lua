@@ -1,11 +1,19 @@
 return {
-  {
-    "olimorris/onedarkpro.nvim",
-    priority = 1000, -- Ensure it loads first
-    config = function()
-      vim.cmd("colorscheme onedark_vivid")
-    end
-  },
+  -- {
+  --   "olimorris/onedarkpro.nvim",
+  --   enabled = false,
+  --   priority = 1000, -- Ensure it loads first
+  --   config = function()
+  --     vim.cmd("colorscheme onedark_vivid")
+  --   end
+  -- },
+  -- {
+  --   'shaunsingh/nord.nvim',
+  --   priority = 1000,
+  --   config = function ()
+  --     vim.cmd[[colorscheme nord]]
+  --   end
+  -- },
   -- {
   --   'marko-cerovac/material.nvim',
   --   priority = 1000,
@@ -23,6 +31,38 @@ return {
   --     vim.cmd([[colorscheme onenord]])
   --   end
   -- },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = function()
+      require("catppuccin").setup({
+        transparent_background = false,
+        flavour = "frappe",
+        term_colors = true,
+        style = {
+          no_italic = true,
+        },
+        integrations = {
+          native_lsp = {
+            enabled = true,
+            virtual_text = {
+              errors = {},
+              hints = {},
+              warnings = {},
+              information = {},
+            },
+            underlines = {
+              errors = { "underline" },
+              hints = { "underline" },
+              warnings = { "underline" },
+              information = { "underline" },
+            },
+          },
+        },
+      })
+      vim.cmd.colorscheme "catppuccin"
+    end
+  },
   {
     "nvim-zh/colorful-winsep.nvim",
     config = true,

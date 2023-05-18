@@ -62,6 +62,23 @@ require("telescope").setup({
         },
       },
     },
+    lazy = {
+      -- Optional theme (the extension doesn't set a default theme)
+      theme = "ivy",
+      -- Whether or not to show the icon in the first column
+      show_icon = true,
+      -- Mappings for the actions
+      mappings = {
+        open_in_browser = "<C-o>",
+        open_in_file_browser = "<M-b>",
+        open_in_find_files = "<C-f>",
+        open_in_live_grep = "<C-g>",
+        open_plugins_picker = "<C-b>", -- Works only after having called first another action
+        open_lazy_root_find_files = "<C-r>f",
+        open_lazy_root_live_grep = "<C-r>g",
+      },
+      -- Other telescope configuration options
+    },
     frecency = {
       db_root = "~/",
       show_scores = false,
@@ -77,7 +94,7 @@ require("telescope").setup({
     menu = {
       default = {
         items = {
-          { "󱠀  Editor",                       "Telescope menu editor" },
+          { "󱠀  Editor",                      "Telescope menu editor" },
           -- You can add an item of menu in the form of { "<display>", "<command>" }
           { "  Checkhealth",                  "checkhealth" },
           { "  Show LSP Info",                "LspInfo" },
@@ -92,7 +109,7 @@ require("telescope").setup({
         items = {
           { " Split window vertically",   "vsplit" },
           { " Split window horizontally", "split" },
-          { "󰙏 Write",                     "w" },
+          { "󰙏 Write",                    "w" },
           { " Filetype Options",          "Telescope menu filetype" },
         },
       },

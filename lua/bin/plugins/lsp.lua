@@ -28,7 +28,6 @@ return {
       -- NOTE:LSP configurations.
       'neovim/nvim-lspconfig',
       'williamboman/mason-lspconfig.nvim',
-
       -- NOTE:Third-Party Plugins
       'jose-elias-alvarez/null-ls.nvim',
       "jay-babu/mason-nvim-dap.nvim",
@@ -63,14 +62,6 @@ return {
       -- require("bin.plugins.lsp.mason-c") -- require your null-ls config here (example below)
       -- require("bin.plugins.lsp.null-ls") -- require your null-ls config here (example below)
     end,
-  },
-  {
-    'mfussenegger/nvim-jdtls',
-    ft = 'java',
-    dependencies = 'neovim/nvim-lspconfig',
-    config = function ()
-      require('bin.plugins.lsp.jdtls')
-    end
   },
   {
     'mfussenegger/nvim-dap',
@@ -120,6 +111,7 @@ return {
     event = "VeryLazy",
     config = function()
       require('bin.plugins.lsp.lspconfig')
+      require('bin.plugins.lsp.mason-lspconfig')
     end,
   },
 }
