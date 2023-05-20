@@ -10,8 +10,10 @@
 
 # Features
 
-- You can DIY your config.
-- Easy to setup.
+- Easy to use!
+- Easy to setup!
+- Easy to change config!
+- Easy to install lsp-config!
 - 60+ plugins support!
 
 # Dependencies
@@ -45,6 +47,41 @@ ln -s ~/.config/nvim/lua/bin/plugins/ ~/.config/nvim/lua/plugins/
 # Finally,start your neovim!
 nvim
 ```
+
+## File directory
+
+```
+ .
+├──  init.lua
+├──  lazy-lock.json
+├──  LICENSE
+├──  lua
+│  ├──  bin
+│  │  ├──  config
+│  │  │  ├──  autocmds.lua
+│  │  │  ├──  keymaps.lua
+│  │  │  ├──  lazy.lua
+│  │  │  └──  options.lua
+│  │  └──  plugins
+│  │     ├──  lsp
+│  │     │  └──  lsp*.lua
+│  │     ├──  lsp.lua
+│  │     ├──  tools
+│  │     │  └──  tools*.lua
+│  │     ├──  tools.lua
+│  │     ├──  ui
+│  │     │  └──  ui*.lua
+│  │     ├──  ui.lua
+│  │     ├──  user
+│  │     ├──  user.lua
+│  │     ├──  utils
+│  │     │  └──  utils*.lua
+│  │     └──  utils.lua
+│  ├──  test.lua
+│  └──  user
+│     └──  init.lua
+└──  README.md
+
 
 ## Plugins List
 
