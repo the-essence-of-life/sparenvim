@@ -42,7 +42,8 @@ opt.termguicolors = true -- True color support
 opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000
-opt.updatetime = 200 -- Save swap file and trigger CursorHold
+-- opt.updatetime = 200 -- Save swap file and trigger CursorHold
+-- opt.noswap = true
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
@@ -57,3 +58,4 @@ vim.g.markdown_recommended_style = 0
 
 vim.cmd("filetype plugin indent on")
 vim.o.foldtext = ''
+vim.o.swap = false

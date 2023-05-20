@@ -1,10 +1,10 @@
 return {
   {
     "nvim-tree/nvim-tree.lua",
-    event = "VeryLazy",
-    -- keys = {
-    --   { "<c-n>", "<cmd>NvimTreeToggle<cr>", desc = "NeoTree" },
-    -- },
+    lazy = false,
+    keys = {
+      { "<c-n>", "<cmd>NvimTreeToggle<cr>", desc = "NeoTree" },
+    },
     config = function()
       require("bin.plugins.tools.nvim-tree")
     end,
@@ -58,12 +58,13 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    lazy = false,
     keys = {
       { "m",          "<cmd>Telescope menu<cr>",                      mode = "n" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>",                mode = "n" },
       { "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
     },
-    tag = "0.1.1",
+    -- tag = "0.1.1",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "octarect/telescope-menu.nvim",
