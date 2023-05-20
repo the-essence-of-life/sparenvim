@@ -81,7 +81,7 @@ nvim
 │  └──  user
 │     └──  init.lua
 └──  README.md
-
+```
 
 ## Plugins List
 
