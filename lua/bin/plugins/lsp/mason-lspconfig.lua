@@ -2,6 +2,16 @@ require("mason").setup()
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require('lspconfig')
 lspconfig.lua_ls.setup {}
+lspconfig.als.setup {}
+-- lspconfig.pylyzer.setup {
+--   python = {
+--     checkOnType = false,
+--     diagnostics = true,
+--     inlayHints = true,
+--     smartCompletion = true
+--   }
+-- }
+
 -- WARN:Please on command line to input 'clangd' to check it can successfully run.
 -- Easy to check:clang version>=11
 -- lspconfig.clangd.setup {}
@@ -20,20 +30,20 @@ require("mason-lspconfig").setup_handlers {
       filetypes = 'sh',
     }
   end,
-  ["pyright"] = function()
-    lspconfig.pyright.setup {
-      settings = {
-        python = {
-          analysis = {
-            autoSearchPaths = true,
-            diagnosticMode = "workspace",
-            useLibraryCodeForTypes = true
-          }
-        }
-      },
-      filetypes = 'python',
-    }
-  end,
+  -- ["pyright"] = function()
+  --   lspconfig.pyright.setup {
+  --     settings = {
+  --       python = {
+  --         analysis = {
+  --           autoSearchPaths = true,
+  --           diagnosticMode = "workspace",
+  --           useLibraryCodeForTypes = true
+  --         }
+  --       }
+  --     },
+  --     filetypes = 'python',
+  --   }
+  -- end,
   -- ["pylsp"] = function()
   --   lspconfig.pylsp.setup {
   --     settings = {

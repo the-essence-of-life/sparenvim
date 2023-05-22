@@ -11,11 +11,11 @@ local sources = {
 null_ls.setup({ sources = sources })
 require("mason-null-ls").setup({
   -- ensure_installed = {
-  --   "prettier",
-  --   "write_good",
-  --   "shellcheck",
-  -- },
-  -- handlers = {},
-  automatic_installation = true,
-  automatic_setup = false,
-})
+    --   "prettier",
+    --   "write_good",
+    --   "shellcheck",
+    -- },
+    -- handlers = {},
+    automatic_installation = true,
+    automatic_setup = false,
+  })

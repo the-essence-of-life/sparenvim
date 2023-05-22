@@ -5,11 +5,16 @@ return {
     dependencies = {
       'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
+      -- 'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-vsnip',
-      'hrsh7th/vim-vsnip',
+      -- 'L3MON4D3/LuaSnip',
+      -- 'rafamadriz/friendly-snippets',
+      {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+      },
       {
         'onsails/lspkind.nvim',
         init = function()
@@ -99,13 +104,6 @@ return {
     ft = 'c',
     dependencies = "neovim/nvim-lspconfig",
   },
-  -- {
-  --   'folke/neodev.nvim',
-  --   ft = "lua",
-  --   config = function()
-  --     require('bin.plugins.lsp.neodev')
-  --   end
-  -- },
   {
     'neovim/nvim-lspconfig',
     event = "VeryLazy",

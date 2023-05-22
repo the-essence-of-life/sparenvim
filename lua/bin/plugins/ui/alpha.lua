@@ -21,8 +21,37 @@ dashboard.section.buttons.val = {
   dashboard.button("q", "Quit NVIM ﮣ ", ":qa<CR>"),
 }
 
+local stats = require("lazy").stats()
+local version = "  󰥱 v"
+    .. vim.version().major
+    .. "."
+    .. vim.version().minor
+    .. "."
+    .. vim.version().patch
+local footer = {
+  type = "text",
+  val = "Neovim " .. version .. "  " .. stats.count .. " plugins ",
+  opts = {
+    position = "center",
+    hl = "Number",
+  },
+}
+
+-- local opts = {
+--   layout = {
+--     dashboard.opts,
+--     { type = "padding", val = 2 },
+--     footer
+--   },
+--   opts = {
+--     -- noautocmd = true,
+--     margin = 5,
+--   },
+-- }
+
 -- Send config to alpha
 alpha.setup(dashboard.opts)
+-- alpha.setup(opts)
 
 -- Disable folding on alpha buffer
 vim.cmd([[
