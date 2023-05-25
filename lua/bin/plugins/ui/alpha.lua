@@ -18,7 +18,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", "  Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("s", "  Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
   dashboard.button("m", "  Menu", ":Telescope menu<CR>"),
-  dashboard.button("q", "Quit NVIM ﮣ ", ":qa<CR>"),
+  dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
 }
 -- Send config to alpha
 alpha.setup(dashboard.opts)

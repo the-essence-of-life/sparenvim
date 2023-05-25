@@ -52,7 +52,7 @@ return {
   {
     'kevinhwang91/nvim-ufo',
     -- event = "VeryLazy",
-    enabled = false,
+    -- enabled = true,
     dependencies = 'kevinhwang91/promise-async',
     config = function()
       require('bin.plugins.tools.ufo')
@@ -108,7 +108,7 @@ return {
   -- },
   {
     "uga-rosa/ccc.nvim",
-    -- event = "VeryLazy",
+    event = "InsertEnter",
     enabled = false,
     config = function()
       require("bin.plugins.tools.ccc")
@@ -150,7 +150,7 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    event = "UIEnter",
+    event = "VeryLazy",
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("bin.plugins.tools.todo-comments")

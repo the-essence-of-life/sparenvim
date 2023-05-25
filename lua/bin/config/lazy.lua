@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",   -- latest stable release
     lazypath,
   })
 end
@@ -24,6 +24,12 @@ require("lazy").setup({
   },
   git = {
     url_format = "https://ay1.us/https://github.com/%s.git",
+  },
+  install = {
+    colorscheme = { "catppuccin" },
+  },
+  ui = {
+    border = "rounded",
   },
   -- dev = {
   --   -- directory where you store your local plugin projects

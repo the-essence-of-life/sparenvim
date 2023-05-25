@@ -1,10 +1,7 @@
-require("bin.config.options")
-require("bin.config.keymaps")
-require("bin.config.lazy")
+local M = {}
 
-require('user')
+M.options = require("bin.config.options")
+M.keymaps = require("bin.config.keymaps")
+M.plugins = require("bin.config.lazy")
 
-local ok = pcall(require, 'test')
-if not ok then
-  return
-end
+return M
