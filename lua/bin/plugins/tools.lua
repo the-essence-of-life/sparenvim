@@ -31,6 +31,7 @@ return {
   },
   {
     'tanvirtin/vgit.nvim',
+    enabled = false,
     cmd = {
       "VGit setup",
       "VGit toggle_diff_preference",
@@ -50,7 +51,8 @@ return {
   },
   {
     'kevinhwang91/nvim-ufo',
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    enabled = false,
     dependencies = 'kevinhwang91/promise-async',
     config = function()
       require('bin.plugins.tools.ufo')
@@ -69,8 +71,8 @@ return {
       "nvim-lua/plenary.nvim",
       "octarect/telescope-menu.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
-      "LinArcX/telescope-command-palette.nvim",
-      "tsakirist/telescope-lazy.nvim",
+      -- "LinArcX/telescope-command-palette.nvim",
+      -- "tsakirist/telescope-lazy.nvim",
       {
         "nvim-telescope/telescope-frecency.nvim",
         dependencies = { "kkharji/sqlite.lua" },
@@ -81,14 +83,14 @@ return {
       require("telescope").load_extension("menu")
       require("telescope").load_extension("frecency")
       require("telescope").load_extension("file_browser")
-      require("telescope").load_extension("command_palette")
-      require("telescope").load_extension "lazy"
+      -- require("telescope").load_extension("command_palette")
+      -- require("telescope").load_extension "lazy"
       vim.keymap.set("n", "<s-t>", "<cmd>Telescope<cr>")
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-      vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-      vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+      -- local builtin = require("telescope.builtin")
+      -- vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+      -- vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+      -- vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+      -- vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
     end,
   },
   -- {
@@ -106,7 +108,8 @@ return {
   -- },
   {
     "uga-rosa/ccc.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    enabled = false,
     config = function()
       require("bin.plugins.tools.ccc")
     end,

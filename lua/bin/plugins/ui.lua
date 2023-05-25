@@ -63,11 +63,11 @@ return {
       vim.cmd.colorscheme "catppuccin"
     end
   },
-  {
-    "nvim-zh/colorful-winsep.nvim",
-    config = true,
-    event = { "WinNew" },
-  },
+  -- {
+  --   "nvim-zh/colorful-winsep.nvim",
+  --   config = true,
+  --   event = { "WinNew" },
+  -- },
   -- {
   --   'gelguy/wilder.nvim',
   --   cond = false,
@@ -107,12 +107,24 @@ return {
     config = true,
   },
   {
-    'rebelot/heirline.nvim',
-    event = "UIEnter",
-    config = function()
-      require('bin.plugins.ui.heirline')
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+      vim.opt.laststatus = 2
+      require('lualine').setup {
+        options = {
+          theme = 'catppuccin',
+        }
+      }
     end
   },
+  -- {
+  --   'rebelot/heirline.nvim',
+  --   event = "UIEnter",
+  --   config = function()
+      -- require('bin.plugins.ui.heirline')
+  --   end
+  -- },
   -- {
   --   "neanias/everforest-nvim",
   --   init = function()
