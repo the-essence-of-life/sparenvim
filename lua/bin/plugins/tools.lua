@@ -49,14 +49,36 @@ return {
       require('bin.plugins.tools.vgit')
     end
   },
+  -- {
+  --   'kevinhwang91/nvim-ufo',
+  --   -- event = "VeryLazy",
+  --   -- enabled = true,
+  --   dependencies = 'kevinhwang91/promise-async',
+  --   config = function()
+  --     require('bin.plugins.tools.ufo')
+  --   end
+  -- },
   {
-    'kevinhwang91/nvim-ufo',
-    -- event = "VeryLazy",
-    -- enabled = true,
-    dependencies = 'kevinhwang91/promise-async',
+    "luukvbaal/statuscol.nvim",
     config = function()
-      require('bin.plugins.tools.ufo')
-    end
+      -- local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        -- configuration goes here, for example:
+        -- relculright = true,
+        -- segments = {
+        --   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+        --   {
+        --     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+        --     click = "v:lua.ScSa"
+        --   },
+        --   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+        --   {
+        --     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+        --     click = "v:lua.ScSa"
+        --   },
+        -- }
+      })
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
