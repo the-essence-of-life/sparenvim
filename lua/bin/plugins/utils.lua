@@ -37,12 +37,16 @@ return {
   },
   {
     "folke/persistence.nvim",
-    event = "VeryLazy",   -- this will only start session saving when an actual file was opened
+    event = "VeryLazy", -- this will only start session saving when an actual file was opened
     -- module = "persistence",
     config = function()
       require("bin.plugins.utils.persistence")
     end,
   },
+    -- keys = {
+    --   { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", mode = "n", desc = "Undotree Toggle" }
+    -- },
+  -- },
   -- {
   -- 	"VonHeikemen/fine-cmdline.nvim",
   -- 	keys = {

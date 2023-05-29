@@ -398,7 +398,7 @@ require("heirline").setup({
     Space,
     LSPActive,
     Space,
-    Diagnostics,
+    -- Diagnostics,
     Space,
     MacroRec,
     Space,

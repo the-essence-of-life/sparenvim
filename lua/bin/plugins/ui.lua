@@ -102,6 +102,10 @@ return {
   -- },
   {
     'akinsho/bufferline.nvim',
+    lazy = false,
+    keys = {
+      { '<a-,>', '<cmd>bprevious<cr>', mode = 'n' },
+    },
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = true,
@@ -120,9 +124,9 @@ return {
   },
   -- {
   --   'rebelot/heirline.nvim',
-  --   event = "UIEnter",
+  --   -- event = "UIEnter",
   --   config = function()
-      -- require('bin.plugins.ui.heirline')
+  --     require('bin.plugins.ui.heirline')
   --   end
   -- },
   -- {

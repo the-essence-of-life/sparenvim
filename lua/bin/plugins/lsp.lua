@@ -10,6 +10,7 @@ return {
     },
     config = function()
       require('bin.plugins.lsp.mason-lspconfig')
+      require('bin.plugins.lsp.lsp')
     end,
   },
   {
@@ -75,10 +76,10 @@ return {
     }
   },
   -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   dependencies = {
-  --     "jay-babu/mason-null-ls.nvim",
-  --   },
-  --   config = require('bin.plugins.lsp.null-ls')
-  -- },
-}
+    --   "jose-elias-alvarez/null-ls.nvim",
+    --   dependencies = {
+      --     "jay-babu/mason-null-ls.nvim",
+      --   },
+      --   config = require('bin.plugins.lsp.null-ls')
+      -- },
+    }

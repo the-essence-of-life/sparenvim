@@ -8,7 +8,10 @@ dashboard.section.header.val = {
   [[  / __ \/ _ \/ __ \ | / / / __ `__ \]],
   [[ / / / /  __/ /_/ / |/ / / / / / / /]],
   [[/_/ /_/\___/\____/|___/_/_/ /_/ /_/]],
+  [[]],
   [[    A modern and beautiful ide.]],
+  [[    <c-n>   open the file tree]],
+  -- [[    <s>]],
 }
 
 -- Set menu

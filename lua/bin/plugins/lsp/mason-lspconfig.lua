@@ -30,7 +30,10 @@ local handlers = {
   end,
   ["bashls"] = function ()
     lspconfig.bashls.setup {}
-  end
+  end,
+  -- ["html"] = function ()
+  --   lspconfig.html.setup {}
+  -- end,
 }
 
 require("mason-lspconfig").setup_handlers(handlers)

@@ -1,5 +1,6 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
+
 cmp.setup {
   -- As currently, i am not using any snippet manager, thus disabled it.
   snippet = {
@@ -13,7 +14,7 @@ cmp.setup {
   },
   mapping = {
     ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
-    ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),  -- Down
     -- C-b (back) C-f (forward) for snippet placeholder navigation.
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
@@ -41,27 +42,47 @@ cmp.setup {
   },
   formatting = {
     format = lspkind.cmp_format {
-      with_text = true,
+      with_text = false,
       menu = {
-        buffer   = "[buf]",
-        nvim_lsp = "[LSP]",
-        path     = "[path]",
+        buffer   = "(BUF)",
+        nvim_lsp = "(LSP)",
+        path     = "(PATH)",
       },
     },
   },
-
   sources = {
-    { name = "nvim_lsp"},
+    { name = "nvim_lsp" },
     { name = "path" },
     { name = 'luasnip' },
-    { name = "buffer" , keyword_length = 5},
+    { name = "buffer",  keyword_length = 5 },
   },
   experimental = {
-    ghost_text = true
+    -- ghost_text = true
   }
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')["bashls"].setup {
+  capabilities = capabilities
+}
+require('lspconfig')["lua_ls"].setup {
+  capabilities = capabilities
+}
+require('lspconfig')["html"].setup {
+  capabilities = capabilities
+}
+require('lspconfig')["vtsls"].setup {
+  capabilities = capabilities
+}
+-- tailwindcss
+
+require('lspconfig')["cssls"].setup {
+  capabilities = capabilities
+}
+-- quick_lint_js
+-- require('lspconfig')["quick_lint_js"].setup {
+--   capabilities = capabilities
+-- }
+require('lspconfig')["eslint"].setup {
   capabilities = capabilities
 }
