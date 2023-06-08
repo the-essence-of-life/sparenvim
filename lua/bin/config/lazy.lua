@@ -21,6 +21,11 @@ require("lazy").setup({
   spec = {
     -- { "LazyVim/LazyVim", import = "lazyvim.config" },
     { import = "bin.plugins" },
+    -- { import = "bin.plugins.lsp" },
+    -- { import = "bin.plugins.tools" },
+    -- { import = "bin.plugins.ui" },
+    -- { import = "bin.plugins.utils" },
+    -- { import = "bin.plugins.user" },
   },
   git = {
     url_format = "https://ay1.us/https://github.com/%s.git",

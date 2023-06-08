@@ -1,6 +1,8 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
+require("luasnip.loaders.from_vscode").lazy_load()
+
 cmp.setup {
   -- As currently, i am not using any snippet manager, thus disabled it.
   snippet = {
@@ -47,6 +49,7 @@ cmp.setup {
         buffer   = "(BUF)",
         nvim_lsp = "(LSP)",
         path     = "(PATH)",
+        buffer_lines = '(BUFL)',
       },
     },
   },
@@ -55,6 +58,15 @@ cmp.setup {
     { name = "path" },
     { name = 'luasnip' },
     { name = "buffer",  keyword_length = 5 },
+    sources = {
+      {
+        name = "buffer-lines",
+        option = {
+          words = true,
+          comments = true,
+        }
+      }
+    },
   },
   experimental = {
     -- ghost_text = true
@@ -71,18 +83,16 @@ require('lspconfig')["lua_ls"].setup {
 require('lspconfig')["html"].setup {
   capabilities = capabilities
 }
-require('lspconfig')["vtsls"].setup {
+require('lspconfig')["tsserver"].setup {
   capabilities = capabilities
 }
--- tailwindcss
 
 require('lspconfig')["cssls"].setup {
   capabilities = capabilities
 }
--- quick_lint_js
--- require('lspconfig')["quick_lint_js"].setup {
---   capabilities = capabilities
--- }
+require('lspconfig')["volar"].setup {
+  capabilities = capabilities
+}
 require('lspconfig')["eslint"].setup {
   capabilities = capabilities
 }

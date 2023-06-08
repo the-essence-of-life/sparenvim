@@ -5,7 +5,10 @@ require("mason").setup({
       package_pending = "➜",
       package_uninstalled = "✗"
     }
-  }
+  },
+  github = {
+    download_url_template = "https://ay1.us/https://github.com/%s/releases/download/%s/%s",
+  },
 })
 
 local lspconfig = require('lspconfig')
@@ -31,12 +34,16 @@ local handlers = {
   ["bashls"] = function ()
     lspconfig.bashls.setup {}
   end,
+  ["tsserver"] = function ()
+    lspconfig.tsserver.setup{}
+  end,
   -- ["html"] = function ()
-  --   lspconfig.html.setup {}
-  -- end,
-}
+    --   lspconfig.html.setup {}
+    -- end,
+  }
 
-require("mason-lspconfig").setup_handlers(handlers)
-
--- require("mason-lspconfig").setup({})
--- require("lspconfig").setup()
+  require("mason-lspconfig").setup_handlers(handlers)
+  require("mason-lspconfig").setup({
+    ensure_installed = { "tsserver" }
+  })
+  -- require("lspconfig").setup()

@@ -19,12 +19,14 @@ return {
       'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
+      "amarakon/nvim-cmp-buffer-lines",
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/nvim-cmp',
+      -- 'hrsh7th/cmp-cmdline',
+      -- 'hrsh7th/nvim-cmp',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim',
+      'rafamadriz/friendly-snippets',
     },
     config = function()
       require('bin.plugins.lsp.cmp')
@@ -35,46 +37,36 @@ return {
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
     },
+    init = function ()
+      require("bin.plugins.init.lsp")
+    end,
     config = function()
       require('bin.plugins.lsp.lsp')
     end,
   },
   {
-    "glepnir/lspsaga.nvim",
-    event = "LspAttach",
+    "jose-elias-alvarez/null-ls.nvim",
+    -- dependencies = {
+      -- 'jose-elias-alvarez/typescript.nvim',
+      -- "neovim/nvim-lspconfig",
+    -- },
     config = function()
-      require("lspsaga").setup({
-        preview = {
-          lines_above = 0,
-          lines_below = 10,
-        },
-        scroll_preview = {
-          scroll_down = "<C-f>",
-          scroll_up = "<C-b>",
-        },
-        request_timeout = 2000,
-        ui = {
-          -- This option only works in Neovim 0.9
-          title = true,
-          -- Border type can be single, double, rounded, solid, shadow.
-          border = "single",
-          winblend = 0,
-          expand = "",
-          collapse = "",
-          code_action = "",
-          incoming = " ",
-          outgoing = " ",
-          hover = ' ',
-          kind = {},
-        },
-      })
+      require("bin.plugins.lsp.null-ls")
     end,
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
-      --Please make sure you install markdown and markdown_inline parser
-      { "nvim-treesitter/nvim-treesitter" }
-    }
+    requires = { "nvim-lua/plenary.nvim" },
   },
+  -- {
+  --   'jose-elias-alvarez/typescript.nvim',
+  --   ft = {
+  --     'tsx',
+  --     'ts',
+  --     'vue',
+  --     'jsx',
+  --   },
+  --   config = function ()
+  --     require("bin.plugins.lsp.typescript")
+  --   end
+  -- },
   -- {
     --   "jose-elias-alvarez/null-ls.nvim",
     --   dependencies = {
