@@ -76,3 +76,4 @@ return {
 	--   config = require('bin.plugins.lsp.null-ls')
 	-- },
 }
+

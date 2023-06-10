@@ -105,6 +105,7 @@ return {
     lazy = false,
     keys = {
       { '<a-,>', '<cmd>bprevious<cr>', mode = 'n' },
+      { '<a-.>', '<cmd>bnext<cr>', mode = 'n' },
     },
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
