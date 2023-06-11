@@ -18,7 +18,8 @@ cmp.setup({
   mapping = {
     ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- Up
     ["<C-f>"] = cmp.mapping.scroll_docs(4), -- Down
-    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,

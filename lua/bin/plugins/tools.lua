@@ -9,6 +9,41 @@ return {
 			require("bin.plugins.tools.nvim-tree")
 		end,
 	},
+	{
+		"ThePrimeagen/git-worktree.nvim",
+		enabled = false,
+		dependencies = {
+			"ThePrimeagen/harpoon",
+		},
+		config = function()
+			require("git-worktree").setup({
+				change_directory_command = "cd", -- default: "cd",
+				update_on_change = true, -- default: true,
+				update_on_change_command = "e .", -- default: "e .",
+				clearjumps_on_change = true, -- default: true,
+				autopush = false, -- default: false,
+			})
+			local Worktree = require("git-worktree")
+
+			-- op = Operations.Switch, Operations.Create, Operations.Delete
+			-- metadata = table of useful values (structure dependent on op)
+			--      Switch
+			--          path = path you switched to
+			--          prev_path = previous worktree path
+			--      Create
+			--          path = path where worktree created
+			--          branch = branch name
+			--          upstream = upstream remote name
+			--      Delete
+			--          path = path where worktree deleted
+
+			Worktree.on_tree_change(function(op, metadata)
+				if op == Worktree.Operations.Switch then
+					print("Switched from " .. metadata.prev_path .. " to " .. metadata.path)
+				end
+			end)
+		end,
+	},
 	-- {
 	-- 	"nvim-neo-tree/neo-tree.nvim",
 	-- 	version = "v2.x",

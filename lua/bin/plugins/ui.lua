@@ -1,10 +1,13 @@
 return {
 	{
 		"catppuccin/nvim",
+		lazy = false,
+		priority = 1000,
 		name = "catppuccin",
 		config = function()
 			require("bin.plugins.ui.catppuccin")
-			vim.cmd.colorscheme("catppuccin")
+			local color = colorscheme or "catppuccin"
+			vim.cmd.color(color)
 		end,
 	},
 	{

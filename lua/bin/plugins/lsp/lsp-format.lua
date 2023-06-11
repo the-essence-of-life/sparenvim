@@ -6,3 +6,5 @@ vim.api.nvim_create_autocmd("BufWrite", {
 		vim.lsp.buf.format({ async = false })
 	end,
 })
+
+vim.keymap.set("n", "<A-c>", "ZZ")
