@@ -6,7 +6,7 @@ return {
 		name = "catppuccin",
 		config = function()
 			require("bin.plugins.ui.catppuccin")
-			local color = colorscheme or "catppuccin"
+			local color = color or "catppuccin"
 			vim.cmd.color(color)
 		end,
 	},
