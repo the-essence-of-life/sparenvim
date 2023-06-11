@@ -65,5 +65,14 @@ return {
 		event = "VeryLazy",
 		config = true,
 	},
+	{
+		"ThePrimeagen/harpoon",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("bin.plugins.utils.harpoon")
+		end,
+	},
 	-- { dir = "~/workspace/lazy.nvim" },
 }

@@ -1,23 +1,28 @@
 return {
 	{
+		"glepnir/lspsaga.nvim",
+		event = "LspAttach",
+		config = function()
+			require("bin.plugins.lsp.lspsaga")
+		end,
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+			--Please make sure you install markdown and markdown_inline parser
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	},
+	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
 		dependencies = {
 			-- {"williamboman/mason-lspconfig.nvim", config = true},
 			{ "neovim/nvim-lspconfig" },
-			-- {"glepnir/lspsaga.nvim", config = true},
+			{ "glepnir/lspsaga.nvim" },
 			-- "jose-elias-alvarez/null-ls.nvim",
 		},
 		config = function()
 			require("bin.plugins.lsp.lsp")
 		end,
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		-- follow latest release.
-		version = "<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!).
-		build = "make install_jsregexp",
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -48,32 +53,12 @@ return {
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		-- dependencies = {
-		-- 'jose-elias-alvarez/typescript.nvim',
-		-- "neovim/nvim-lspconfig",
-		-- },
 		config = function()
 			require("bin.plugins.lsp.null-ls")
 		end,
 		requires = { "nvim-lua/plenary.nvim" },
 	},
-	-- {
-	--   'jose-elias-alvarez/typescript.nvim',
-	--   ft = {
-	--     'tsx',
-	--     'ts',
-	--     'vue',
-	--     'jsx',
-	--   },
-	--   config = function ()
-	--     require("bin.plugins.lsp.typescript")
-	--   end
-	-- },
-	-- {
-	--   "jose-elias-alvarez/null-ls.nvim",
-	--   dependencies = {
-	--     "jay-babu/mason-null-ls.nvim",
-	--   },
-	--   config = require('bin.plugins.lsp.null-ls')
-	-- },
+	{
+		"mfussenegger/nvim-jdtls",
+	},
 }
