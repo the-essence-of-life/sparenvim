@@ -20,10 +20,17 @@
 
 ## Main
 
-![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)
+![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)  
+`>= 0.83`  
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)  
+`>= 20.2.9`  
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)  
+`>= 2.41.0`  
+![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)  
+`>= 3.26.4`  
+
+**You can use your linux package manager to install it.**  
+**For example:`pacman`,`pkg`,`apt`,`dnf` and so on.**  
 
 ## Language Support
 
@@ -144,6 +151,7 @@ nvim
 - telescope.nvim
 - todo-comments.nvim
 - toggleterm.nvim
+- catppuccin.nvim
 - tokyonight.nvim
 - trouble.nvim
 - vim-vsnip
@@ -159,16 +167,23 @@ lua **[introduce](https://www.runoob.com/lua/lua-tutorial.html)**
 
 ```lua
 -- https://ay1.us/https://github.com/folke/lazy.nvim#examples
-return {
-  -- NOTE:Packer on 'use' function are change on 'dependencies'.
-  "foo/bar",
-  dependencies = {},
-  -- [event,ft,keys,cmd] are lazy-loading.
-  event = "VeryLazy",
-  -- [config,init,cond] are configruation.
-  config = function()
-  end,
-}
+-- First, cd ~/.config/nvim/lua/bin/plugins/
+  -- touch <your-file-name>.lua, e.g.:user.lua
+-- Then copy these code to <your-file-name>.lua(run:nvim user.lua)
+  -- i to insert,<Esc> can quit the insert mode.
+  -- Then :wq to save the files.
+  -- Finally,nvim user.lua again,you'll find these packages are auto installed.
+
+  return {
+    -- NOTE:Packer on 'requires' function are change on 'dependencies'.
+      "foo/bar",
+      dependencies = {},
+      -- [event,ft,keys,cmd] are lazy-loading.
+        event = "VeryLazy",
+      -- [config,init,cond] are configruation.
+        config = function()
+        end,
+  }
 ```
 
 # THANKS SO
