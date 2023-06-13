@@ -8,15 +8,13 @@
 
 </div>
 
-# Features
-
 - Easy to use!
 - Easy to setup!
 - Easy to change config!
 - Easy to install lsp-config!
 - 60+ plugins support!
 
-# Dependencies
+# 📡 Dependencies
 
 ## Main
 
@@ -32,13 +30,20 @@
 **You can use your linux package manager to install it.**  
 **For example:`pacman`,`pkg`,`apt`,`dnf` and so on.**  
 
-## Language Support
+## 🎉 Feature
+make file:(Not gcc,shell script.)  
+*Commands:*  
+`make run`:Run sync plugins.  
+`make update`:Update your github repo.  
+`make debug`:Debug your code.  
+
+## 📖 Language Support
 
 ![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 
-## Setup
+## 💻 Setup
 
 ```sh
 # Backup your config and remove your caches.
@@ -55,7 +60,7 @@ ln -s ~/.config/nvim/lua/bin/plugins/ ~/.config/nvim/lua/plugins/
 nvim
 ```
 
-## File directory
+## 📁 File directory
 
 ```
  .
@@ -90,7 +95,7 @@ nvim
 └──  README.md
 ```
 
-## Plugins List
+## 📋 Plugins List
 
 <details>
 <summary>Cilck it!</summary>
@@ -163,7 +168,7 @@ lua **[introduce](https://www.runoob.com/lua/lua-tutorial.html)**
 
 </details>
 
-# Plugin Install & Setup
+# 🔧 Plugin Install & Setup
 
 ```lua
 -- https://ay1.us/https://github.com/folke/lazy.nvim#examples
@@ -186,7 +191,7 @@ lua **[introduce](https://www.runoob.com/lua/lua-tutorial.html)**
   }
 ```
 
-# THANKS SO
+# 👋 THANKS SO
 
 > All people helps me.  
 > 所有帮助过我的人  
