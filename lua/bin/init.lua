@@ -15,8 +15,5 @@ local m = {
   "bin.config.lazy",
 }
 for _, modules in ipairs(m) do
-  local _, ok = pcall(require, modules)
-  if not ok then
-    return
-  end
+  require(modules)
 end

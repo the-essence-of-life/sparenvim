@@ -14,9 +14,7 @@
 - Easy to install lsp-config!
 - 60+ plugins support!
 
-# 📡 Dependencies
-
-## Main
+## 📡 Dependencies
 
 ![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)  
 `>= 0.83`  
@@ -25,23 +23,30 @@
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)  
 `>= 2.41.0`  
 ![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)  
-`>= 3.26.4`  
+`>= 3.26.4`
 
 **You can use your linux package manager to install it.**  
-**For example:`pacman`,`pkg`,`apt`,`dnf` and so on.**  
+**For example:`pacman`,`pkg`,`apt`,`dnf` and so on.**
+
+---
 
 ## 🎉 Feature
+
 make file:(Not gcc,shell script.)  
-*Commands:*  
+_Commands:_  
 `make run`:Run sync plugins.  
 `make update`:Update your github repo.  
-`make debug`:Debug your code.  
+`make debug`:Debug your code.
+
+---
 
 ## 📖 Language Support
 
 ![Lua](https://img.shields.io/badge/lua-%232C2D72.svg?style=for-the-badge&logo=lua&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+
+---
 
 ## 💻 Setup
 
@@ -60,115 +65,75 @@ ln -s ~/.config/nvim/lua/bin/plugins/ ~/.config/nvim/lua/plugins/
 nvim
 ```
 
+---
+
 ## 📁 File directory
 
 ```
  .
-├──  init.lua
-├──  lazy-lock.json
-├──  LICENSE
-├──  lua
-│  ├──  bin
-│  │  ├──  config
-│  │  │  ├──  autocmds.lua
-│  │  │  ├──  keymaps.lua
-│  │  │  ├──  lazy.lua
-│  │  │  └──  options.lua
-│  │  └──  plugins
-│  │     ├──  lsp
-│  │     │  └──  lsp*.lua
-│  │     ├──  lsp.lua
-│  │     ├──  tools
-│  │     │  └──  tools*.lua
-│  │     ├──  tools.lua
-│  │     ├──  ui
-│  │     │  └──  ui*.lua
-│  │     ├──  ui.lua
-│  │     ├──  user
-│  │     ├──  user.lua
-│  │     ├──  utils
-│  │     │  └──  utils*.lua
-│  │     └──  utils.lua
-│  ├──  test.lua
-│  └──  user
-│     └──  init.lua
-└──  README.md
+├─  init.lua
+├─  lazy-lock.json
+├─  LICENSE
+├─  lua
+│ ├─  bin
+│ │ ├─  config
+│ │ │ ├─  autocmds.lua
+│ │ │ ├─  keymaps.lua
+│ │ │ ├─  lazy.lua
+│ │ │ └─  options.lua
+│ │ └─  plugins
+│ │    ├─  lsp
+│ │    │ └─  lsp*.lua
+│ │    ├─  lsp.lua
+│ │    ├─  tools
+│ │    │ └─  tools*.lua
+│ │    ├─  tools.lua
+│ │    ├─  ui
+│ │    │ └─  ui*.lua
+│ │    ├─  ui.lua
+│ │    ├─  user
+│ │    ├─  user.lua
+│ │    ├─  utils
+│ │    │ └─  utils*.lua
+│ │    └─  utils.lua
+│ ├─  test.lua
+│ └─  user
+│    └─  init.lua
+└─  README.md
 ```
+
+---
 
 ## 📋 Plugins List
 
-<details>
-<summary>Cilck it!</summary>
+| lsp                               | tools                          | ui                                  | utils                           |
+| :-------------------------------- | :----------------------------- | :---------------------------------- | :------------------------------ |
+| glepnir/lspsaga.nvim              | nvim-tree/nvim-tree.lua        | catppuccin/nvim                     | MunifTanjim/nui.nvim            |
+| williamboman/mason.nvim           | ThePrimeagen/git-worktree.nvim | akinsho/bufferline.nvim             | nvim-treesitter/nvim-treesitter |
+| hrsh7th/nvim-cmp                  | numToStr/Comment.nvim          | nvim-lualine/lualine.nvim           | HiPhish/nvim-ts-rainbow2        |
+| neovim/nvim-lspconfig             | tanvirtin/vgit.nvim            | lukas-reineke/indent-blankline.nvim | MunifTanjim/nui.nvim            |
+| jose-elias-alvarez/null-ls.nvim   | luukvbaal/statuscol.nvim       | goolord/alpha-nvim                  | rcarriga/nvim-notify            |
+| williamboman/mason-lspconfig.nvim | nvim-lua/plenary.nvim          | folke/noice.nvim                    | folke/persistence.nvim          |
+| hrsh7th/cmp-nvim-lsp              | ThePrimeagen/harpoon           |                                     | rafamadriz/friendly-snippets    |
+| amarakon/nvim-cmp-buffer-lines    | nvim-neo-tree/neo-tree.nvim    |
+| hrsh7th/cmp-path                  |
+| hrsh7th/cmp-cmdline               |
+| nvim-tree/nvim-web-devicons       |
+| nvim-treesitter/nvim-treesitter   |
+| neovim/nvim-lspconfig             |
+| glepnir/lspsaga.nvim              |
+| hrsh7th/cmp-buffer                |
+| L3MON4D3/LuaSnip                  |
+| saadparwaiz1/cmp_luasnip          |
+| onsails/lspkind.nvim              |
+| neovim/nvim-lspconfig             |
+| williamboman/mason-lspconfig.nvim |
+| nvim-lua/plenary.nvim             |
+| mfussenegger/nvim-jdtls           |
 
-- Comment.nvim
-- alpha-nvim
-- autoclose.nvim
-- barbar.nvim
-- ccc.nvim
-- cmp-buffer
-- cmp-cmdline
-- cmp-nvim-lsp
-- cmp-path
-- cmp-vsnip
-- dressing.nvim
-- everforest-nvim
-- gitsigns.nvim
-- heirline.nvim
-- hop.nvim
-- icon-picker.nvim
-- indent-blankline.nvim
-- lazy.nvim
-- lspkind.nvim
-- lspsaga.nvim
-- markdown-preview.nvim
-- mason-lspconfig.nvim
-- mason-null-ls.nvim
-- mason-nvim-dap.nvim
-- mason.nvim
-- neodev.nvim
-- noice.nvim
-- nui.nvim
-- null-ls.nvim
-- nvim-cmp
-- nvim-dap
-- nvim-dap-ui
-- nvim-lspconfig
-- nvim-markdown
-- nvim-material-icon
-- nvim-notify
-- nvim-spectre
-- nvim-tree.lua
-- nvim-treesitter
-- nvim-ts-autotag
-- nvim-ts-rainbow2
-- nvim-ufo
-- nvim-web-devicons
-- overseer.nvim
-- persistence.nvim
-- plenary.nvim
-- promise-async
-- rust-tools.nvim
-- sqlite.lua
-- telescope-command-palette.nvim
-- telescope-file-browser.nvim
-- telescope-frecency.nvim
-- telescope-menu.nvim
-- telescope.nvim
-- todo-comments.nvim
-- toggleterm.nvim
-- catppuccin.nvim
-- tokyonight.nvim
-- trouble.nvim
-- vim-vsnip
-</details>
-<details>
-<summary>Cilck it to learn more about lua grammer.</summary>
+---
 
-lua **[introduce](https://www.runoob.com/lua/lua-tutorial.html)**
-
-</details>
-
-# 🔧 Plugin Install & Setup
+## 🔧 Plugin Install & Setup
 
 ```lua
 -- https://ay1.us/https://github.com/folke/lazy.nvim#examples
@@ -191,8 +156,9 @@ lua **[introduce](https://www.runoob.com/lua/lua-tutorial.html)**
   }
 ```
 
-# 👋 THANKS SO
+---
+
+## 👋 THANKS SO
 
 > All people helps me.  
-> 所有帮助过我的人  
-> No need money!用爱发电!
+> No need money!Love make lights!

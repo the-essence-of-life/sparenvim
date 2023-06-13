@@ -27,9 +27,9 @@ require("lazy").setup({
     -- { import = "bin.plugins.utils" },
     -- { import = "bin.plugins.user" },
   },
-  git = {
-    url_format = "https://ay1.us/https://github.com/%s.git",
-  },
+-- git = {
+--   url_format = "https://ay1.us/https://github.com/%s.git",
+-- },
   install = {
     colorscheme = { "catppuccin" },
   },

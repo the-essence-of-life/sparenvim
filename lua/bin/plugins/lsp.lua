@@ -56,7 +56,7 @@ return {
 		config = function()
 			require("bin.plugins.lsp.null-ls")
 		end,
-		requires = { "nvim-lua/plenary.nvim" },
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
 		"mfussenegger/nvim-jdtls",
