@@ -2,11 +2,11 @@
 # shellcheck disable=1090
 echo "Debug log:"
 nvim --headless +q
-if [ -f ~/.bashrc ]; then
+if [[ "echo $SHELL" =~ "bash" ]]; then
 	echo "alias debug-nvim='nvim --headless +q'" >>~/.bashrc
-elif [ -f ~/.zshrc ]; then
+elif [[ "echo $SHELL" =~ "zsh" ]]; then
 	echo "alias debug-nvim='nvim --headless +q'" >>~/.zshrc
-elif [ -f ~/.config/fish/config.fish ]; then
+elif [[ "echo $SHELL" =~ "fish" ]]; then
 	echo "abbr -a debug-nvim nvim --headless +q" >>~/.config/fish/config.fish
 fi
 echo "You can use debug-nvim to debug your neovim."
