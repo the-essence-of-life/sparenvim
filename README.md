@@ -106,30 +106,18 @@ nvim
 
 ## 📋 Plugins List
 
-| lsp                               | tools                          | ui                                  | utils                           |
-| :-------------------------------- | :----------------------------- | :---------------------------------- | :------------------------------ |
-| glepnir/lspsaga.nvim              | nvim-tree/nvim-tree.lua        | catppuccin/nvim                     | MunifTanjim/nui.nvim            |
-| williamboman/mason.nvim           | ThePrimeagen/git-worktree.nvim | akinsho/bufferline.nvim             | nvim-treesitter/nvim-treesitter |
-| hrsh7th/nvim-cmp                  | numToStr/Comment.nvim          | nvim-lualine/lualine.nvim           | HiPhish/nvim-ts-rainbow2        |
-| neovim/nvim-lspconfig             | tanvirtin/vgit.nvim            | lukas-reineke/indent-blankline.nvim | MunifTanjim/nui.nvim            |
-| jose-elias-alvarez/null-ls.nvim   | luukvbaal/statuscol.nvim       | goolord/alpha-nvim                  | rcarriga/nvim-notify            |
-| williamboman/mason-lspconfig.nvim | nvim-lua/plenary.nvim          | folke/noice.nvim                    | folke/persistence.nvim          |
-| hrsh7th/cmp-nvim-lsp              | ThePrimeagen/harpoon           |                                     | rafamadriz/friendly-snippets    |
-| amarakon/nvim-cmp-buffer-lines    | nvim-neo-tree/neo-tree.nvim    |
-| hrsh7th/cmp-path                  |
-| hrsh7th/cmp-cmdline               |
-| nvim-tree/nvim-web-devicons       |
-| nvim-treesitter/nvim-treesitter   |
-| neovim/nvim-lspconfig             |
-| glepnir/lspsaga.nvim              |
-| hrsh7th/cmp-buffer                |
-| L3MON4D3/LuaSnip                  |
-| saadparwaiz1/cmp_luasnip          |
-| onsails/lspkind.nvim              |
-| neovim/nvim-lspconfig             |
-| williamboman/mason-lspconfig.nvim |
-| nvim-lua/plenary.nvim             |
-| mfussenegger/nvim-jdtls           |
+| lsp                               | auto-competition               | tools                          | ui                                  | utils                           |
+| :-------------------------------- | :----------------------------- | :----------------------------- | :---------------------------------- | :------------------------------ |
+| glepnir/lspsaga.nvim              | hrsh7th/nvim-cmp               | nvim-tree/nvim-tree.lua        | catppuccin/nvim                     | MunifTanjim/nui.nvim            |
+| williamboman/mason.nvim           | hrsh7th/cmp-nvim-lsp           | ThePrimeagen/git-worktree.nvim | akinsho/bufferline.nvim             | nvim-treesitter/nvim-treesitter |
+| neovim/nvim-lspconfig             | amarakon/nvim-cmp-buffer-lines | numToStr/Comment.nvim          | nvim-lualine/lualine.nvim           | HiPhish/nvim-ts-rainbow2        |
+| jose-elias-alvarez/null-ls.nvim   | hrsh7th/cmp-path               | tanvirtin/vgit.nvim            | lukas-reineke/indent-blankline.nvim | MunifTanjim/nui.nvim            |
+| williamboman/mason-lspconfig.nvim | hrsh7th/cmp-cmdline            | luukvbaal/statuscol.nvim       | goolord/alpha-nvim                  | rcarriga/nvim-notify            |
+| nvim-treesitter/nvim-treesitter   | hrsh7th/cmp-buffer             | nvim-lua/plenary.nvim          | folke/noice.nvim                    | folke/persistence.nvim          |
+| williamboman/mason-lspconfig.nvim | L3MON4D3/LuaSnip               | ThePrimeagen/harpoon           |                                     |
+| mfussenegger/nvim-jdtls           | onsails/lspkind.nvim           | nvim-neo-tree/neo-tree.nvim    |
+|                                   | saadparwaiz1/cmp_luasnip       |
+|                                   | rafamadriz/friendly-snippets   |
 
 ---
 
