@@ -7,13 +7,13 @@
 -- return M
 
 local m = {
-  -- Your require modules.
-  -- e.g: require('modules.name.path')
-  -- =>'modules.name.path',
-  "bin.config.options",
-  "bin.config.keymaps",
-  "bin.config.lazy",
+	-- Your require modules.
+	-- e.g: require('modules.name.path')
+	-- =>'modules.name.path',
+	"bin.config.options",
+	"bin.config.keymaps",
+	"bin.config.lazy",
 }
 for _, modules in ipairs(m) do
-  require(modules)
+	require(modules)
 end
