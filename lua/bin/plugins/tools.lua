@@ -2,9 +2,12 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		lazy = false,
-		keys = {
-			{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
-		},
+		keys = function()
+			-- return {
+			-- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
+			-- }
+			return require("bin.config.keymaps").tree
+		end,
 		config = function()
 			require("bin.plugins.tools.nvim-tree")
 		end,
@@ -61,11 +64,14 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		lazy = false,
-		keys = {
-			{ "m", "<cmd>Telescope menu<cr>", mode = "n" },
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
-			{ "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
-		},
+		-- keys = {
+		-- 	{ "m", "<cmd>Telescope menu<cr>", mode = "n" },
+		-- 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
+		-- 	{ "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
+		-- },
+		keys = function()
+			return require("bin.config.keymaps").telescope
+		end,
 		-- tag = "0.1.1",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -163,9 +169,9 @@ return {
 	{
 		"phaazon/hop.nvim",
 		branch = "v2", -- optional but strongly recommended
-		keys = {
-			{ "<a-m>", "<cmd>HopChar2<cr>", desc = "hop move two chars" },
-		},
+		keys = function()
+			return require("bin.config.keymaps").hop
+		end,
 		config = function()
 			-- you can configure Hop the way you like here; see :h hop-config
 			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
@@ -189,18 +195,18 @@ return {
 	-- 		require("bin.plugins.tools.spectre")
 	-- 	end,
 	-- },
-	-- {
-	-- 	"ziontee113/icon-picker.nvim",
-	-- 	event = "VeryLazy",
-	-- 	dependencies = {
-	-- 		"stevearc/dressing.nvim",
-	-- 	},
-	-- 	config = function()
-	-- 		require("icon-picker").setup({
-	-- 			disable_legacy_commands = true,
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"ziontee113/icon-picker.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"stevearc/dressing.nvim",
+		},
+		config = function()
+			require("icon-picker").setup({
+				disable_legacy_commands = true,
+			})
+		end,
+	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",

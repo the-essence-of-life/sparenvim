@@ -6,17 +6,17 @@ local lualine = require("lualine")
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-  bg = '#202328',
-  fg = '#bbc2cf',
-  yellow = '#ECBE7B',
-  cyan = '#008080',
+  bg       = '#202328',
+  fg       = '#bbc2cf',
+  yellow   = '#ECBE7B',
+  cyan     = '#008080',
   darkblue = '#081633',
-  green = '#98be65',
-  orange = '#FF8800',
-  violet = '#a9a1e1',
-  magenta = '#c678dd',
-  blue = '#51afef',
-  red = '#ec5f67',
+  green    = '#98be65',
+  orange   = '#FF8800',
+  violet   = '#a9a1e1',
+  magenta  = '#c678dd',
+  blue     = '#51afef',
+  red      = '#ec5f67',
 }
 
 local conditions = {
@@ -36,12 +36,13 @@ local conditions = {
 -- Config
 local config = {
 	options = {
+    theme = "catppuccin",
 		-- Disable sections and component separators
 		component_separators = "",
 		section_separators = "",
 		theme = {
 			-- We are going to use lualine_c an lualine_x as left and
-			-- right section. Both are highlighted by c theme . So we
+			-- right section. Both are highlighted by c theme .  So we
 			-- are just setting default looks o statusline
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
 			inactive = { c = { fg = colors.fg, bg = colors.bg } },
@@ -89,7 +90,7 @@ ins_left({
 ins_left({
 	-- mode component
 	function()
-		return ""
+		return ""
 	end,
 	color = function()
 		-- auto change color according to neovims mode
@@ -121,19 +122,6 @@ ins_left({
 })
 
 ins_left({
-	"filetype",
-	colored = true, -- Displays filetype icon in color if set to true
-	icon_only = true, -- Display only an icon for filetype
-	icon = { align = "left" }, -- Display filetype icon on the right hand side
-})
-
-ins_left({
-	"filename",
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.magenta, gui = "bold" },
-})
-
-ins_left({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	symbols = { error = " ", warn = " ", info = " " },
@@ -155,7 +143,7 @@ ins_left({
 ins_left({
 	-- Lsp server name .
 	function()
-		local msg = "404"
+		local msg = "No Active Lsp"
 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 		local clients = vim.lsp.get_active_clients()
 		if next(clients) == nil then
@@ -173,11 +161,10 @@ ins_left({
 	color = { fg = "#ffffff", gui = "bold" },
 })
 
--- Add components to right sections
 ins_right({
-	"o:encoding", -- option component same as &encoding in viml
-	fmt = string.upper, -- I'm not sure why it's upper case either ;)
-	cond = conditions.hide_in_width,
+	"fileformat",
+	fmt = string.upper,
+	icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
 	color = { fg = colors.green, gui = "bold" },
 })
 
@@ -185,18 +172,6 @@ ins_right({
 	"branch",
 	icon = "",
 	color = { fg = colors.violet, gui = "bold" },
-})
-
-ins_right({
-	"diff",
-	-- Is it me or the symbol for modified us really weird
-	symbols = { added = " ", modified = "󰝤 ", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
 })
 
 ins_right({

@@ -13,10 +13,9 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		lazy = false,
-		keys = {
-			{ "<a-,>", "<cmd>bprevious<cr>", mode = "n" },
-			{ "<a-.>", "<cmd>bnext<cr>", mode = "n" },
-		},
+		keys = function()
+			return require("bin.config.keymaps").bufferline
+		end,
 		config = function()
 			require("bufferline").setup({
 				-- options = {
@@ -40,11 +39,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			vim.opt.laststatus = 2
-			require("lualine").setup({
-				options = {
-					theme = "catppuccin",
-				},
-			})
+			require("bin.plugins.ui.lualine")
 		end,
 	},
 	{

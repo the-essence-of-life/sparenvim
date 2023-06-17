@@ -1,6 +1,5 @@
 local M = {}
 
--- NOTE:tools.lua
 M.tree = {
 	plugins = true,
 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
@@ -18,7 +17,6 @@ M.hop = {
 	{ "<a-m>", "<cmd>HopChar2<cr>", desc = "hop move two chars" },
 }
 
--- NOTE:ui.lua
 M.bufferline = {
 	plugins = true,
 	{ "<a-,>", "<cmd>bprevious<cr>", mode = "n" },
