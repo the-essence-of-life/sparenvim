@@ -3,7 +3,7 @@ return {
 		"nvim-tree/nvim-tree.lua",
 		lazy = false,
 		keys = {
-			{ "<c-n>", "<cmd>NvimTreeToggle<cr>", desc = "NeoTree" },
+			{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
 		},
 		config = function()
 			require("bin.plugins.tools.nvim-tree")
@@ -43,6 +43,9 @@ return {
 				end
 			end)
 		end,
+	},
+	{
+		"terryma/vim-multiple-cursors",
 	},
 	-- {
 	-- 	"nvim-neo-tree/neo-tree.nvim",
