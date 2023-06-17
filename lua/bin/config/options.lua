@@ -59,3 +59,8 @@ vim.g.markdown_recommended_style = 0
 vim.cmd("filetype plugin indent on")
 vim.o.foldtext = ""
 vim.o.swap = false
+
+vim.g.netrw_liststyle = 3
+vim.g.netrw_preview = 1
+vim.g.netrw_alto = 0
+vim.g.netrw_chgwin = 2

@@ -3,62 +3,15 @@ return {
 		"nvim-tree/nvim-tree.lua",
 		lazy = false,
 		keys = {
-			{ "<c-n>", "<cmd>NvimTreeToggle<cr>", desc = "NeoTree" },
+			{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
 		},
 		config = function()
 			require("bin.plugins.tools.nvim-tree")
 		end,
 	},
 	{
-		"ThePrimeagen/git-worktree.nvim",
-		enabled = false,
-		dependencies = {
-			"ThePrimeagen/harpoon",
-		},
-		config = function()
-			require("git-worktree").setup({
-				change_directory_command = "cd", -- default: "cd",
-				update_on_change = true, -- default: true,
-				update_on_change_command = "e .", -- default: "e .",
-				clearjumps_on_change = true, -- default: true,
-				autopush = false, -- default: false,
-			})
-			local Worktree = require("git-worktree")
-
-			-- op = Operations.Switch, Operations.Create, Operations.Delete
-			-- metadata = table of useful values (structure dependent on op)
-			--      Switch
-			--          path = path you switched to
-			--          prev_path = previous worktree path
-			--      Create
-			--          path = path where worktree created
-			--          branch = branch name
-			--          upstream = upstream remote name
-			--      Delete
-			--          path = path where worktree deleted
-
-			Worktree.on_tree_change(function(op, metadata)
-				if op == Worktree.Operations.Switch then
-					print("Switched from " .. metadata.prev_path .. " to " .. metadata.path)
-				end
-			end)
-		end,
+		"terryma/vim-multiple-cursors",
 	},
-	-- {
-	-- 	"nvim-neo-tree/neo-tree.nvim",
-	-- 	version = "v2.x",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-	-- 		"MunifTanjim/nui.nvim",
-	-- 	},
-	-- 	keys = {
-	-- 		{ "<c-n>", "<cmd>Neotree<cr>", desc = "NeoTree" },
-	-- 	},
-	-- 	config = function()
-	-- 		require("bin.plugins.tools.neotree")
-	-- 	end,
-	-- },
 	{
 		"numToStr/Comment.nvim",
 		event = "VeryLazy",
@@ -66,7 +19,6 @@ return {
 	},
 	{
 		"tanvirtin/vgit.nvim",
-		enabled = false,
 		cmd = {
 			"VGit setup",
 			"VGit toggle_diff_preference",
@@ -84,15 +36,6 @@ return {
 			require("bin.plugins.tools.vgit")
 		end,
 	},
-	-- {
-	--   'kevinhwang91/nvim-ufo',
-	--   -- event = "VeryLazy",
-	--   -- enabled = true,
-	--   dependencies = 'kevinhwang91/promise-async',
-	--   config = function()
-	--     require('bin.plugins.tools.ufo')
-	--   end
-	-- },
 	{
 		"luukvbaal/statuscol.nvim",
 		config = function()
@@ -150,19 +93,6 @@ return {
 			-- vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 		end,
 	},
-	-- {
-	--   'jonarrien/telescope-cmdline.nvim',
-	--   keys = {
-	--     { ":", "<cmd>Telescope cmdline<cr>", mode = "n" },
-	--   },
-	--   dependencies = {
-	--     "nvim-telescope/telescope.nvim",
-	--   },
-	--   config = function()
-	--     require("bin.plugins.tools.telescope")
-	--     require("telescope").load_extension('cmdline')
-	--   end
-	-- },
 	{
 		"uga-rosa/ccc.nvim",
 		event = "InsertEnter",
@@ -215,7 +145,8 @@ return {
 	},
 	{
 		"iamcco/markdown-preview.nvim",
-		ft = "md",
+		event = "BufEnter *.md",
+		-- ft = "md",
 		build = "cd app && npm install",
 		config = function()
 			vim.g.mkdp_filetypes = { "markdown" }
@@ -223,7 +154,8 @@ return {
 	},
 	{
 		"ixru/nvim-markdown",
-		ft = "md",
+		event = "BufEnter *.md",
+		-- ft = "md",
 		config = function()
 			require("bin.plugins.tools.markdown")
 		end,
@@ -247,28 +179,28 @@ return {
 			require("bin.plugins.tools.autoclose")
 		end,
 	},
-	{
-		"nvim-pack/nvim-spectre",
-		event = "VeryLazy",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("bin.plugins.tools.spectre")
-		end,
-	},
-	{
-		"ziontee113/icon-picker.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"stevearc/dressing.nvim",
-		},
-		config = function()
-			require("icon-picker").setup({
-				disable_legacy_commands = true,
-			})
-		end,
-	},
+	-- {
+	-- 	"nvim-pack/nvim-spectre",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require("bin.plugins.tools.spectre")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"ziontee113/icon-picker.nvim",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = {
+	-- 		"stevearc/dressing.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		require("icon-picker").setup({
+	-- 			disable_legacy_commands = true,
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -291,15 +223,6 @@ return {
 					align = "left", -- align columns left, center or right
 				},
 			})
-		end,
-	},
-	{
-		"jake-stewart/jfind.nvim",
-		keys = {
-			{ "<c-f>" },
-		},
-		config = function()
-			require("bin.plugins.tools.jfind")
 		end,
 	},
 	{
@@ -360,17 +283,4 @@ return {
 			},
 		},
 	},
-	-- {
-	-- {
-	-- 	"nvim-neo-tree/neo-tree.nvim",
-	-- 	version = "v2.x",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-	-- 		"MunifTanjim/nui.nvim",
-	-- 	},
-	--    config = function ()
-	--      require('bin.plugins.tools.neotree')
-	--    end
-	-- },
 }
