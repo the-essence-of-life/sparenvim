@@ -13,7 +13,7 @@ while true; do
 		rm -rf ~/.local/state/nvim/
 		rm -rf ~/.cache/nvim/
     echo "success."
-    echo "Please run "make run" to use."
+    echo "Please run "make sync" to use."
 		break
 		;;
 	*)
