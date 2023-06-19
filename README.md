@@ -2,7 +2,8 @@
 
 # \_Space-Nvim
 
-<a href='https://postimg.cc/QKgRcR6R' target='_blank'><img src='https://i.postimg.cc/QKgRcR6R/IMG-20230501-192206.jpg' border='0' alt='IMG-20230501-192206'/></a>
+<!-- <a href='https://postimg.cc/QKgRcR6R' target='_blank'><img src='https://i.postimg.cc/QKgRcR6R/IMG-20230501-192206.jpg' border='0' alt='IMG-20230501-192206'/></a> -->
+![Stitch_20230619_193741.png](https://img1.imgtp.com/2023/06/19/vFQahSB5.png)
 
 ### 此 space-nvim 非彼 spacevim
 
