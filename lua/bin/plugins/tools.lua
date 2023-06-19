@@ -17,7 +17,9 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		event = "VeryLazy",
+		keys = function()
+			return require("bin.config.keymaps").comment
+		end,
 		config = true,
 	},
 	{
@@ -40,39 +42,17 @@ return {
 		end,
 	},
 	{
-		"luukvbaal/statuscol.nvim",
-		config = function()
-			-- local builtin = require("statuscol.builtin")
-			require("statuscol").setup({
-				-- configuration goes here, for example:
-				-- relculright = true,
-				-- segments = {
-				--   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-				--   {
-				--     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-				--     click = "v:lua.ScSa"
-				--   },
-				--   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
-				--   {
-				--     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-				--     click = "v:lua.ScSa"
-				--   },
-				-- }
-			})
-		end,
-	},
-	{
 		"nvim-telescope/telescope.nvim",
-		lazy = false,
 		-- keys = {
 		-- 	{ "m", "<cmd>Telescope menu<cr>", mode = "n" },
 		-- 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
 		-- 	{ "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
 		-- },
+		-- tag = "0.1.1",
 		keys = function()
 			return require("bin.config.keymaps").telescope
 		end,
-		-- tag = "0.1.1",
+		event = "VimEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"octarect/telescope-menu.nvim",
@@ -180,7 +160,7 @@ return {
 	},
 	{
 		"m4xshen/autoclose.nvim",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		config = function()
 			require("bin.plugins.tools.autoclose")
 		end,
@@ -197,7 +177,11 @@ return {
 	-- },
 	{
 		"ziontee113/icon-picker.nvim",
-		event = "VeryLazy",
+		cmd = {
+			"IconPickerInsert",
+			"IconPickerYank",
+			"IconPickerNormal",
+		},
 		dependencies = {
 			"stevearc/dressing.nvim",
 		},
@@ -209,7 +193,10 @@ return {
 	},
 	{
 		"folke/which-key.nvim",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		keys = function()
+			return require("bin.config.keymaps").which_key
+		end,
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
@@ -233,7 +220,7 @@ return {
 	},
 	{
 		"folke/edgy.nvim",
-		event = "VeryLazy",
+		event = "WinNew",
 		init = function()
 			vim.opt.laststatus = 3
 			vim.opt.splitkeep = "screen"

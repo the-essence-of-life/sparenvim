@@ -20,7 +20,6 @@ return {
 	-- 		require("bin.plugins.utils.autopairs")
 	-- 	end,
 	-- },
-	"MunifTanjim/nui.nvim",
 	{
 		"folke/noice.nvim",
 		config = function()

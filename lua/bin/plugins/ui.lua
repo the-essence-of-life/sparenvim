@@ -12,7 +12,7 @@ return {
 	},
 	{
 		"akinsho/bufferline.nvim",
-		lazy = false,
+		event = "UIEnter",
 		keys = function()
 			return require("bin.config.keymaps").bufferline
 		end,
@@ -36,6 +36,7 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "UIEnter",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			vim.opt.laststatus = 2
@@ -44,6 +45,7 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = "UIEnter",
 		config = function()
 			require("bin.plugins.ui.indent-blankline")
 		end,
@@ -57,6 +59,7 @@ return {
 	},
 	{
 		"yamatsum/nvim-cursorline",
+		event = "UIEnter",
 		config = function()
 			require("bin.plugins.ui.cursorline")
 		end,
