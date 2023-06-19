@@ -11,7 +11,7 @@ return {
 		end,
 		config = function()
 			require("bin.plugins.utils.treesitter")
-			require("nvim-ts-autotag").setup()
+			-- require("nvim-ts-autotag").setup()
 		end,
 	},
 	-- {
@@ -20,7 +20,6 @@ return {
 	-- 		require("bin.plugins.utils.autopairs")
 	-- 	end,
 	-- },
-	"MunifTanjim/nui.nvim",
 	{
 		"folke/noice.nvim",
 		config = function()

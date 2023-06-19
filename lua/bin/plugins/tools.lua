@@ -2,9 +2,12 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		lazy = false,
-		keys = {
-			{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
-		},
+		keys = function()
+			-- return {
+			-- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
+			-- }
+			return require("bin.config.keymaps").tree
+		end,
 		config = function()
 			require("bin.plugins.tools.nvim-tree")
 		end,
@@ -14,7 +17,9 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		event = "VeryLazy",
+		keys = function()
+			return require("bin.config.keymaps").comment
+		end,
 		config = true,
 	},
 	{
@@ -37,36 +42,17 @@ return {
 		end,
 	},
 	{
-		"luukvbaal/statuscol.nvim",
-		config = function()
-			-- local builtin = require("statuscol.builtin")
-			require("statuscol").setup({
-				-- configuration goes here, for example:
-				-- relculright = true,
-				-- segments = {
-				--   { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-				--   {
-				--     sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-				--     click = "v:lua.ScSa"
-				--   },
-				--   { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
-				--   {
-				--     sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-				--     click = "v:lua.ScSa"
-				--   },
-				-- }
-			})
-		end,
-	},
-	{
 		"nvim-telescope/telescope.nvim",
-		lazy = false,
-		keys = {
-			{ "m", "<cmd>Telescope menu<cr>", mode = "n" },
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
-			{ "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
-		},
+		-- keys = {
+		-- 	{ "m", "<cmd>Telescope menu<cr>", mode = "n" },
+		-- 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
+		-- 	{ "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
+		-- },
 		-- tag = "0.1.1",
+		keys = function()
+			return require("bin.config.keymaps").telescope
+		end,
+		event = "VimEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"octarect/telescope-menu.nvim",
@@ -123,7 +109,7 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
+		event = "UIEnter",
 		config = true,
 	},
 
@@ -163,9 +149,9 @@ return {
 	{
 		"phaazon/hop.nvim",
 		branch = "v2", -- optional but strongly recommended
-		keys = {
-			{ "<a-m>", "<cmd>HopChar2<cr>", desc = "hop move two chars" },
-		},
+		keys = function()
+			return require("bin.config.keymaps").hop
+		end,
 		config = function()
 			-- you can configure Hop the way you like here; see :h hop-config
 			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
@@ -174,7 +160,7 @@ return {
 	},
 	{
 		"m4xshen/autoclose.nvim",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		config = function()
 			require("bin.plugins.tools.autoclose")
 		end,
@@ -189,21 +175,28 @@ return {
 	-- 		require("bin.plugins.tools.spectre")
 	-- 	end,
 	-- },
-	-- {
-	-- 	"ziontee113/icon-picker.nvim",
-	-- 	event = "VeryLazy",
-	-- 	dependencies = {
-	-- 		"stevearc/dressing.nvim",
-	-- 	},
-	-- 	config = function()
-	-- 		require("icon-picker").setup({
-	-- 			disable_legacy_commands = true,
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"ziontee113/icon-picker.nvim",
+		cmd = {
+			"IconPickerInsert",
+			"IconPickerYank",
+			"IconPickerNormal",
+		},
+		dependencies = {
+			"stevearc/dressing.nvim",
+		},
+		config = function()
+			require("icon-picker").setup({
+				disable_legacy_commands = true,
+			})
+		end,
+	},
 	{
 		"folke/which-key.nvim",
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		keys = function()
+			return require("bin.config.keymaps").which_key
+		end,
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
@@ -227,7 +220,7 @@ return {
 	},
 	{
 		"folke/edgy.nvim",
-		event = "VeryLazy",
+		event = "WinNew",
 		init = function()
 			vim.opt.laststatus = 3
 			vim.opt.splitkeep = "screen"

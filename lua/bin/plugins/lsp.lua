@@ -21,13 +21,14 @@ return {
 			-- "jose-elias-alvarez/null-ls.nvim",
 		},
 		config = function()
-			require("bin.plugins.lsp.lsp")
+			require("bin.plugins.lsp.lsp-settings")
 		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
-			"neovim/nvim-lspconfig",
+			-- "neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
