@@ -37,7 +37,7 @@ make file:(Not gcc,shell script.)
 <!-- `>= 3.26.4` -->
 
 **Must:**  
-&ensp;&ensp;`nerdfont`(To show the icons.)  
+&ensp;&ensp;[nerdfont](https://www.nerdfonts.com/font-downloads) (To show the terminal icons.)  
 &ensp;&ensp;`neovim` >= `0.10.0`  
 &ensp;&ensp;*Comment:* In the future, version 0.83 will be adapted.  
 &ensp;&ensp;`git` >= `2.41.0`  
