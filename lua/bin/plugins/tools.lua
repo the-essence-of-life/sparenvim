@@ -1,15 +1,45 @@
 return {
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	lazy = false,
+	-- 	keys = function()
+	-- 		-- return {
+	-- 		-- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
+	-- 		-- }
+	-- 		return require("bin.config.keymaps").tree
+	-- 	end,
+	-- 	config = function()
+	-- 		require("bin.plugins.tools.nvim-tree")
+	-- 	end,
+	-- },
 	{
-		"nvim-tree/nvim-tree.lua",
-		lazy = false,
-		keys = function()
-			-- return {
-			-- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
-			-- }
-			return require("bin.config.keymaps").tree
-		end,
+		"sindrets/diffview.nvim",
+		dependencies = {
+			"jacobsimpson/nvim-mercurial",
+		},
+		event = "VeryLazy",
 		config = function()
-			require("bin.plugins.tools.nvim-tree")
+			require("diffview").setup({
+				file_panel = {
+					win_config = {
+						width = 20,
+					},
+				},
+			})
+		end,
+	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		keys = function()
+			return require("bin.config.keymaps").neotree
+		end,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			require("bin.plugins.tools.neotree")
 		end,
 	},
 	{
@@ -24,6 +54,7 @@ return {
 	},
 	{
 		"tanvirtin/vgit.nvim",
+		enabled = false,
 		cmd = {
 			"VGit setup",
 			"VGit toggle_diff_preference",
@@ -248,7 +279,7 @@ return {
 				-- toggleterm / lazyterm at the bottom with a height of 40% of the screen
 				{
 					ft = "toggleterm",
-					size = { height = 0.4 },
+					size = { height = 0.3 },
 					-- exclude floating windows
 					filter = function(buf, win)
 						return vim.api.nvim_win_get_config(win).relative == ""
@@ -261,17 +292,18 @@ return {
 				{ ft = "qf", title = "QuickFix" },
 				{
 					ft = "help",
-					size = { height = 16 },
+					size = { height = 0.4 },
 					-- only show help buffers
 					filter = function(buf)
 						return vim.bo[buf].buftype == "help"
 					end,
 				},
+			},
+			left = {
 				-- {
 				-- 	ft = "NvimTree",
 				-- 	title = "NvimTree",
 				-- 	open = "NvimTreeToggle",
-				-- 	size = { width = 20 },
 				-- },
 			},
 		},

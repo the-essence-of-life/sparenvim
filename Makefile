@@ -6,7 +6,7 @@ update-repo:
 debug:
 	bash ./scripts/debug.sh
 rec:
-	echo "You can use "bash ./scripts/rec.sh" to start a recovery."
+	echo "You can use \"bash ./scripts/rec.sh\" to start a recovery."
 set-options:
 	nvim ~/.config/nvim/lua/bin/config/
 add-plugins:
