@@ -36,6 +36,13 @@ require("lazy").setup({
 	ui = {
 		border = "rounded",
 	},
+	checker = {
+		-- automatically check for plugin updates
+		enabled = true,
+		concurrency = 1, --[email protected] number? set to 1 to check for updates very slowly
+		notify = false, -- get a notification when new updates are found
+		frequency = 3600, -- check for updates every hour
+	},
 	-- dev = {
 	--   -- directory where you store your local plugin projects
 	--   path = "~/projects",

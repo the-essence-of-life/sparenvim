@@ -1,3 +1,5 @@
+vim.keymap.set("n", "<c-w>", "<cmd>w<cr>", { silent = true, desc = "write buffer" })
+
 local M = {}
 
 -- NOTE:tools.lua
@@ -27,7 +29,7 @@ M.comment = {
 
 M.which_key = {
 	plugins = true,
-	{ "<leader>", mode = "n" },
+	{ "<ctrl>", mode = "n" },
 	{ "<space>", mode = "n" },
 }
 

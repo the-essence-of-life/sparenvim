@@ -6,3 +6,6 @@
 --     vim.lsp.buf.format({ async = true })
 --   end
 -- })
+
+local M = {}
+return M

@@ -1,6 +1,6 @@
 <div align="center">
 
-# \_Space-Nvim
+# _Space-Nvim
 
 <!-- <a href='https://postimg.cc/QKgRcR6R' target='_blank'><img src='https://i.postimg.cc/QKgRcR6R/IMG-20230501-192206.jpg' border='0' alt='IMG-20230501-192206'/></a> -->
 ![Stitch_20230619_193741.png](https://img1.imgtp.com/2023/06/19/vFQahSB5.png)
@@ -14,14 +14,14 @@
 ---
 
 ## 📑 Content
-- [Feature](#🎉-feature)
-- [Dependencies](#📡-dependencies)
-- [Language Support](#📖-language-support)
-- [Setup](#💻-setup)
-- [File Directory](#📁-file-directory)
-- [Plugins List](#📋-plugins-list)
-- [Add New Plugins](#➕-add-new-plugins)
-- [Thanks So](#👋-thanks-so)
+- [🎉 Feature](#-feature)
+- [📡 Dependencies](#-dependencies)
+- [📖 Language Support](#-language-support)
+- [💻 Setup](#-setup)
+- [📁 File Directory](#-file-directory)
+- [📋 Plugins List](#-plugins-list)
+- [➕ Add New Plugins](#-add-new-plugins)
+- [👋 Thanks So](#-thanks-so)
 
 ---
 
@@ -40,22 +40,14 @@ make file:(Not gcc,shell script.)
 
 ## 📡 Dependencies
 
-<!-- ![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)   -->
-<!-- `>= 0.83`   -->
-<!-- ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)   -->
-<!-- `>= 20.2.9`   -->
-<!-- ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)   -->
-<!-- `>= 2.41.0`   -->
-<!-- ![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white)   -->
-<!-- `>= 3.26.4` -->
-
+<!-- <img height="12" width="12" src="https://cdn.simpleicons.org/<name>/<colors>" /> -->
 **Must:**  
 &ensp;&ensp;[nerdfont](https://www.nerdfonts.com/font-downloads) (To show the terminal icons.)  
-&ensp;&ensp;`neovim` >= `0.10.0`  
+&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/neovim/00A500" /> `neovim` >= `0.10.0`  
 &ensp;&ensp;_Comment:_ In the future, version 0.83 will be adapted.  
-&ensp;&ensp;`git` >= `2.41.0`  
-&ensp;&ensp;`clang(treesitter need)` >= `3.26.4`  
-&ensp;&ensp;`nodejs(mason need)` >= `19.*`
+&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/git/D76C00" /> `git` >= `2.41.0`  
+&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/c/4E93D7" /> `clang(treesitter need)` >= `3.26.4`  
+&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/nodedotjs/74FF85" /> `nodejs(mason need)` >= `19.*`
 
 **Oprional:**  
 &ensp;&ensp;`fd` >= `8.7.0`  
@@ -68,8 +60,10 @@ make file:(Not gcc,shell script.)
 
 ## 📖 Language Support
 
-- Front-end full Language
-- C-family full Language
+- Front-end full Language  
+<img height="36" width="36" src="https://cdn.simpleicons.org/html5/FF632E" /> <img height="36" width="36" src="https://cdn.simpleicons.org/css3/5DFFFF" /> <img height="36" width="36" src="https://cdn.simpleicons.org/javascript/FFAE5D" /> <img height="36" width="36" src="https://cdn.simpleicons.org/typescript/46B9FF" />
+
+- <img height="14" width="14" src="https://cdn.simpleicons.org/c/17A8FF" /> C-family full Language
   > **NOTE** - To support it,you'll copy these code to your neovim configruation.
 
 ```lua
@@ -78,7 +72,7 @@ require("lspconfig").clangd.setup{}
 
 ```
 
-- Lua(needs to install `lua-language-server` in your terminal.)
+- <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> Lua(needs to install `lua-language-server` in your terminal.)
 
 ---
 
@@ -93,7 +87,6 @@ rm -rf ~/.cache/nvim/
 
 # Clone the repo and change the links.
 git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config/nvim/
-ln -s ~/.config/nvim/lua/bin/plugins/ ~/.config/nvim/lua/plugins/
 
 # Finally,start your neovim!
 nvim
@@ -103,38 +96,38 @@ nvim
 
 ## 📁 File directory
 
-```
- .
-├─  init.lua
-├─  lazy-lock.json
-├─  LICENSE
-├─  lua
-│ ├─  bin
-│ │ ├─  config
-│ │ │ ├─  autocmds.lua
-│ │ │ ├─  keymaps.lua
-│ │ │ ├─  lazy.lua
-│ │ │ └─  options.lua
-│ │ └─  plugins
-│ │    ├─  lsp
-│ │    │ └─  lsp*.lua
-│ │    ├─  lsp.lua
-│ │    ├─  tools
-│ │    │ └─  tools*.lua
-│ │    ├─  tools.lua
-│ │    ├─  ui
-│ │    │ └─  ui*.lua
-│ │    ├─  ui.lua
-│ │    ├─  user
-│ │    ├─  user.lua
-│ │    ├─  utils
-│ │    │ └─  utils*.lua
-│ │    └─  utils.lua
-│ ├─  test.lua
-│ └─  user
-│    └─  init.lua
-└─  README.md
-```
+
+- <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> init.lua
+- <img height="14" width="14" src="https://cdn.simpleicons.org/json/E9E92A" /> lazy-lock.json
+- <img height="14" width="14" src="https://cdn.simpleicons.org/awesomelists/2AB9E9" /> LICENSE
+  - lua
+    - bin
+      - config
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> autocmds.lua
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> keymaps.lua
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> lazy.lua
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> options.lua
+      - plugins
+        - lsp
+          - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> lsp*.lua
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> lsp.lua
+        - tools
+          - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> tools*.lua
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> tools.lua
+        - ui
+          - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> ui*.lua
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> ui.lua
+        - user
+          - *Your user plugins config can put here.*
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> user.lua
+        - utils
+          - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> utils*.lua
+        - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> utils.lua
+    - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> test.lua
+  - user
+    - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> init.lua
+- <img height="14" width="14" src="https://cdn.simpleicons.org/markdown/000000" /> README.md
+- <img height="14" width="14" src="https://cdn.simpleicons.org/cmake/46B9FF" /> Makefile
 
 ---
 
