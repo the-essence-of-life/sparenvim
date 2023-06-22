@@ -61,7 +61,7 @@ make file:(Not gcc,shell script.)
 
 - Front-end full Language
 - C-family full Language
-  > **NOTE:**To support it,you'll copy these code to your neovim configruation.
+  > **NOTE** - To support it,you'll copy these code to your neovim configruation.
 
 ```lua
 -- ~/.config/nvim/lua/bin/plugins/lsp/lsp-settings.lua
