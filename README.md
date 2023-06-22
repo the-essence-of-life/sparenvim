@@ -12,7 +12,15 @@
 
 ---
 
-[toc]
+## 📑 Content
+- [Feature](#🎉-feature)
+- [Dependencies](#📡-dependencies)
+- [Language Support](#📖-language-support)
+- [Setup](#💻-setup)
+- [File Directory](#📁-file-directory)
+- [Plugins List](#📋-plugins-list)
+- [Add New Plugins](#➕-add-new-plugins)
+- [Thanks So](#👋-thanks-so)
 
 ---
 
@@ -146,7 +154,7 @@ nvim
 
 ---
 
-## 🔧 Plugin Install & Setup
+## ➕ Add New Plugins
 
 ```lua
 -- https://github.com/folke/lazy.nvim#examples
