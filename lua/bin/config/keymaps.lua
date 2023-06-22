@@ -31,6 +31,11 @@ M.which_key = {
 	{ "<space>", mode = "n" },
 }
 
+M.neotree = {
+	plugins = true,
+	{ "<leader>nt", "<cmd>Neotree<cr>", mode = "n" },
+}
+
 -- NOTE:ui.lua
 M.bufferline = {
 	plugins = true,

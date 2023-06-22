@@ -13,15 +13,28 @@
 
 ---
 
+## 📑 Content
+- [Feature](#🎉-feature)
+- [Dependencies](#📡-dependencies)
+- [Language Support](#📖-language-support)
+- [Setup](#💻-setup)
+- [File Directory](#📁-file-directory)
+- [Plugins List](#📋-plugins-list)
+- [Add New Plugins](#➕-add-new-plugins)
+- [Thanks So](#👋-thanks-so)
+
+---
+
 ## 🎉 Feature
 
-make file:(Not gcc,shell script.)  
-+ `make sync`:Sync the latest plugins(Ensure that the network is smooth).  
-+ `make update`:Update to latest config.  
-+ `make debug`:Debug your neovim(Only applicable to versions above 10.0).
-+ `make rec`:Delete your all neovim config.(Use with caution)
-+ `make set-options`:Quick switch the config directory.
-+ `make add-plugins`:Quick switch the plugins directory.
+make file:(Not gcc,shell script.)
+
+- `make sync`:Sync the latest plugins(Ensure that the network is smooth).
+- `make update`:Update to latest config.
+- `make debug`:Debug your neovim(Only applicable to versions above 10.0).
+- `make rec`:Delete your all neovim config.(Use with caution)
+- `make set-options`:Quick switch the config directory.
+- `make add-plugins`:Quick switch the plugins directory.
 
 ---
 
@@ -39,7 +52,7 @@ make file:(Not gcc,shell script.)
 **Must:**  
 &ensp;&ensp;[nerdfont](https://www.nerdfonts.com/font-downloads) (To show the terminal icons.)  
 &ensp;&ensp;`neovim` >= `0.10.0`  
-&ensp;&ensp;*Comment:* In the future, version 0.83 will be adapted.  
+&ensp;&ensp;_Comment:_ In the future, version 0.83 will be adapted.  
 &ensp;&ensp;`git` >= `2.41.0`  
 &ensp;&ensp;`clang(treesitter need)` >= `3.26.4`  
 &ensp;&ensp;`nodejs(mason need)` >= `19.*`
@@ -55,15 +68,17 @@ make file:(Not gcc,shell script.)
 
 ## 📖 Language Support
 
-+ Front-end full Language
-+ C-family full Language  
-> NOTE:To support it,you'll copy these code to your neovim configruation.  
+- Front-end full Language
+- C-family full Language
+  > **NOTE** - To support it,you'll copy these code to your neovim configruation.
+
 ```lua
 -- ~/.config/nvim/lua/bin/plugins/lsp/lsp-settings.lua
 require("lspconfig").clangd.setup{}
 
 ```
-+ Lua(needs to install `lua-language-server` in your terminal.)
+
+- Lua(needs to install `lua-language-server` in your terminal.)
 
 ---
 
@@ -140,7 +155,7 @@ nvim
 
 ---
 
-## 🔧 Plugin Install & Setup
+## ➕ Add New Plugins
 
 ```lua
 -- https://github.com/folke/lazy.nvim#examples
