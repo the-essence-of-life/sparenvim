@@ -1,6 +1,6 @@
 return {
 	{
-		"nvim-tree/nvim-tree.lua",
+    "nvim-neo-tree/neo-tree.nvim",
 		lazy = false,
 		keys = function()
 			-- return {
@@ -9,7 +9,7 @@ return {
 			return require("bin.config.keymaps").tree
 		end,
 		config = function()
-			require("bin.plugins.tools.nvim-tree")
+			require("bin.plugins.tools.neotree")
 		end,
 	},
 	{

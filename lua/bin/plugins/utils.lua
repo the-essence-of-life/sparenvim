@@ -21,7 +21,7 @@ return {
 	-- 	end,
 	-- },
 	{
-		"folke/noice.nvim",
+		"the-essence-of-life/noice.nvim",
 		config = function()
 			require("bin.plugins.utils.noice")
 		end,
