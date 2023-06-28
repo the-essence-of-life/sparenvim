@@ -22,7 +22,7 @@ return {
 			-- "jose-elias-alvarez/null-ls.nvim",
 		},
 		config = function()
-			require("bin.plugins.lsp.lsp-settings")
+			require("bin.plugins.lsp.lsp-settings").mason()
 		end,
 	},
 	{
@@ -56,7 +56,7 @@ return {
 		-- 	"williamboman/mason-lspconfig.nvim",
 		-- },
 		config = function()
-			require("bin.plugins.lsp.lsp-format")
+			require("bin.plugins.lsp.lsp-settings").lspconfig()
 		end,
 	},
 	{
