@@ -5,7 +5,7 @@ vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 -- NOTE: this is changed from v1.x, which used the old style of highlight groups
 -- in the form "LspDiagnosticsSignWarning"
 
@@ -45,14 +45,14 @@ require("neo-tree").setup({
 		icon = {
 			folder_closed = "",
 			folder_open = "",
-			folder_empty = "ﰊ",
+			folder_empty = "",
 			-- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
 			-- then these will never be used.
 			default = "*",
 			highlight = "NeoTreeFileIcon",
 		},
 		modified = {
-			symbol = "[+]",
+			symbol = "●",
 			highlight = "NeoTreeModified",
 		},
 		name = {
@@ -61,24 +61,37 @@ require("neo-tree").setup({
 			highlight = "NeoTreeFileName",
 		},
 		git_status = {
+			-- symbols = {
+			-- 	-- Change type
+			-- 	added = "+", -- or "✚", but this is redundant info if you use git_status_colors on the name
+			-- 	modified = "●", -- or "", but this is redundant info if you use git_status_colors on the name
+			-- 	deleted = "✖", -- this can only be used in the git_status source
+			-- 	renamed = "", -- this can only be used in the git_status source
+			-- 	-- Status type
+			-- 	untracked = "",
+			-- 	ignored = "",
+			-- 	unstaged = ".",
+			-- 	staged = "",
+			-- 	conflict = "",
+			-- },
 			symbols = {
 				-- Change type
-				added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-				modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-				deleted = "✖", -- this can only be used in the git_status source
-				renamed = "", -- this can only be used in the git_status source
+				added = "+", -- or "✚", but this is redundant info if you use git_status_colors on the name
+				modified = "m", -- or "", but this is redundant info if you use git_status_colors on the name
+				deleted = "-", -- this can only be used in the git_status source
+				renamed = "r", -- this can only be used in the git_status source
 				-- Status type
-				untracked = "",
-				ignored = "",
-				unstaged = "",
-				staged = "",
+				untracked = "u",
+				ignored = "i",
+				unstaged = "✗",
+				staged = "✓",
 				conflict = "",
 			},
 		},
 	},
 	window = {
 		position = "left",
-		width = 40,
+		width = 30,
 		mapping_options = {
 			noremap = true,
 			nowait = true,
@@ -218,6 +231,14 @@ require("neo-tree").setup({
 				["gp"] = "git_push",
 				["gg"] = "git_commit_and_push",
 			},
+		},
+	},
+	source_selector = {
+		winbar = true,
+		sources = {
+			{ source = "filesystem", display_name = " 󰉓 Files " },
+			{ source = "git_status", display_name = " 󰊢 Git " },
+			{ source = "buffers", display_name = "  Buffer " },
 		},
 	},
 })

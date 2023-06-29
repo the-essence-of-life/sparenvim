@@ -2,7 +2,8 @@
     "diagnostics.globals": [
         "persistence",
         "tree",
-        "ok"
+        "ok",
+        "M"
     ],
     "workspace.library": [
         "/data/data/com.termux/files/home/.local/share/nvim/lazy/neodev.nvim/types/nightly",

@@ -1,66 +1,77 @@
--- This file is automatically loaded by plugins.config
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 local opt = vim.opt
+local M = {}
+M.options = function()
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
 
-opt.autowrite = true -- Enable auto write
-opt.clipboard = "unnamedplus" -- Sync with system clipboard
-opt.completeopt = "menu,menuone,noselect"
-opt.conceallevel = 3 -- Hide * markup for bold and italic
-opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.cursorline = true -- Enable highlighting of the current line
-opt.expandtab = true -- Use spaces instead of tabs
-opt.formatoptions = "jcroqlnt" -- tcqj
-opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
-opt.ignorecase = true -- Ignore case
-opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 0
-opt.list = true -- Show some invisible characters (tabs...
-opt.mouse = "a" -- Enable mouse mode
-opt.number = true -- Print line number
-opt.pumblend = 10 -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
-opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
-opt.shiftround = true -- Round indent
-opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append({ W = true, I = true, c = true })
-opt.showmode = false -- Dont show mode since we have a statusline
-opt.sidescrolloff = 8 -- Columns of context
-opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartcase = true -- Don't ignore case with capitals
-opt.smartindent = true -- Insert indents automatically
-opt.spelllang = { "en" }
-opt.splitbelow = true -- Put new windows below current
-opt.splitright = true -- Put new windows right of current
-opt.tabstop = 2 -- Number of spaces tabs count for
-opt.termguicolors = true -- True color support
-opt.timeoutlen = 300
-opt.undofile = true
-opt.undolevels = 10000
--- opt.updatetime = 200 -- Save swap file and trigger CursorHold
-opt.swapfile = false
-opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.winminwidth = 5 -- Minimum window width
-opt.wrap = false -- Disable line wrap
+  local options = {
+    autowrite = true,        -- Enable auto write
+    clipboard = "unnamedplus", -- Sync with system clipboard
+    completeopt = "menu,menuone,noselect",
+    conceallevel = 3,        -- Hide * markup for bold and italic
+    confirm = true,          -- Confirm to save changes before exiting modified buffer
+    cursorline = true,       -- Enable highlighting of the current line
+    expandtab = true,        -- Use spaces instead of tabs
+    formatoptions = "jcroqlnt", -- tcqj
+    grepformat = "%f:%l:%c:%m",
+    grepprg = "rg --vimgrep",
+    ignorecase = true,   -- Ignore case
+    inccommand = "nosplit", -- preview incremental substitute
+    laststatus = 0,
+    list = true,         -- Show some invisible characters (tabs...
+    mouse = "a",         -- Enable mouse mode
+    number = true,       -- Print line number
+    pumblend = 10,       -- Popup blend
+    pumheight = 10,      -- Maximum number of entries in a popup
+    relativenumber = true, -- Relative line numbers
+    scrolloff = 4,       -- Lines of context
+    sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
+    shiftround = true,   -- Round indent
+    shiftwidth = 2,      -- Size of an indent
+    --	shortmess:append({ W = true, I = true, c = true }),
+    showmode = false,    -- Dont show mode since we have a statusline
+    sidescrolloff = 8,   -- Columns of context
+    signcolumn = "yes",  -- Always show the signcolumn, otherwise it would shift the text each time
+    smartcase = true,    -- Don't ignore case with capitals
+    smartindent = true,  -- Insert indents automatically
+    spelllang = { "en" },
+    splitbelow = true,   -- Put new windows below current
+    splitright = true,   -- Put new windows right of current
+    tabstop = 2,         -- Number of spaces tabs count for
+    termguicolors = true, -- True color support
+    timeoutlen = 300,
+    undofile = true,
+    undolevels = 10000,
+    swapfile = false,
+    wildmode = "longest:full,full", -- Command-line completion mode
+    winminwidth = 5,             -- Minimum window width
+    wrap = false,                -- Disable line wrap
+  }
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-	opt.splitkeep = "screen"
-	opt.shortmess:append({ C = true })
+  for k, v in pairs(options) do
+    opt[k] = v
+  end
 end
 
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
+M.others = function ()
+  if vim.fn.has("nvim-0.9.0") == 1 then
+    opt.splitkeep = "screen"
+    opt.shortmess:append({ C = true })
+  end
 
-vim.cmd("filetype plugin indent on")
-vim.o.foldtext = ""
-vim.o.swap = false
+  opt.shortmess:append({ W = true, I = true, c = true })
 
-vim.g.netrw_liststyle = 3
-vim.g.netrw_preview = 1
-vim.g.netrw_alto = 0
-vim.g.netrw_chgwin = 2
+  -- Fix markdown indentation settings
+  vim.g.markdown_recommended_style = 0
+
+  vim.cmd("filetype plugin indent on")
+  vim.o.foldtext = ""
+  vim.o.swap = false
+
+  vim.g.netrw_liststyle = 3
+  vim.g.netrw_preview = 1
+  vim.g.netrw_alto = 0
+  vim.g.netrw_chgwin = 2
+end
+
+return M

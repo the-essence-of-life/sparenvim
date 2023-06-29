@@ -28,7 +28,6 @@ require("nvim-tree").setup({
 		enable = false,
 	},
 	view = {
-		-- number = true,
 		-- relativenumber = true,
 		-- float = {
 		-- 	enable = true,
@@ -36,7 +35,7 @@ require("nvim-tree").setup({
 		-- 	open_win_config = {
 		-- 		relative = "editor",
 		-- 		border = "rounded",
-		-- 		width = 25,
+		-- width = 10,
 		-- 		height = 25,
 		-- 		row = 1,
 		-- 		col = 1,
