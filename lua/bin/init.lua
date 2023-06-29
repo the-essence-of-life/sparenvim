@@ -6,14 +6,13 @@
 --
 -- return M
 
-local m = {
-	-- Your require modules.
-	-- e.g: require('modules.name.path')
-	-- =>'modules.name.path',
-	"bin.config.options",
-	"bin.config.keymaps",
-	"bin.config.lazy",
-}
-for _, modules in ipairs(m) do
-	require(modules)
+local M = {}
+
+M.setup = function()
+  require("bin.config.options").options()
+  require("bin.config.options").others()
+  require("bin.config.keymaps").core()
+  require("bin.config.lazy").deployment_lazy()
 end
+
+return M
