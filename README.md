@@ -64,7 +64,7 @@ make file:(Not gcc,shell script.)
 <img height="36" width="36" src="https://cdn.simpleicons.org/html5/FF632E" /> <img height="36" width="36" src="https://cdn.simpleicons.org/css3/5DFFFF" /> <img height="36" width="36" src="https://cdn.simpleicons.org/javascript/FFAE5D" /> <img height="36" width="36" src="https://cdn.simpleicons.org/typescript/46B9FF" />
 
 - <img height="14" width="14" src="https://cdn.simpleicons.org/c/17A8FF" /> C-family full Language
-  > **NOTE** - To support it,you'll copy these code to your neovim configruation.
+> **NOTE** To support it,you'll copy these code to your neovim configruation.
 
 ```lua
 -- ~/.config/nvim/lua/bin/plugins/lsp/lsp-settings.lua
