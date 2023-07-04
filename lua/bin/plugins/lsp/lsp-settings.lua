@@ -21,9 +21,7 @@ M.mason = function()
   })
 end
 
-M.lspconfig = function()
-  require("lspconfig").lua_ls.setup({})
-
+M.lspconfig_global = function()
   -- Global mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
@@ -73,6 +71,16 @@ M.lspconfig = function()
       end, opts)
     end,
   })
+end
+
+M.lsp_server = function()
+  require("lspconfig").lua_ls.setup({})
+  -- require("lspconfig").lua_ls.setup({})
+  require("lspconfig").bashls.setup({})
+  require 'lspconfig'.ruby_ls.setup {}
+end
+
+M.lsp_settings = function()
 end
 
 return M

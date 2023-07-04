@@ -43,6 +43,27 @@ return {
 			require("bin.plugins.utils.persistence")
 		end,
 	},
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    keys = function()
+      return require("bin.config.keymaps").neotree
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("bin.plugins.tools.neotree")
+    end,
+  },
+  {
+    "m4xshen/autoclose.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("bin.plugins.tools.autoclose")
+    end,
+  },
 	-- keys = {
 	--   { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", mode = "n", desc = "Undotree Toggle" }
 	-- },

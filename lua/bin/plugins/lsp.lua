@@ -56,7 +56,9 @@ return {
 		-- 	"williamboman/mason-lspconfig.nvim",
 		-- },
 		config = function()
-			require("bin.plugins.lsp.lsp-settings").lspconfig()
+			require("bin.plugins.lsp.lsp-settings").lspconfig_global()
+			require("bin.plugins.lsp.lsp-settings").lsp_settings()
+			require("bin.plugins.lsp.lsp-settings").lsp_server()
 		end,
 	},
 	{

@@ -33,7 +33,10 @@ M.deployment_lazy = function()
       url_format = "https://github.com/%s.git",
     },
     install = {
-      colorscheme = { "catppuccin" },
+      colorscheme = {
+        "github_dark",
+        "catppuccin",
+      },
     },
     ui = {
       border = "rounded",
