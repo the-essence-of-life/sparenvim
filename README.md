@@ -142,7 +142,7 @@ nvim ~/.config/nvim/lua/user/init.lua
 ```
 
 Finally,Remove this line:
-You can [Click it](./lua/user/init.lua#L15) to view the code.
+You can [Click it](./lua/user/init.lua#L7) to view the code.
 ```lua
 require("bin.config.lazy").deployment_lazy()
 ```
