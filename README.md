@@ -142,6 +142,7 @@ nvim ~/.config/nvim/lua/user/init.lua
 ```
 
 Finally,Remove this line:
+You can [Click it](./lua/user/init.lua#L15) to view the code.
 ```lua
 require("bin.config.lazy").deployment_lazy()
 ```
@@ -152,7 +153,7 @@ require("bin.config.lazy").deployment_lazy()
 <img height="36" width="36" src="https://cdn.simpleicons.org/html5/FF632E" /> <img height="36" width="36" src="https://cdn.simpleicons.org/css3/5DFFFF" /> <img height="36" width="36" src="https://cdn.simpleicons.org/javascript/FFAE5D" /> <img height="36" width="36" src="https://cdn.simpleicons.org/typescript/46B9FF" />
 
 - <img height="14" width="14" src="https://cdn.simpleicons.org/c/17A8FF" /> C-family full Language
-> **NOTE** To support it,you'll copy these code to your neovim configruation.
+> **NOTE** To support it,you'll copy these code to your neovim configruation.  You can [Click here](./lua/bin/plugins/lsp/lsp-settings.lua#L77) to view the code.
 
 ```lua
 -- ~/.config/nvim/lua/bin/plugins/lsp/lsp-settings.lua
