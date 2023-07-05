@@ -47,6 +47,7 @@ make file:(Not gcc,shell script.)
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/git/D76C00" /> `git` >= `2.41.0`  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/c/4E93D7" /> `clang(treesitter need)` >= `3.26.4`  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/nodedotjs/74FF85" /> `nodejs(mason need)` >= `19.*`
+&ensp;`luajit` >= 2.1.0-beta3
 
 **Oprional:**  
 &ensp;&ensp;`fd` >= `8.7.0`  
@@ -163,10 +164,11 @@ require("lspconfig").clangd.setup{}
 
 ### Add a new language language-server
 
-First,input `:Mason` in your neovim.  
-Second,`<c-f>` search language-server,for example:bash,and type Enter.Type 2 to swtich lsp.  
-Then input "i" to install the language-server,type Enter to view the information.
-Final,add some code-snippets in your configruation.  
+**Step1** Input `:Mason` in your neovim.  
+**Step2** `<c-f>` search language-server,for example:bash,and type Enter.Type 2 to swtich lsp.  
+**Step3** Input "i" to install the language-server,type Enter to view the information.
+**Step4** Add some code-snippets in your configruation.  
+**NOTE**  
 You can [click it](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) to view more information.  
 You can also input `:help lspconfig-all` in your neovim.
 

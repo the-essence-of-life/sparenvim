@@ -15,6 +15,11 @@ set-options:
 	nvim ~/.config/nvim/lua/bin/config/
 add-plugins:
 	nvim ~/.config/nvim/lua/bin/plugins/
+set-uoptions:
+	nvim ~/.config/nvim/lua/user/config/
+add-uplugins:
+	nvim ~/.config/nvim/lua/user/plugins/
 switch-config:
 	bash ./scripts/switch.sh
-# clean:
+clean-lockfiles:
+	rm -f ~/.config/nvim/lazy-lock.json

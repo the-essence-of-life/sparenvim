@@ -43,7 +43,7 @@ M.deployment_lazy = function()
     },
     checker = {
       -- automatically check for plugin updates
-      enabled = true,
+      enabled = false,
       concurrency = 1, --[email protected] number? set to 1 to check for updates very slowly
       notify = false, -- get a notification when new updates are found
       frequency = 3600, -- check for updates every hour
@@ -94,7 +94,7 @@ M.deployment_lazy_user = function()
     },
     checker = {
       -- automatically check for plugin updates
-      enabled = true,
+      enabled = false,
       concurrency = 1, --[email protected] number? set to 1 to check for updates very slowly
       notify = false, -- get a notification when new updates are found
       frequency = 3600, -- check for updates every hour
