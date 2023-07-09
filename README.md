@@ -52,6 +52,7 @@ make file:(Not gcc,shell script.)
 **Oprional:**  
 &ensp;&ensp;`fd` >= `8.7.0`  
 &ensp;&ensp;`rg(ripgrep)` >= `8.7.0`
+&ensp;&ensp;`shellcheck`,`shellharden`(Grammer check)
 
 **You can use linux package manager to install it.**  
 **For example:`pacman`,`pkg`,`apt`,`dnf` and so on.**
@@ -153,7 +154,7 @@ require("bin.config.lazy").deployment_lazy()
 <img height="36" width="36" src="https://cdn.simpleicons.org/html5/FF632E" /> <img height="36" width="36" src="https://cdn.simpleicons.org/css3/5DFFFF" /> <img height="36" width="36" src="https://cdn.simpleicons.org/javascript/FFAE5D" /> <img height="36" width="36" src="https://cdn.simpleicons.org/typescript/46B9FF" />
 
 - <img height="14" width="14" src="https://cdn.simpleicons.org/c/17A8FF" /> C-family full Language
-> **NOTE** To support it,you'll copy these code to your neovim configruation.  You can [Click here](./lua/bin/plugins/lsp/lsp-settings.lua#L77) to view the code.
+> **Note** To support it,you'll copy these code to your neovim configruation.  You can [Click here](./lua/bin/plugins/lsp/lsp-settings.lua#L77) to view the code.
 
 ```lua
 -- ~/.config/nvim/lua/bin/plugins/lsp/lsp-settings.lua

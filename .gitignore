@@ -1,2 +1,4 @@
 lazy-lock.json
-./lua/bin/plugins/test-plugins.lua
+test-plugins.lua
+test*
+*.jar

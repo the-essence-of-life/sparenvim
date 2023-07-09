@@ -166,6 +166,7 @@ return {
   },
   {
     "phaazon/hop.nvim",
+    enabled = false,
     branch = "v2", -- optional but strongly recommended
     keys = function()
       return require("bin.config.keymaps").hop
@@ -213,18 +214,18 @@ return {
       vim.o.timeoutlen = 300
       require("which-key").setup({
         window = {
-          border = "rounded",  -- none, single, double, shadow
-          position = "buttom", -- bottom, top
-          margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+          border = "rounded",       -- none, single, double, shadow
+          position = "buttom",      -- bottom, top
+          margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
           padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
-          winblend = 0,        -- value between 0-100 0 for fully opaque and 100 for fully transparent
-          zindex = 1000,       -- positive value to position WhichKey above other floating windows.
+          winblend = 0,             -- value between 0-100 0 for fully opaque and 100 for fully transparent
+          zindex = 1000,            -- positive value to position WhichKey above other floating windows.
         },
         layout = {
-          height = { min = 6, max = 6 }, -- min and max height of the columns
+          height = { min = 6, max = 6 },  -- min and max height of the columns
           width = { min = 20, max = 50 }, -- min and max width of the columns
-          spacing = 3,               -- spacing between columns
-          align = "left",            -- align columns left, center or right
+          spacing = 3,                    -- spacing between columns
+          align = "left",                 -- align columns left, center or right
         },
       })
     end,
@@ -290,8 +291,66 @@ return {
   },
   {
     'mbbill/undotree',
-    config = function ()
+    config = function()
       vim.keymap.set('n', '<leader>utt', vim.cmd.UndotreeToggle)
     end
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    --[email protected] Flash.Config
+    opts = {
+      search = {
+        mode = "fuzzy",
+      },
+      label = {
+        rainbow = {
+          enabled = true,
+          shade = 5,
+        }
+      }
+    },
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Flash Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
   },
 }

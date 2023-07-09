@@ -57,11 +57,11 @@ return {
       require("bin.plugins.ui.alpha")
     end,
   },
-  {
-    "yamatsum/nvim-cursorline",
-    event = "UIEnter",
-    config = function()
-      require("bin.plugins.ui.cursorline")
-    end,
-  },
+  -- {
+  --   "yamatsum/nvim-cursorline",
+  --   event = "UIEnter",
+  --   config = function()
+  --     require("bin.plugins.ui.cursorline")
+  --   end,
+  -- },
 }

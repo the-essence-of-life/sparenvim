@@ -94,6 +94,10 @@ return {
 		end,
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
+  {
+    'habamax/vim-asciidoctor',
+    event = "BufEnter *.adoc",
+  },
 }
 -- end
 
