@@ -22,7 +22,6 @@ M.options = function()
     mouse = "a",            -- Enable mouse mode
     number = true,          -- Print line number
     pumblend = 10,          -- Popup blend
-    pumheight = 10,         -- Maximum number of entries in a popup
     relativenumber = true,  -- Relative line numbers
     scrolloff = 4,          -- Lines of context
     sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
