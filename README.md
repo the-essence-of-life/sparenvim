@@ -1,11 +1,15 @@
 <div align="center">
 
+<<<<<<< HEAD
 # _Space-Nvim
+=======
+# _Spare-Nvim
+>>>>>>> main
 
 <!-- <a href='https://postimg.cc/QKgRcR6R' target='_blank'><img src='https://i.postimg.cc/QKgRcR6R/IMG-20230501-192206.jpg' border='0' alt='IMG-20230501-192206'/></a> -->
 ![Stitch_20230619_193741.png](https://img1.imgtp.com/2023/06/19/vFQahSB5.png)
 
-### 此 space-nvim 非彼 spacevim
+<!-- ### 此 space-nvim 非彼 spacevim -->
 
 </div>
 
@@ -16,11 +20,18 @@
 ## 📑 Content
 - [🎉 Feature](#-feature)
 - [📡 Dependencies](#-dependencies)
+<<<<<<< HEAD
 - [📖 Language Support](#-language-support)
 - [💻 Setup](#-setup)
 - [📁 File Directory](#-file-directory)
 - [📋 Plugins List](#-plugins-list)
 - [➕ Add New Plugins](#-add-new-plugins)
+=======
+- [💻 Setup](#-setup)
+- [📋 Plugins List](#-plugins-list)
+- [➕ Add New Plugins](#-add-new-plugins)
+- [🛠 Maintain your configuration](#-maintain-your-configuration)
+>>>>>>> main
 - [👋 Thanks So](#-thanks-so)
 
 ---
@@ -48,16 +59,22 @@ make file:(Not gcc,shell script.)
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/git/D76C00" /> `git` >= `2.41.0`  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/c/4E93D7" /> `clang(treesitter need)` >= `3.26.4`  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/nodedotjs/74FF85" /> `nodejs(mason need)` >= `19.*`
+<<<<<<< HEAD
+=======
+&ensp;`luajit` >= 2.1.0-beta3
+>>>>>>> main
 
 **Oprional:**  
 &ensp;&ensp;`fd` >= `8.7.0`  
 &ensp;&ensp;`rg(ripgrep)` >= `8.7.0`
+&ensp;&ensp;`shellcheck`,`shellharden`(Grammer check)
 
 **You can use linux package manager to install it.**  
 **For example:`pacman`,`pkg`,`apt`,`dnf` and so on.**
 
 ---
 
+<<<<<<< HEAD
 ## 📖 Language Support
 
 - Front-end full Language  
@@ -75,27 +92,34 @@ require("lspconfig").clangd.setup{}
 - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> Lua(needs to install `lua-language-server` in your terminal.)
 
 ---
+=======
+>>>>>>> main
 
 ## 💻 Setup
 
+**Step1** Backup your config and remove your caches.
+
 ```sh
-# Backup your config and remove your caches.
 mv ~/.config/nvim/ ~/.config/nvim.bak/
 mv ~/.local/share/nvim/ ~/.local/share/nvim.bak/
 mv ~/.local/state/nvim/ ~/.local/state/nvim.bak/
 rm -rf ~/.cache/nvim/
+<<<<<<< HEAD
 
 # Clone the repo and change the links.
 git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config/nvim/
 
 # Finally,start your neovim!
 nvim
+=======
+>>>>>>> main
 ```
 
----
+**Step2** Clone this repo,ensure that dependencies are installed correctly.
+```sh
+ clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config/nvim/
 
-## 📁 File directory
-
+<<<<<<< HEAD
 
 - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> init.lua
 - <img height="14" width="14" src="https://cdn.simpleicons.org/json/E9E92A" /> lazy-lock.json
@@ -128,6 +152,12 @@ nvim
     - <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> init.lua
 - <img height="14" width="14" src="https://cdn.simpleicons.org/markdown/000000" /> README.md
 - <img height="14" width="14" src="https://cdn.simpleicons.org/cmake/46B9FF" /> Makefile
+=======
+```
+
+**Step3** Final,start your neovim.  
+`nvim`
+>>>>>>> main
 
 ---
 
@@ -149,27 +179,83 @@ nvim
 ---
 
 ## ➕ Add New Plugins
+<<<<<<< HEAD
+=======
+
+You can see examples [here](https://github.com/folke/lazy.nvim#examples).  
+**Step1** Change the working directory and touch a config file(You can put longest config here.)  
+```sh
+cd ~/.config/nvim/lua/bin/plugins/user/
+touch <plugins-config>.lua
+```
+**Step2** Then copy these code to `user.lua`(run:`nvim user.lua`)
+>>>>>>> main
 
 ```lua
--- https://github.com/folke/lazy.nvim#examples
--- First, cd ~/.config/nvim/lua/bin/plugins/
-  -- touch <your-file-name>.lua, e.g.:user.lua
--- Then copy these code to <your-file-name>.lua(run:nvim user.lua)
-  -- i to insert,<Esc> can quit the insert mode.
-  -- Then :wq to save the files.
-  -- Finally,nvim user.lua again,you'll find these packages are auto installed.
-
-  return {
-    -- NOTE:Packer on 'requires' function are change on 'dependencies'.
-      "foo/bar",
-      dependencies = {},
-      -- [event,ft,keys,cmd] are lazy-loading.
-        event = "VeryLazy",
-      -- [config,init,cond] are configruation.
-        config = function()
-        end,
-  }
+return {
+  -- NOTE:Packer on 'requires' function are change on 'dependencies'.
+  "foo/bar",
+  dependencies = {},
+  -- [event,ft,keys,cmd] are lazy-loading.
+  event = "VeryLazy",
+  -- [config,init,cond] are configruation.
+  config = function()
+    require("bin.plugins")
+  end,
+}
+-- i to insert,<Esc> can quit the insert mode.
+-- Then :wq to save the files.
 ```
+
+**Step3** Finally,input `nvim user.lua` in your terminal again,you'll find these packages are auto installed.
+
+---
+
+## 🛠 Maintain your configuration
+
+### Change your package manager
+
+First,find `init.lua`:
+```sh
+## If use default config:
+nvim ~/.config/nvim/lua/bin/init.lua
+
+## If use user config:
+nvim ~/.config/nvim/lua/user/init.lua
+```
+
+Finally,Remove this line:
+You can [Click it](./lua/user/init.lua#L7) to view the code.
+```lua
+require("bin.config.lazy").deployment_lazy()
+```
+
+### Language Support
+
+- Front-end full Language  
+<img height="36" width="36" src="https://cdn.simpleicons.org/html5/FF632E" /> <img height="36" width="36" src="https://cdn.simpleicons.org/css3/5DFFFF" /> <img height="36" width="36" src="https://cdn.simpleicons.org/javascript/FFAE5D" /> <img height="36" width="36" src="https://cdn.simpleicons.org/typescript/46B9FF" />
+
+- <img height="14" width="14" src="https://cdn.simpleicons.org/c/17A8FF" /> C-family full Language
+> **Note** To support it,you'll copy these code to your neovim configruation.  You can [Click here](./lua/bin/plugins/lsp/lsp-settings.lua#L77) to view the code.
+
+```lua
+-- ~/.config/nvim/lua/bin/plugins/lsp/lsp-settings.lua
+require("lspconfig").clangd.setup{}
+
+```
+
+- <img height="14" width="14" src="https://cdn.simpleicons.org/lua/5DAEFF" /> Lua(needs to install `lua-language-server` in your terminal.)
+
+### Add a new language language-server
+
+**Step1** Input `:Mason` in your neovim.  
+**Step2** `<c-f>` search language-server,for example:bash,and type Enter.Type 2 to swtich lsp.  
+**Step3** Input "i" to install the language-server,type Enter to view the information.
+**Step4** Add some code-snippets in your configruation.  
+**NOTE**  
+You can [click it](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) to view more information.  
+You can also input `:help lspconfig-all` in your neovim.
+
 
 ---
 
