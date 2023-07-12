@@ -39,6 +39,12 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind.nvim",
       "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-nvim-lua",
+      { 'romgrk/fzy-lua-native', build = 'make' },
+      {
+        'tzachar/cmp-fuzzy-path',
+        dependencies = 'tzachar/fuzzy.nvim'
+      },
     },
     config = function()
       require("bin.plugins.lsp.cmp")

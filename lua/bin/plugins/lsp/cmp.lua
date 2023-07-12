@@ -66,17 +66,19 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     { name = "path" },
+    -- { name = 'fuzzy_path'},
     { name = "luasnip" },
+    { name = 'nvim_lua' },
     { name = "buffer",  keyword_length = 5 },
     -- sources = {
-    {
-      name = "buffer-lines",
-      keyword_length = 5,
-      option = {
-        -- words = true,
-        comments = true,
-      },
-    },
+    -- {
+    --   name = "buffer-lines",
+    --   keyword_length = 5,
+    --   option = {
+    --     words = true,
+    --     -- comments = true,
+    --   },
+    -- },
     -- },
   },
   experimental = {

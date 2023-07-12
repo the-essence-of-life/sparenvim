@@ -353,4 +353,8 @@ return {
       },
     },
   },
+  {
+    "jobo3208/nvim-mysql",
+    build = "pip install -r requirements.txt",
+  },
 }
