@@ -1,16 +1,16 @@
 return {
   -- {
-  -- 	"nvim-tree/nvim-tree.lua",
-  -- 	lazy = false,
-  -- 	keys = function()
-  -- 		-- return {
-  -- 		-- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
-  -- 		-- }
-  -- 		return require("bin.config.keymaps").tree
-  -- 	end,
-  -- 	config = function()
-  -- 		require("bin.plugins.tools.nvim-tree")
-  -- 	end,
+  --   "nvim-tree/nvim-tree.lua",
+  --   lazy = false,
+  --   keys = function()
+  --     -- return {
+  --     -- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
+  --     -- }
+  --     return require("bin.config.keymaps").tree
+  --   end,
+  --   config = function()
+  --     require("bin.plugins.tools.nvim-tree")
+  --   end,
   -- },
   {
     "sindrets/diffview.nvim",
@@ -26,6 +26,21 @@ return {
           },
         },
       })
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    version = "v3.x",
+    keys = function()
+      return require("bin.config.keymaps").neotree
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("bin.plugins.tools.neotree")
     end,
   },
   {
@@ -73,23 +88,23 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "octarect/telescope-menu.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
+      -- "nvim-telescope/telescope-file-browser.nvim",
       -- "debugloop/telescope-undo.nvim",
       -- "LinArcX/telescope-command-palette.nvim",
       -- "tsakirist/telescope-lazy.nvim",
-      {
-        "nvim-telescope/telescope-frecency.nvim",
-        dependencies = { "kkharji/sqlite.lua" },
-      },
+      -- {
+      --   "nvim-telescope/telescope-frecency.nvim",
+      --   dependencies = { "kkharji/sqlite.lua" },
+      -- },
     },
     config = function()
       require("bin.plugins.tools.telescope")
       require("telescope").load_extension("menu")
-      require("telescope").load_extension("frecency")
-      require("telescope").load_extension("file_browser")
+      -- require("telescope").load_extension("frecency")
+      -- require("telescope").load_extension("file_browser")
       -- require("telescope").load_extension("command_palette")
       -- require("telescope").load_extension "lazy"
-      vim.keymap.set("n", "<s-t>", "<cmd>Telescope<cr>")
+      -- vim.keymap.set("n", "<s-t>", "<cmd>Telescope<cr>")
       -- local builtin = require("telescope.builtin")
       -- vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
       -- vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
@@ -104,6 +119,38 @@ return {
     config = function()
       require("bin.plugins.tools.ccc")
     end,
+  },
+  {
+    'NvChad/nvim-colorizer.lua',
+    config = function()
+      require("colorizer").setup {
+        filetypes = { "*" },
+        user_default_options = {
+          RGB = true,           -- #RGB hex codes
+          RRGGBB = true,        -- #RRGGBB hex codes
+          names = true,         -- "Name" codes like Blue or blue
+          RRGGBBAA = false,     -- #RRGGBBAA hex codes
+          AARRGGBB = false,     -- 0xAARRGGBB hex codes
+          rgb_fn = false,       -- CSS rgb() and rgba() functions
+          hsl_fn = false,       -- CSS hsl() and hsla() functions
+          css = false,          -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false,       -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          -- Available modes for `mode`: foreground, background,  virtualtext
+          mode = "virtualtext", -- Set the display mode.
+          -- Available methods are false / true / "normal" / "lsp" / "both"
+          -- True is same as normal
+          tailwind = false,                                -- Enable tailwind colors
+          -- parsers can contain values used in |user_default_options|
+          sass = { enable = false, parsers = { "css" }, }, -- Enable sass colors
+          virtualtext = "■",
+          -- update color values even if buffer is not focused
+          -- example use: cmp_menu, cmp_docs
+          always_update = true
+        },
+        -- all the sub-options of filetypes apply to buftypes
+        buftypes = {},
+      }
+    end
   },
   {
     "stevearc/overseer.nvim",
@@ -356,5 +403,67 @@ return {
   {
     "jobo3208/nvim-mysql",
     build = "pip install -r requirements.txt",
+  },
+  {
+    'gnikdroy/projections.nvim',
+    config = function()
+      require("projections").setup({
+        -- workspaces = { -- Default workspaces to search for
+        --   { ".git" },
+        --   { "~/workspace", {} },
+        --   "~/dev",
+        --   { "~/.config/nvim/", { ".git", "init.lua" } },
+        -- },
+        -- patterns = { ".git", ".svn", ".hg" },      -- Default patterns to use if none were specified. These are NOT regexps.
+        store_hooks = {
+          pre = function()
+            -- -- nvim-tree
+            -- local nvim_tree_present, api = pcall(require, "nvim-tree.api")
+            -- if nvim_tree_present then api.tree.close() end
+            -- neo-tree
+            if pcall(require, "neo-tree") then vim.cmd [[Neotree action=close]] end
+          end
+        }, -- pre and post hooks for store_session, callable | nil
+        -- restore_hooks = { pre = nil, post = nil }, -- pre and post hooks for restore_session, callable | nil
+        -- workspaces_file = "path/to/file",          -- Path to workspaces json file
+        -- sessions_directory = "path/to/dir",        -- Directory where sessions are stored
+      })
+      -- Bind <leader>fp to Telescope projections
+      require('telescope').load_extension('projections')
+      vim.keymap.set("n", "<leader>fp", function() vim.cmd("Telescope projections") end)
+
+      -- Autostore session on VimExit
+      local Session = require("projections.session")
+      vim.api.nvim_create_autocmd({ 'VimLeavePre' }, {
+        callback = function() Session.store(vim.loop.cwd()) end,
+      })
+
+      local Session = require("projections.session")
+      vim.api.nvim_create_autocmd({ "VimEnter" }, {
+        callback = function()
+          if vim.fn.argc() ~= 0 then return end
+          local session_info = Session.info(vim.loop.cwd())
+          if session_info == nil then
+            Session.restore_latest()
+          else
+            Session.restore(vim.loop.cwd())
+          end
+        end,
+        desc = "Restore last session automatically"
+      })
+      local Session = require("projections.session")
+      vim.api.nvim_create_user_command("StoreProjectSession", function()
+        Session.store(vim.loop.cwd())
+      end, {})
+
+      vim.api.nvim_create_user_command("RestoreProjectSession", function()
+        Session.restore(vim.loop.cwd())
+      end, {})
+      local Workspace = require("projections.workspace")
+      -- Add workspace command
+      vim.api.nvim_create_user_command("AddWorkspace", function()
+        Workspace.add(vim.loop.cwd())
+      end, {})
+    end
   },
 }

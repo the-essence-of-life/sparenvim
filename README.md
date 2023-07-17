@@ -64,7 +64,7 @@ make file:(Not gcc,shell script.)
 
 **Step1** Backup your config and remove your caches.
 
-```sh
+```bash
 mv ~/.config/nvim/ ~/.config/nvim.bak/
 mv ~/.local/share/nvim/ ~/.local/share/nvim.bak/
 mv ~/.local/state/nvim/ ~/.local/state/nvim.bak/
@@ -72,8 +72,8 @@ rm -rf ~/.cache/nvim/
 ```
 
 **Step2** Clone this repo,ensure that dependencies are installed correctly.
-```sh
- clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config/nvim/
+```bash
+git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config/nvim/
 
 ```
 
@@ -103,7 +103,7 @@ rm -rf ~/.cache/nvim/
 
 You can see examples [here](https://github.com/folke/lazy.nvim#examples).  
 **Step1** Change the working directory and touch a config file(You can put longest config here.)  
-```sh
+```bash
 cd ~/.config/nvim/lua/bin/plugins/user/
 touch <plugins-config>.lua
 ```
@@ -118,7 +118,7 @@ return {
   event = "VeryLazy",
   -- [config,init,cond] are configruation.
   config = function()
-    require("bin.plugins")
+    require("bin.plugins.user.<plugins-config>")
   end,
 }
 -- i to insert,<Esc> can quit the insert mode.
@@ -134,7 +134,7 @@ return {
 ### Change your package manager
 
 First,find `init.lua`:
-```sh
+```bash
 ## If use default config:
 nvim ~/.config/nvim/lua/bin/init.lua
 
@@ -176,11 +176,11 @@ You can also input `:help lspconfig-all` in your neovim.
 
 
 ### plugins
-[lsp](./lua/bin/plugins/lsp/)
-[tools](./lua/bin/plugins/tools/)
-[user](./lua/bin/plugins/user/)
-[utils](./lua/bin/plugins/utils/)
-[ui](./lua/bin/plugins/ui/)
+[lsp](./lua/bin/plugins/lsp/)  
+[tools](./lua/bin/plugins/tools/)  
+[user](./lua/bin/plugins/user/)  
+[utils](./lua/bin/plugins/utils/)  
+[ui](./lua/bin/plugins/ui/)  
 
 ---
 

@@ -10,6 +10,18 @@ return {
       vim.cmd.color(color)
     end,
   },
+  -- {
+  --   "neanias/everforest-nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   name = "everforest",
+  --   config = function()
+  --     -- require("bin.plugins.ui.everforest")
+  --     require("everforest").setup({})
+  --     local color = color or "everforest"
+  --     vim.cmd.color(color)
+  --   end,
+  -- },
   {
     "akinsho/bufferline.nvim",
     event = "UIEnter",
@@ -37,6 +49,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "UIEnter",
+    enabled = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       vim.opt.laststatus = 2
@@ -64,4 +77,13 @@ return {
   --     require("bin.plugins.ui.cursorline")
   --   end,
   -- },
+  {
+    "rebelot/heirline.nvim",
+    -- You can optionally lazy-load heirline on UiEnter
+    -- to make sure all required plugins and colorschemes are loaded before setup
+    -- event = "UiEnter",
+    config = function()
+      require("bin.plugins.ui.heirline")
+    end
+  },
 }

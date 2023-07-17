@@ -5,6 +5,7 @@ local utils = require("heirline.utils")
 
 local Space = { provider = " " }
 local Align = { provider = "%=" }
+-- local colors = require'catppuccin.utils.colors'.setup() -- wink
 
 local colors = {
   bright_bg = utils.get_highlight("Folded").bg,
@@ -37,6 +38,68 @@ local Ruler = {
 local Dress = {
   provider = "▊",
   hl = { fg = "blue" },
+}
+
+local Diagnostics = {
+
+  condition = conditions.has_diagnostics,
+
+  static = {
+    -- error_icon = "#FF2E2E",
+    -- warn_icon =  "#FFCB2E",
+    -- info_icon =  "#46B9FF",
+    -- hint_icon =  "#5DFFFF",
+    error_icon = "󰅙 ",
+    warn_icon = " ",
+    info_icon = "󰋼 ",
+    hint_icon = "󰌵 ",
+  },
+
+  init = function(self)
+    self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+    self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+    self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+    self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+  end,
+  on_click = {
+    callback = function()
+      require("trouble").toggle({ mode = "document_diagnostics" })
+      -- or
+      -- vim.diagnostic.setqflist()
+    end,
+    name = "heirline_diagnostics",
+  },
+
+  update = { "DiagnosticChanged", "BufEnter" },
+  {
+    provider = "D:",
+    hl = { fg = "#A1A1A1" },
+  },
+  {
+    provider = function(self)
+      -- 0 is just another output, we can decide to print it or not!
+      return self.errors > 0 and (self.error_icon .. self.errors .. " ")
+    end,
+    hl = { fg = "diag_error" },
+  },
+  {
+    provider = function(self)
+      return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ")
+    end,
+    hl = { fg = "diag_warn" },
+  },
+  {
+    provider = function(self)
+      return self.info > 0 and (self.info_icon .. self.info .. " ")
+    end,
+    hl = { fg = "diag_info" },
+  },
+  {
+    provider = function(self)
+      return self.hints > 0 and (self.hint_icon .. self.hints)
+    end,
+    hl = { fg = "diag_hint" },
+  },
 }
 
 local ViMode = {
@@ -226,6 +289,14 @@ local ScrollBar = {
 local LSPActive = {
   condition = conditions.lsp_attached,
   update    = { 'LspAttach', 'LspDetach' },
+  on_click  = {
+    callback = function()
+      vim.defer_fn(function()
+        vim.cmd("LspInfo")
+      end, 100)
+    end,
+    name = "heirline_LSP",
+  },
 
   -- You can keep it simple,
   -- provider = " [LSP]",
@@ -241,57 +312,57 @@ local LSPActive = {
   hl        = { fg = "green", bold = true },
 }
 
-local Diagnostics = {
-  condition = conditions.has_diagnostics,
-
-  static = {
-    error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
-    warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
-    info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
-    hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
-  },
-
-  init = function(self)
-    self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-    self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-    self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-    self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
-  end,
-
-  update = { "DiagnosticChanged", "BufEnter" },
-
-  -- {
-  --     provider = "![",
-  -- },
-  {
-    provider = function(self)
-      -- 0 is just another output, we can decide to print it or not!
-      return self.errors > 0 and (self.error_icon .. self.errors .. " ")
-    end,
-    hl = { fg = "diag_error" },
-  },
-  {
-    provider = function(self)
-      return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ")
-    end,
-    hl = { fg = "diag_warn" },
-  },
-  {
-    provider = function(self)
-      return self.info > 0 and (self.info_icon .. self.info .. " ")
-    end,
-    hl = { fg = "diag_info" },
-  },
-  {
-    provider = function(self)
-      return self.hints > 0 and (self.hint_icon .. self.hints)
-    end,
-    hl = { fg = "diag_hint" },
-  },
-  -- {
-  --     provider = "]",
-  -- },
-}
+-- local Diagnostics = {
+--   condition = conditions.has_diagnostics,
+--
+--   static = {
+--     error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
+--     warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
+--     info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
+--     hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
+--   },
+--
+--   init = function(self)
+--     self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+--     self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+--     self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+--     self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+--   end,
+--
+--   update = { "DiagnosticChanged", "BufEnter" },
+--
+--   -- {
+--   --     provider = "![",
+--   -- },
+--   {
+--     provider = function(self)
+--       -- 0 is just another output, we can decide to print it or not!
+--       return self.errors > 0 and (self.error_icon .. self.errors .. " ")
+--     end,
+--     hl = { fg = "diag_error" },
+--   },
+--   {
+--     provider = function(self)
+--       return self.warnings > 0 and (self.warn_icon .. self.warnings .. " ")
+--     end,
+--     hl = { fg = "diag_warn" },
+--   },
+--   {
+--     provider = function(self)
+--       return self.info > 0 and (self.info_icon .. self.info .. " ")
+--     end,
+--     hl = { fg = "diag_info" },
+--   },
+--   {
+--     provider = function(self)
+--       return self.hints > 0 and (self.hint_icon .. self.hints)
+--     end,
+--     hl = { fg = "diag_hint" },
+--   },
+--   -- {
+--   --     provider = "]",
+--   -- },
+-- }
 
 local MacroRec = {
   condition = function()
@@ -381,6 +452,19 @@ local Git = {
   },
 }
 
+local Lazy = {
+  provider = " Plugins",
+  hl = { fg = "#46B9FF" },
+  on_click = {
+    callback = function()
+      vim.defer_fn(function()
+        vim.cmd("Lazy")
+      end, 100)
+    end,
+    name = "Lazy",
+  }
+}
+
 require("heirline").setup({
   statusline = {
     Dress,
@@ -398,13 +482,16 @@ require("heirline").setup({
     Space,
     LSPActive,
     Space,
-    -- Diagnostics,
+    Diagnostics,
     Space,
     MacroRec,
     Space,
     SearchCount,
     Align,
     -- Ruler,
+    Space,
+    Lazy,
+    Space,
     ScrollBar,
     Space,
     Dress,

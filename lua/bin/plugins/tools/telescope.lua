@@ -6,32 +6,32 @@ require("telescope").setup({
   },
   pickers = {},
   extensions = {
-    file_browser = {
-      theme = "ivy",
-      display_stat = { date = true, size = true, mode = false },
-      -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
-      mappings = {
-        ["i"] = {
-          -- your custom insert mode mappings
-        },
-        ["n"] = {
-          -- your custom normal mode mappings
-        },
-      },
-    },
-    frecency = {
-      db_root = "~/",
-      show_scores = false,
-      show_unindexed = true,
-      ignore_patterns = { "*.git/*", "*/tmp/*" },
-      disable_devicons = false,
-      workspaces = {
-        ["conf"] = "~/.config/",
-        ["data"] = "~/.local/share/",
-        ["project"] = "~/workspace/",
-      },
-    },
+    -- file_browser = {
+    --   theme = "ivy",
+    --   display_stat = { date = true, size = true, mode = false },
+    --   -- disables netrw and use telescope-file-browser in its place
+    --   hijack_netrw = true,
+    --   mappings = {
+    --     ["i"] = {
+    --       -- your custom insert mode mappings
+    --     },
+    --     ["n"] = {
+    --       -- your custom normal mode mappings
+    --     },
+    --   },
+    -- },
+    -- frecency = {
+    --   db_root = "~/",
+    --   show_scores = false,
+    --   show_unindexed = true,
+    --   ignore_patterns = { "*.git/*", "*/tmp/*" },
+    --   disable_devicons = false,
+    --   workspaces = {
+    --     ["conf"] = "~/.config/",
+    --     ["data"] = "~/.local/share/",
+    --     -- ["project"] = "~/workspace/",
+    --   },
+    -- },
     menu = {
       default = {
         items = {

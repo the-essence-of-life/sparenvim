@@ -111,7 +111,7 @@ M.lsp_server = function()
     -- },
   })
   -- require("lspconfig").lua_ls.setup({})
-  -- require("lspconfig").bashls.setup({})
+  require("lspconfig").bashls.setup({})
   -- require 'lspconfig'.ruby_ls.setup {}
   -- require 'lspconfig'.vtsls.setup {}
   -- require("lspconfig").custom_elements_ls.setup{}
