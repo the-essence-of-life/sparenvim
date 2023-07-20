@@ -74,59 +74,10 @@ M.lspconfig_global = function()
 end
 
 M.lsp_server = function()
-  require("lspconfig").lua_ls.setup({
-    -- settings = {
-    --   Lua = {
-    --     -- Disable telemetry
-    --     telemetry = { enable = false },
-    --     runtime = {
-    --       -- Tell the language server which version of Lua you're using
-    --       -- (most likely LuaJIT in the case of Neovim)
-    --       version = 'LuaJIT',
-    --       -- path = runtime_path,
-    --     },
-    --     diagnostics = {
-    --       -- Get the language server to recognize the `vim` global
-    --       globals = { 'vim' }
-    --     },
-    --     workspace = {
-    --       checkThirdParty = false,
-    --       library = {
-    --         -- Make the server aware of Neovim runtime files
-    --         vim.fn.expand('$VIMRUNTIME/lua'),
-    --         vim.fn.stdpath('config') .. '/lua'
-    --       }
-    --     }
-    --   }
-    -- }
-    -- root_pattern = {
-    --   ".luarc.json",
-    --   ".luarc.jsonc",
-    --   ".luacheckrc",
-    --   ".stylua.toml",
-    --   "stylua.toml",
-    --   "selene.toml",
-    --   "selene.yml",
-    --   -- ".git"
-    -- },
-  })
-  -- require("lspconfig").lua_ls.setup({})
+  require("lspconfig").lua_ls.setup({})
   require("lspconfig").bashls.setup({})
-  -- require 'lspconfig'.ruby_ls.setup {}
-  -- require 'lspconfig'.vtsls.setup {}
-  -- require("lspconfig").custom_elements_ls.setup{}
-  -- require("lspconfig").ccls.setup {
-  --   init_options = {
-  --     compilationDatabaseDirectory = "build",
-  --     index = {
-  --       threads = 0,
-  --     },
-  --     clang = {
-  --       excludeArgs = { "-frounding-math" },
-  --     },
-  --   }
-  -- }
-  -- require 'lspconfig'.rome.setup {}
+  require("lspconfig").pyright.setup({})
+  require("lspconfig").jsonls.setup({})
 end
 
 M.lsp_settings = function()

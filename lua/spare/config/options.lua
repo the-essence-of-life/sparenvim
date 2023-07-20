@@ -74,6 +74,7 @@ M.others = function()
   vim.cmd([[
 	au BufReadCmd *.zip,*.jar,*.xpi call zip#Browse(expand("<amatch>"))
   ]])
+  -- vim.fn.system([[]])
 end
 
 return M

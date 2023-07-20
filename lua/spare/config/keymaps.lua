@@ -2,6 +2,7 @@ local M = {}
 
 M.core = function()
   vim.keymap.set("n", "<c-w>", "<cmd>w<cr>", { silent = true, desc = "write buffer" })
+  vim.keymap.set("i", "jk", "<Esc>")
 end
 
 -- NOTE:tools.lua

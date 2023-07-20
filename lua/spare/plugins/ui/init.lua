@@ -5,7 +5,7 @@ return {
     priority = 1000,
     name = "catppuccin",
     config = function()
-      require("bin.plugins.ui.catppuccin")
+      require("spare.plugins.ui.catppuccin")
       local color = color or "catppuccin"
       vim.cmd.color(color)
     end,
@@ -16,7 +16,7 @@ return {
   --   priority = 1000,
   --   name = "everforest",
   --   config = function()
-  --     -- require("bin.plugins.ui.everforest")
+  --     -- require("spare.plugins.ui.everforest")
   --     require("everforest").setup({})
   --     local color = color or "everforest"
   --     vim.cmd.color(color)
@@ -26,7 +26,7 @@ return {
     "akinsho/bufferline.nvim",
     event = "UIEnter",
     keys = function()
-      return require("bin.config.keymaps").bufferline
+      return require("spare.config.keymaps").bufferline
     end,
     config = function()
       require("bufferline").setup({
@@ -46,6 +46,19 @@ return {
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
+  -- {
+  --   'tomiis4/BufferTabs.nvim',
+  --   dependencies = {
+  --     'nvim-tree/nvim-web-devicons', -- optional
+  --   },
+  --   lazy = false,
+  --   event = "UIEnter",
+  --   config = function()
+  --     require('buffertabs').setup({
+  --       -- config
+  --     })
+  --   end
+  -- },
   {
     "nvim-lualine/lualine.nvim",
     event = "UIEnter",
@@ -53,28 +66,28 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       vim.opt.laststatus = 2
-      require("bin.plugins.ui.lualine")
+      require("spare.plugins.ui.lualine")
     end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "UIEnter",
     config = function()
-      require("bin.plugins.ui.indent-blankline")
+      require("spare.plugins.ui.indent-blankline")
     end,
   },
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
     config = function()
-      require("bin.plugins.ui.alpha")
+      require("spare.plugins.ui.alpha")
     end,
   },
   -- {
   --   "yamatsum/nvim-cursorline",
   --   event = "UIEnter",
   --   config = function()
-  --     require("bin.plugins.ui.cursorline")
+  --     require("spare.plugins.ui.cursorline")
   --   end,
   -- },
   {
@@ -83,7 +96,7 @@ return {
     -- to make sure all required plugins and colorschemes are loaded before setup
     -- event = "UiEnter",
     config = function()
-      require("bin.plugins.ui.heirline")
+      require("spare.plugins.ui.heirline")
     end
   },
 }

@@ -10,21 +10,21 @@ return {
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 		config = function()
-			require("bin.plugins.utils.treesitter")
+			require("spare.plugins.utils.treesitter")
 			-- require("nvim-ts-autotag").setup()
 		end,
 	},
 	-- {
 	-- 	"windwp/nvim-autopairs",
 	-- 	config = function()
-	-- 		require("bin.plugins.utils.autopairs")
+	-- 		require("spare.plugins.utils.autopairs")
 	-- 	end,
 	-- },
 	{
 		-- "folke/noice.nvim",
 		"folke/noice.nvim",
 		config = function()
-			require("bin.plugins.utils.noice")
+			require("spare.plugins.utils.noice")
 		end,
 		dependencies = {
 			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -40,14 +40,14 @@ return {
 		event = "VeryLazy", -- this will only start session saving when an actual file was opened
 		-- module = "persistence",
 		config = function()
-			require("bin.plugins.utils.persistence")
+			require("spare.plugins.utils.persistence")
 		end,
 	},
   {
     "m4xshen/autoclose.nvim",
     event = "InsertEnter",
     config = function()
-      require("bin.plugins.tools.autoclose")
+      require("spare.plugins.tools.autoclose")
     end,
   },
 	-- keys = {
@@ -63,8 +63,8 @@ return {
 	-- 	{ "MunifTanjim/nui.nvim" },
 	-- },
 	-- config = function()
-	-- 	require("bin.plugins.utils.fine-cmdline")
-	-- require("bin.plugins.utils.nui")
+	-- 	require("spare.plugins.utils.fine-cmdline")
+	-- require("spare.plugins.utils.nui")
 	-- 	end,
 	-- },
 	{
@@ -78,7 +78,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		config = function()
-			require("bin.plugins.utils.harpoon")
+			require("spare.plugins.utils.harpoon")
 		end,
 	},
 	-- { dir = "~/workspace/lazy.nvim" },

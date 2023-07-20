@@ -6,10 +6,10 @@ return {
   --     -- return {
   --     -- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
   --     -- }
-  --     return require("bin.config.keymaps").tree
+  --     return require("spare.config.keymaps").tree
   --   end,
   --   config = function()
-  --     require("bin.plugins.tools.nvim-tree")
+  --     require("spare.plugins.tools.nvim-tree")
   --   end,
   -- },
   {
@@ -32,7 +32,7 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     version = "v3.x",
     keys = function()
-      return require("bin.config.keymaps").neotree
+      return require("spare.config.keymaps").neotree
     end,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -40,7 +40,7 @@ return {
       "MunifTanjim/nui.nvim",
     },
     config = function()
-      require("bin.plugins.tools.neotree")
+      require("spare.plugins.tools.neotree")
     end,
   },
   {
@@ -49,7 +49,7 @@ return {
   {
     "numToStr/Comment.nvim",
     keys = function()
-      return require("bin.config.keymaps").comment
+      return require("spare.config.keymaps").comment
     end,
     config = true,
   },
@@ -70,7 +70,7 @@ return {
       vim.o.updatetime = 300
       vim.o.incsearch = false
       vim.wo.signcolumn = "yes"
-      require("bin.plugins.tools.vgit")
+      require("spare.plugins.tools.vgit")
     end,
   },
   {
@@ -82,7 +82,7 @@ return {
     -- },
     -- tag = "0.1.1",
     keys = function()
-      return require("bin.config.keymaps").telescope
+      return require("spare.config.keymaps").telescope
     end,
     event = "VimEnter",
     dependencies = {
@@ -98,7 +98,7 @@ return {
       -- },
     },
     config = function()
-      require("bin.plugins.tools.telescope")
+      require("spare.plugins.tools.telescope")
       require("telescope").load_extension("menu")
       -- require("telescope").load_extension("frecency")
       -- require("telescope").load_extension("file_browser")
@@ -117,7 +117,7 @@ return {
     event = "InsertEnter",
     enabled = false,
     config = function()
-      require("bin.plugins.tools.ccc")
+      require("spare.plugins.tools.ccc")
     end,
   },
   {
@@ -161,7 +161,7 @@ return {
       "OverseerTaskAction",
     },
     config = function()
-      require("bin.plugins.tools.overseer")
+      require("spare.plugins.tools.overseer")
     end,
   },
   {
@@ -169,7 +169,7 @@ return {
     cmd = "ToggleTerm",
     version = "*",
     config = function()
-      require("bin.plugins.tools.toggleterm")
+      require("spare.plugins.tools.toggleterm")
     end,
   },
   {
@@ -183,7 +183,7 @@ return {
     cmd = "Trouble",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("bin.plugins.tools.trouble")
+      require("spare.plugins.tools.trouble")
     end,
   },
   {
@@ -191,7 +191,7 @@ return {
     event = "VeryLazy",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("bin.plugins.tools.todo-comments")
+      require("spare.plugins.tools.todo-comments")
     end,
   },
   {
@@ -208,7 +208,7 @@ return {
     event = "BufEnter *.md",
     -- ft = "md",
     config = function()
-      require("bin.plugins.tools.markdown")
+      require("spare.plugins.tools.markdown")
     end,
   },
   {
@@ -216,7 +216,7 @@ return {
     enabled = false,
     branch = "v2", -- optional but strongly recommended
     keys = function()
-      return require("bin.config.keymaps").hop
+      return require("spare.config.keymaps").hop
     end,
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
@@ -231,7 +231,7 @@ return {
   -- 		"nvim-lua/plenary.nvim",
   -- 	},
   -- 	config = function()
-  -- 		require("bin.plugins.tools.spectre")
+  -- 		require("spare.plugins.tools.spectre")
   -- 	end,
   -- },
   {
@@ -254,7 +254,7 @@ return {
     "folke/which-key.nvim",
     -- event = "VeryLazy",
     keys = function()
-      return require("bin.config.keymaps").which_key
+      return require("spare.config.keymaps").which_key
     end,
     config = function()
       vim.o.timeout = true
@@ -406,6 +406,7 @@ return {
   },
   {
     'gnikdroy/projections.nvim',
+    enabled = false,
     config = function()
       require("projections").setup({
         -- workspaces = { -- Default workspaces to search for
@@ -464,6 +465,48 @@ return {
       vim.api.nvim_create_user_command("AddWorkspace", function()
         Workspace.add(vim.loop.cwd())
       end, {})
+    end
+  },
+  -- {
+  --   "Olical/conjure",
+  --   ft = { "clojure", "fennel", "python" }, -- etc
+  --   -- [Optional] cmp-conjure for cmp
+  --   dependencies = {
+  --     {
+  --       "PaterJason/cmp-conjure",
+  --       config = function()
+  --         local cmp = require("cmp")
+  --         local config = cmp.get_config()
+  --         table.insert(config.sources, {
+  --           name = "buffer",
+  --           option = {
+  --             sources = {
+  --               { name = "conjure" },
+  --             },
+  --           },
+  --         })
+  --         cmp.setup(config)
+  --       end,
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("conjure.main").main()
+  --     require("conjure.mapping")["on-filetype"]()
+  --   end,
+  --   init = function()
+  --     -- Set configuration options here
+  --     vim.g["conjure#debug"] = true
+  --   end,
+  -- },
+  {
+    "ahmedkhalf/jupyter-nvim",
+    build = ":UpdateRemotePlugins",
+    config = function()
+      require("jupyter-nvim").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
     end
   },
 }

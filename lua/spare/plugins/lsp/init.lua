@@ -4,7 +4,7 @@ return {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     config = function()
-      require("bin.plugins.lsp.lspsaga")
+      require("spare.plugins.lsp.lspsaga")
     end,
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
@@ -22,7 +22,7 @@ return {
       -- "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
-      require("bin.plugins.lsp.lsp-settings").mason()
+      require("spare.plugins.lsp.lsp-settings").mason()
     end,
   },
   {
@@ -47,7 +47,7 @@ return {
       },
     },
     config = function()
-      require("bin.plugins.lsp.cmp")
+      require("spare.plugins.lsp.cmp")
     end,
   },
   {
@@ -63,21 +63,21 @@ return {
     -- 	"williamboman/mason-lspconfig.nvim",
     -- },
     config = function()
-      require("bin.plugins.lsp.lsp-settings").lspconfig_global()
-      require("bin.plugins.lsp.lsp-settings").lsp_settings()
-      require("bin.plugins.lsp.lsp-settings").lsp_server()
+      require("spare.plugins.lsp.lsp-settings").lspconfig_global()
+      require("spare.plugins.lsp.lsp-settings").lsp_settings()
+      require("spare.plugins.lsp.lsp-settings").lsp_server()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("bin.plugins.lsp.mason-lspconfig")
+      require("spare.plugins.lsp.mason-lspconfig")
     end
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
-      require("bin.plugins.lsp.null-ls")
+      require("spare.plugins.lsp.null-ls")
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
   },
@@ -93,7 +93,7 @@ return {
       "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
-      require("bin.plugins.lsp.mason-null-ls") -- require your null-ls config here (example below)
+      require("spare.plugins.lsp.mason-null-ls") -- require your null-ls config here (example below)
     end,
   },
 }

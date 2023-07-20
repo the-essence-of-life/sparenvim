@@ -22,12 +22,12 @@ M.deployment_lazy = function()
   require("lazy").setup({
     spec = {
       -- { "LazyVim/LazyVim", import = "lazyvim.config" },
-      { import = "bin.plugins" },
-      -- { import = "bin.plugins.lsp" },
-      -- { import = "bin.plugins.tools" },
-      -- { import = "bin.plugins.ui" },
-      -- { import = "bin.plugins.utils" },
-      -- { import = "bin.plugins.user" },
+      { import = "spare.plugins" },
+      -- { import = "spare.plugins.lsp" },
+      -- { import = "spare.plugins.tools" },
+      -- { import = "spare.plugins.ui" },
+      -- { import = "spare.plugins.utils" },
+      -- { import = "spare.plugins.user" },
     },
     git = {
       url_format = "https://github.com/%s.git",
