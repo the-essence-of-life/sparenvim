@@ -33,18 +33,11 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
-      "amarakon/nvim-cmp-buffer-lines",
       "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind.nvim",
       "rafamadriz/friendly-snippets",
-      "hrsh7th/cmp-nvim-lua",
-      { 'romgrk/fzy-lua-native', build = 'make' },
-      {
-        'tzachar/cmp-fuzzy-path',
-        dependencies = 'tzachar/fuzzy.nvim'
-      },
     },
     config = function()
       require("spare.plugins.lsp.cmp")
@@ -80,10 +73,6 @@ return {
       require("spare.plugins.lsp.null-ls")
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
-  },
-  {
-    'habamax/vim-asciidoctor',
-    event = "BufEnter *.adoc",
   },
   {
     "jay-babu/mason-null-ls.nvim",

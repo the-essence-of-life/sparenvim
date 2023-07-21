@@ -1,33 +1,4 @@
 return {
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   lazy = false,
-  --   keys = function()
-  --     -- return {
-  --     -- 	{ "<leader>nt", "<cmd>NvimTreeToggle<cr>", desc = "NvimTree" },
-  --     -- }
-  --     return require("spare.config.keymaps").tree
-  --   end,
-  --   config = function()
-  --     require("spare.plugins.tools.nvim-tree")
-  --   end,
-  -- },
-  {
-    "sindrets/diffview.nvim",
-    dependencies = {
-      "jacobsimpson/nvim-mercurial",
-    },
-    event = "VeryLazy",
-    config = function()
-      require("diffview").setup({
-        file_panel = {
-          win_config = {
-            width = 20,
-          },
-        },
-      })
-    end,
-  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     version = "v3.x",
@@ -44,9 +15,6 @@ return {
     end,
   },
   {
-    "terryma/vim-multiple-cursors",
-  },
-  {
     "numToStr/Comment.nvim",
     keys = function()
       return require("spare.config.keymaps").comment
@@ -54,33 +22,7 @@ return {
     config = true,
   },
   {
-    "tanvirtin/vgit.nvim",
-    enabled = false,
-    cmd = {
-      "VGit setup",
-      "VGit toggle_diff_preference",
-      "VGit toggle_live_gutter",
-      "VGit toggle_live_blame",
-      "VGit toggle_authorship_code_lens",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      vim.o.updatetime = 300
-      vim.o.incsearch = false
-      vim.wo.signcolumn = "yes"
-      require("spare.plugins.tools.vgit")
-    end,
-  },
-  {
     "nvim-telescope/telescope.nvim",
-    -- keys = {
-    -- 	{ "m", "<cmd>Telescope menu<cr>", mode = "n" },
-    -- 	{ "<leader>ff", "<cmd>Telescope find_files<cr>", mode = "n" },
-    -- 	{ "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", mode = "n" },
-    -- },
-    -- tag = "0.1.1",
     keys = function()
       return require("spare.config.keymaps").telescope
     end,
@@ -88,36 +30,10 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "octarect/telescope-menu.nvim",
-      -- "nvim-telescope/telescope-file-browser.nvim",
-      -- "debugloop/telescope-undo.nvim",
-      -- "LinArcX/telescope-command-palette.nvim",
-      -- "tsakirist/telescope-lazy.nvim",
-      -- {
-      --   "nvim-telescope/telescope-frecency.nvim",
-      --   dependencies = { "kkharji/sqlite.lua" },
-      -- },
     },
     config = function()
       require("spare.plugins.tools.telescope")
       require("telescope").load_extension("menu")
-      -- require("telescope").load_extension("frecency")
-      -- require("telescope").load_extension("file_browser")
-      -- require("telescope").load_extension("command_palette")
-      -- require("telescope").load_extension "lazy"
-      -- vim.keymap.set("n", "<s-t>", "<cmd>Telescope<cr>")
-      -- local builtin = require("telescope.builtin")
-      -- vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-      -- vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-      -- vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-      -- vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-    end,
-  },
-  {
-    "uga-rosa/ccc.nvim",
-    event = "InsertEnter",
-    enabled = false,
-    config = function()
-      require("spare.plugins.tools.ccc")
     end,
   },
   {
@@ -151,18 +67,6 @@ return {
         buftypes = {},
       }
     end
-  },
-  {
-    "stevearc/overseer.nvim",
-    cmd = {
-      "OverseerRun",
-      "OverseerToggle",
-      "OverseerQuickAction",
-      "OverseerTaskAction",
-    },
-    config = function()
-      require("spare.plugins.tools.overseer")
-    end,
   },
   {
     "akinsho/toggleterm.nvim",
@@ -211,29 +115,6 @@ return {
       require("spare.plugins.tools.markdown")
     end,
   },
-  {
-    "phaazon/hop.nvim",
-    enabled = false,
-    branch = "v2", -- optional but strongly recommended
-    keys = function()
-      return require("spare.config.keymaps").hop
-    end,
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-      -- place this in one of your configuration file(s)
-    end,
-  },
-  -- {
-  -- 	"nvim-pack/nvim-spectre",
-  -- 	event = "VeryLazy",
-  -- 	dependencies = {
-  -- 		"nvim-lua/plenary.nvim",
-  -- 	},
-  -- 	config = function()
-  -- 		require("spare.plugins.tools.spectre")
-  -- 	end,
-  -- },
   {
     "ziontee113/icon-picker.nvim",
     cmd = {
@@ -399,114 +280,5 @@ return {
         desc = "Toggle Flash Search",
       },
     },
-  },
-  {
-    "jobo3208/nvim-mysql",
-    build = "pip install -r requirements.txt",
-  },
-  {
-    'gnikdroy/projections.nvim',
-    enabled = false,
-    config = function()
-      require("projections").setup({
-        -- workspaces = { -- Default workspaces to search for
-        --   { ".git" },
-        --   { "~/workspace", {} },
-        --   "~/dev",
-        --   { "~/.config/nvim/", { ".git", "init.lua" } },
-        -- },
-        -- patterns = { ".git", ".svn", ".hg" },      -- Default patterns to use if none were specified. These are NOT regexps.
-        store_hooks = {
-          pre = function()
-            -- -- nvim-tree
-            -- local nvim_tree_present, api = pcall(require, "nvim-tree.api")
-            -- if nvim_tree_present then api.tree.close() end
-            -- neo-tree
-            if pcall(require, "neo-tree") then vim.cmd [[Neotree action=close]] end
-          end
-        }, -- pre and post hooks for store_session, callable | nil
-        -- restore_hooks = { pre = nil, post = nil }, -- pre and post hooks for restore_session, callable | nil
-        -- workspaces_file = "path/to/file",          -- Path to workspaces json file
-        -- sessions_directory = "path/to/dir",        -- Directory where sessions are stored
-      })
-      -- Bind <leader>fp to Telescope projections
-      require('telescope').load_extension('projections')
-      vim.keymap.set("n", "<leader>fp", function() vim.cmd("Telescope projections") end)
-
-      -- Autostore session on VimExit
-      local Session = require("projections.session")
-      vim.api.nvim_create_autocmd({ 'VimLeavePre' }, {
-        callback = function() Session.store(vim.loop.cwd()) end,
-      })
-
-      local Session = require("projections.session")
-      vim.api.nvim_create_autocmd({ "VimEnter" }, {
-        callback = function()
-          if vim.fn.argc() ~= 0 then return end
-          local session_info = Session.info(vim.loop.cwd())
-          if session_info == nil then
-            Session.restore_latest()
-          else
-            Session.restore(vim.loop.cwd())
-          end
-        end,
-        desc = "Restore last session automatically"
-      })
-      local Session = require("projections.session")
-      vim.api.nvim_create_user_command("StoreProjectSession", function()
-        Session.store(vim.loop.cwd())
-      end, {})
-
-      vim.api.nvim_create_user_command("RestoreProjectSession", function()
-        Session.restore(vim.loop.cwd())
-      end, {})
-      local Workspace = require("projections.workspace")
-      -- Add workspace command
-      vim.api.nvim_create_user_command("AddWorkspace", function()
-        Workspace.add(vim.loop.cwd())
-      end, {})
-    end
-  },
-  -- {
-  --   "Olical/conjure",
-  --   ft = { "clojure", "fennel", "python" }, -- etc
-  --   -- [Optional] cmp-conjure for cmp
-  --   dependencies = {
-  --     {
-  --       "PaterJason/cmp-conjure",
-  --       config = function()
-  --         local cmp = require("cmp")
-  --         local config = cmp.get_config()
-  --         table.insert(config.sources, {
-  --           name = "buffer",
-  --           option = {
-  --             sources = {
-  --               { name = "conjure" },
-  --             },
-  --           },
-  --         })
-  --         cmp.setup(config)
-  --       end,
-  --     },
-  --   },
-  --   config = function(_, opts)
-  --     require("conjure.main").main()
-  --     require("conjure.mapping")["on-filetype"]()
-  --   end,
-  --   init = function()
-  --     -- Set configuration options here
-  --     vim.g["conjure#debug"] = true
-  --   end,
-  -- },
-  {
-    "ahmedkhalf/jupyter-nvim",
-    build = ":UpdateRemotePlugins",
-    config = function()
-      require("jupyter-nvim").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
   },
 }

@@ -14,14 +14,7 @@ return {
 			-- require("nvim-ts-autotag").setup()
 		end,
 	},
-	-- {
-	-- 	"windwp/nvim-autopairs",
-	-- 	config = function()
-	-- 		require("spare.plugins.utils.autopairs")
-	-- 	end,
-	-- },
 	{
-		-- "folke/noice.nvim",
 		"folke/noice.nvim",
 		config = function()
 			require("spare.plugins.utils.noice")
@@ -50,23 +43,6 @@ return {
       require("spare.plugins.tools.autoclose")
     end,
   },
-	-- keys = {
-	--   { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", mode = "n", desc = "Undotree Toggle" }
-	-- },
-	-- },
-	-- {
-	-- 	"VonHeikemen/fine-cmdline.nvim",
-	-- 	keys = {
-	-- { ":", mode = "n" },
-	-- },
-	-- dependencies = {
-	-- 	{ "MunifTanjim/nui.nvim" },
-	-- },
-	-- config = function()
-	-- 	require("spare.plugins.utils.fine-cmdline")
-	-- require("spare.plugins.utils.nui")
-	-- 	end,
-	-- },
 	{
 		"stevearc/dressing.nvim",
 		event = "VeryLazy",
@@ -81,5 +57,4 @@ return {
 			require("spare.plugins.utils.harpoon")
 		end,
 	},
-	-- { dir = "~/workspace/lazy.nvim" },
 }

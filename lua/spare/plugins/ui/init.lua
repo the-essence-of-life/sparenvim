@@ -10,18 +10,6 @@ return {
       vim.cmd.color(color)
     end,
   },
-  -- {
-  --   "neanias/everforest-nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   name = "everforest",
-  --   config = function()
-  --     -- require("spare.plugins.ui.everforest")
-  --     require("everforest").setup({})
-  --     local color = color or "everforest"
-  --     vim.cmd.color(color)
-  --   end,
-  -- },
   {
     "akinsho/bufferline.nvim",
     event = "UIEnter",
@@ -29,46 +17,21 @@ return {
       return require("spare.config.keymaps").bufferline
     end,
     config = function()
-      require("bufferline").setup({
-        -- options = {
-        -- mode = "tabs",
-        -- tab_size = 24,
-        -- name_formatter = function(buf) -- buf contains:
-        --   -- name                | str        | the basename of the active file
-        --   -- path                | str        | the full path of the active file
-        --   -- bufnr (buffer only) | int        | the number of the active buffer
-        --   -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
-        --   -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
-        -- end,
-        -- },
-      })
+      require("bufferline").setup({})
     end,
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
   -- {
-  --   'tomiis4/BufferTabs.nvim',
-  --   dependencies = {
-  --     'nvim-tree/nvim-web-devicons', -- optional
-  --   },
-  --   lazy = false,
+  --   "nvim-lualine/lualine.nvim",
   --   event = "UIEnter",
+  --   enabled = false,
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
   --   config = function()
-  --     require('buffertabs').setup({
-  --       -- config
-  --     })
-  --   end
+  --     vim.opt.laststatus = 2
+  --     require("spare.plugins.ui.lualine")
+  --   end,
   -- },
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "UIEnter",
-    enabled = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      vim.opt.laststatus = 2
-      require("spare.plugins.ui.lualine")
-    end,
-  },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "UIEnter",
@@ -83,13 +46,6 @@ return {
       require("spare.plugins.ui.alpha")
     end,
   },
-  -- {
-  --   "yamatsum/nvim-cursorline",
-  --   event = "UIEnter",
-  --   config = function()
-  --     require("spare.plugins.ui.cursorline")
-  --   end,
-  -- },
   {
     "rebelot/heirline.nvim",
     -- You can optionally lazy-load heirline on UiEnter
