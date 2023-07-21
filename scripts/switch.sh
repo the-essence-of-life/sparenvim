@@ -3,7 +3,7 @@ switch_default () {
   rm -f ~/.config/nvim/init.lua
   echo "-- Input \"gf\" in normal mode to jump to configuration." >>~/.config/nvim/init.lua
   echo "-- ~/.config/nvim/lua/bin/" >>~/.config/nvim/init.lua
-  echo "require(\"bin\").setup()" >>~/.config/nvim/init.lua
+  echo "require(\"spare\").setup()" >>~/.config/nvim/init.lua
 }
 
 switch_user () {

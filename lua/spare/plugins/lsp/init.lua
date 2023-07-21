@@ -17,9 +17,9 @@ return {
     build = ":MasonUpdate", -- :MasonUpdate updates registry contents
     dependencies = {
       { "neovim/nvim-lspconfig" },
-      { "williamboman/mason-lspconfig.nvim" },
+      -- { "williamboman/mason-lspconfig.nvim" },
       { "glepnir/lspsaga.nvim" },
-      -- "jose-elias-alvarez/null-ls.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
       require("spare.plugins.lsp.lsp-settings").mason()
@@ -62,6 +62,7 @@ return {
     end,
   },
   {
+    enabled = false,
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("spare.plugins.lsp.mason-lspconfig")
@@ -76,6 +77,7 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
+    enabeld = false,
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
