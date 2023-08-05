@@ -185,17 +185,27 @@ You can also input `:help lspconfig-all` in your neovim.
 
 ### files
 ```mermaid
-graph TD;
+flowchart TB;
+    subgraph one
+    init.lua;
+    lazy-lock.json;
+    LICENSE;
+    lua-->spare;
+    lua-->user;
+    Makefile;
+    README.md;
     lua-->user;
     user-->plugins;
     lua-->spare;
     spare-->plugins;
     spare-->config;
+    subgraph two
     plugins-->tools;
     plugins-->ui;
     plugins-->lsp;
     plugins-->utils;
     plugins-->user;
+    subgraph three
     lsp-->cmp.lua;
     lsp-->init.lua;
     lsp-->lsp-format.lua;
@@ -205,6 +215,7 @@ graph TD;
     lsp-->mason-null-ls.lua;
     lsp-->null-ls.lua;
     lsp-->typescript.lua;
+    subgraph four
     tools-->autoclose.lua;
     tools-->ccc.lua;
     tools-->init.lua;
@@ -222,6 +233,7 @@ graph TD;
     tools-->trouble.lua;
     tools-->ufo.lua;
     tools-->vgit.lua;
+    subgraph five
     ui-->alpha.lua;
     ui-->barbar.lua;
     ui-->catppuccin.lua;
@@ -236,6 +248,7 @@ graph TD;
     ui-->README.md;
     ui-->staline.lua;
     ui-->wilder.lua;
+    subgraph six
     utils-->autopairs.lua;
     utils-->fine-cmdline.lua;
     utils-->harpoon.lua;
@@ -245,17 +258,11 @@ graph TD;
     utils-->persistence.lua;
     utils-->README.md;
     utils-->treesitter.lua;
+    subgraph seven
     scripts-->debug.sh;
     scripts-->rec.sh;
     scripts-->run.sh;
     scripts-->switch.sh;
-    init.lua;
-    lazy-lock.json;
-    LICENSE;
-    lua-->spare;
-    lua-->user;
-    Makefile;
-    README.md;
 ```
 
 ---
