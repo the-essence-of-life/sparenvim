@@ -182,6 +182,22 @@ You can also input `:help lspconfig-all` in your neovim.
 [utils](./lua/bin/plugins/utils/)  
 [ui](./lua/bin/plugins/ui/)  
 
+
+### files
+```mermaid
+graph TD;
+    lua-->user;
+    user-->plugins;
+    lua-->spare;
+    spare-->plugins;
+    spare-->config;
+    plugins-->tools;
+    plugins-->ui;
+    plugins-->lsp;
+    plugins-->utils;
+    plugins-->user;
+    C-->D;
+```
 ---
 
 ## 👋 THANKS SO
