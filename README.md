@@ -208,13 +208,17 @@ flowchart TB;
     plugins-->utils;
     plugins-->user;
 ```
-**Plugins**
 ```mermaid
 flowchart TB;
     scripts-->debug.sh;
     scripts-->rec.sh;
     scripts-->run.sh;
     scripts-->switch.sh;
+
+```
+**Plugins**
+```mermaid
+flowchart TB;
     ui-->*.lua;
     ui-->init.lua;
     ui-->README.md;
