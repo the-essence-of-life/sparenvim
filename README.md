@@ -192,9 +192,6 @@ flowchart TB;
     LICENSE;
     Makefile;
     README.md;
-```
-```mermaid
-flowchart TB;
     lua-->user;
     lua-->spare;
     lua-->user;
