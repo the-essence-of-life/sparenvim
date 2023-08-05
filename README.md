@@ -190,32 +190,51 @@ flowchart TB;
     init.lua;
     lazy-lock.json;
     LICENSE;
-    lua-->spare;
-    lua-->user;
     Makefile;
     README.md;
+```
+```mermaid
+flowchart TB;
+    lua-->user;
+    lua-->spare;
     lua-->user;
     user-->plugins;
     lua-->spare;
     spare-->plugins;
     spare-->config;
-    subgraph two
     plugins-->tools;
     plugins-->ui;
     plugins-->lsp;
     plugins-->utils;
     plugins-->user;
-    subgraph three
-    lsp-->cmp.lua;
-    lsp-->init.lua;
-    lsp-->lsp-format.lua;
-    lsp-->lsp-settings.lua;
-    lsp-->lspsaga.lua;
-    lsp-->mason-lspconfig.lua;
-    lsp-->mason-null-ls.lua;
-    lsp-->null-ls.lua;
-    lsp-->typescript.lua;
-    subgraph four
+```
+```mermaid
+flowchart TB;
+    scripts-->debug.sh;
+    scripts-->rec.sh;
+    scripts-->run.sh;
+    scripts-->switch.sh;
+```
+
+```mermaid
+flowchart TB;
+    ui-->alpha.lua;
+    ui-->barbar.lua;
+    ui-->catppuccin.lua;
+    ui-->cursorline.lua;
+    ui-->dashboard.lua;
+    ui-->heirline.lua;
+    ui-->indent-blankline.lua;
+    ui-->init.lua;
+    ui-->lualine.lua;
+    ui-->lualine.lua.bak;
+    ui-->quickui.lua;
+    ui-->README.md;
+    ui-->staline.lua;
+    ui-->wilder.lua;
+```
+```mermaid
+flowchart TB;
     tools-->autoclose.lua;
     tools-->ccc.lua;
     tools-->init.lua;
@@ -233,22 +252,21 @@ flowchart TB;
     tools-->trouble.lua;
     tools-->ufo.lua;
     tools-->vgit.lua;
-    subgraph five
-    ui-->alpha.lua;
-    ui-->barbar.lua;
-    ui-->catppuccin.lua;
-    ui-->cursorline.lua;
-    ui-->dashboard.lua;
-    ui-->heirline.lua;
-    ui-->indent-blankline.lua;
-    ui-->init.lua;
-    ui-->lualine.lua;
-    ui-->lualine.lua.bak;
-    ui-->quickui.lua;
-    ui-->README.md;
-    ui-->staline.lua;
-    ui-->wilder.lua;
-    subgraph six
+```
+```mermaid
+flowchart TB;
+    lsp-->cmp.lua;
+    lsp-->init.lua;
+    lsp-->lsp-format.lua;
+    lsp-->lsp-settings.lua;
+    lsp-->lspsaga.lua;
+    lsp-->mason-lspconfig.lua;
+    lsp-->mason-null-ls.lua;
+    lsp-->null-ls.lua;
+    lsp-->typescript.lua;
+```
+```mermaid
+flowchart TB;
     utils-->autopairs.lua;
     utils-->fine-cmdline.lua;
     utils-->harpoon.lua;
@@ -258,13 +276,7 @@ flowchart TB;
     utils-->persistence.lua;
     utils-->README.md;
     utils-->treesitter.lua;
-    subgraph seven
-    scripts-->debug.sh;
-    scripts-->rec.sh;
-    scripts-->run.sh;
-    scripts-->switch.sh;
 ```
-
 ---
 
 ## 👋 THANKS SO
