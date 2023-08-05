@@ -186,7 +186,6 @@ You can also input `:help lspconfig-all` in your neovim.
 ### files
 ```mermaid
 flowchart TB;
-    subgraph one
     init.lua;
     lazy-lock.json;
     LICENSE;
@@ -208,6 +207,7 @@ flowchart TB;
     plugins-->utils;
     plugins-->user;
 ```
+**SCRIPTS**
 ```mermaid
 flowchart TB;
     scripts-->debug.sh;
@@ -215,67 +215,34 @@ flowchart TB;
     scripts-->run.sh;
     scripts-->switch.sh;
 ```
+**UI**
 
 ```mermaid
 flowchart TB;
-    ui-->alpha.lua;
-    ui-->barbar.lua;
-    ui-->catppuccin.lua;
-    ui-->cursorline.lua;
-    ui-->dashboard.lua;
-    ui-->heirline.lua;
-    ui-->indent-blankline.lua;
+    ui-->*.lua;
     ui-->init.lua;
-    ui-->lualine.lua;
-    ui-->lualine.lua.bak;
-    ui-->quickui.lua;
     ui-->README.md;
-    ui-->staline.lua;
-    ui-->wilder.lua;
 ```
+**TOOLS**
 ```mermaid
 flowchart TB;
-    tools-->autoclose.lua;
-    tools-->ccc.lua;
+    tools-->*.lua;
     tools-->init.lua;
-    tools-->jfind.lua;
-    tools-->map.lua;
-    tools-->markdown.lua;
-    tools-->neotree.lua;
-    tools-->nvim-tree.lua;
-    tools-->overseer.lua;
-    tools-->spectre.lua;
-    tools-->tabnine.lua;
-    tools-->telescope.lua;
-    tools-->todo-comments.lua;
-    tools-->toggleterm.lua;
-    tools-->trouble.lua;
-    tools-->ufo.lua;
-    tools-->vgit.lua;
+    tools-->README.md;
 ```
+**LSP**
 ```mermaid
 flowchart TB;
-    lsp-->cmp.lua;
+    lsp-->*.lua;
     lsp-->init.lua;
-    lsp-->lsp-format.lua;
-    lsp-->lsp-settings.lua;
-    lsp-->lspsaga.lua;
-    lsp-->mason-lspconfig.lua;
-    lsp-->mason-null-ls.lua;
-    lsp-->null-ls.lua;
-    lsp-->typescript.lua;
+    lsp-->README.md;
 ```
+**UTILS**
 ```mermaid
 flowchart TB;
-    utils-->autopairs.lua;
-    utils-->fine-cmdline.lua;
-    utils-->harpoon.lua;
+    utils-->*.lua;
     utils-->init.lua;
-    utils-->noice.lua;
-    utils-->nui.lua;
-    utils-->persistence.lua;
     utils-->README.md;
-    utils-->treesitter.lua;
 ```
 ---
 
