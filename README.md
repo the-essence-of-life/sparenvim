@@ -184,6 +184,7 @@ You can also input `:help lspconfig-all` in your neovim.
 
 
 ### files
+**Basic**
 ```mermaid
 flowchart TB;
     init.lua;
@@ -207,42 +208,26 @@ flowchart TB;
     plugins-->utils;
     plugins-->user;
 ```
-**SCRIPTS**
+**Plugins**
 ```mermaid
 flowchart TB;
     scripts-->debug.sh;
     scripts-->rec.sh;
     scripts-->run.sh;
     scripts-->switch.sh;
-```
-**UI**
-
-```mermaid
-flowchart TB;
     ui-->*.lua;
     ui-->init.lua;
     ui-->README.md;
-```
-**TOOLS**
-```mermaid
-flowchart TB;
     tools-->*.lua;
     tools-->init.lua;
     tools-->README.md;
-```
-**LSP**
-```mermaid
-flowchart TB;
     lsp-->*.lua;
     lsp-->init.lua;
     lsp-->README.md;
-```
-**UTILS**
-```mermaid
-flowchart TB;
     utils-->*.lua;
     utils-->init.lua;
     utils-->README.md;
+    user-->init.lua;
 ```
 ---
 
