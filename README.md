@@ -206,11 +206,7 @@ You can also input `:help lspconfig-all` in your neovim.
 
 
 ### plugins
-[lsp](./lua/bin/plugins/lsp/)  
-[tools](./lua/bin/plugins/tools/)  
-[user](./lua/bin/plugins/user/)  
-[utils](./lua/bin/plugins/utils/)  
-[ui](./lua/bin/plugins/ui/)  
+[lsp](./lua/bin/plugins/lsp/) | [tools](./lua/bin/plugins/tools/) | [user](./lua/bin/plugins/user/) | [utils](./lua/bin/plugins/utils/) | [ui](./lua/bin/plugins/ui/)
 
 
 ### file directory
