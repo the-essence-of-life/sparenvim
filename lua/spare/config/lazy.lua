@@ -78,7 +78,7 @@ M.deployment_lazy_user = function()
   require("lazy").setup({
     spec = {
       -- { "LazyVim/LazyVim", import = "lazyvim.config" },
-      { import = "user.plugins" },
+      { import = "simple.plugins" },
       -- { import = "bin.plugins.lsp" },
       -- { import = "bin.plugins.tools" },
       -- { import = "bin.plugins.ui" },

@@ -77,7 +77,37 @@ git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config
 
 ```
 
-**Step3** Final,start your neovim.  
+**Step3** Then,uncomment these code.
+`cd ~/.config/nvim/lua/spare/`  
+`nvim init.lua`  
+```lua
+local M = {}
+
+M.setup = function()
+  -- [comment]set options
+  -- local opts = require("spare.config.options")
+  -- opts:options()
+  -- opts:others()
+  -- [comment]set keymaps
+  -- local keys = require("spare.config.keymaps")
+  -- keys.core()
+  -- [comment]set autocmds
+  -- local autocmds = require("spare.config.autocmds")
+  -- autocmds:directory()
+  -- autocmds:lastplace()
+  -- autocmds:test()
+  -- [comment]set plugin-manager
+  -- local bs = require("spare.config.lazy")
+  -- bs:deployment_lazy()
+end
+
+
+return M
+```
+**Tips**
+You can use `<c-v>` to select the line
+
+**Step4** Final,start your neovim.  
 `nvim`
 
 ---
@@ -183,52 +213,75 @@ You can also input `:help lspconfig-all` in your neovim.
 [ui](./lua/bin/plugins/ui/)  
 
 
-### files
-**Basic**
-```mermaid
-flowchart TB;
-    init.lua;
-    lazy-lock.json;
-    LICENSE;
-    Makefile;
-    README.md;
-    lua-->user;
-    lua-->spare;
-    lua-->user;
-    user-->plugins;
-    lua-->spare;
-    spare-->plugins;
-    spare-->config;
-    plugins-->tools;
-    plugins-->ui;
-    plugins-->lsp;
-    plugins-->utils;
-    plugins-->user;
+### file directory
 ```
-```mermaid
-flowchart TB;
-    scripts-->debug.sh;
-    scripts-->rec.sh;
-    scripts-->run.sh;
-    scripts-->switch.sh;
-
-```
-**Plugins**
-```mermaid
-flowchart TB;
-    ui-->*.lua;
-    ui-->init.lua;
-    ui-->README.md;
-    tools-->*.lua;
-    tools-->init.lua;
-    tools-->README.md;
-    lsp-->*.lua;
-    lsp-->init.lua;
-    lsp-->README.md;
-    utils-->*.lua;
-    utils-->init.lua;
-    utils-->README.md;
-    user-->init.lua;
+lua
+├── spare
+│   ├── config
+│   │   ├── autocmds.lua
+│   │   ├── keymaps.lua
+│   │   ├── lazy.lua
+│   │   └── options.lua
+│   ├── init.lua
+└───└── plugins
+        ├── lsp
+        │   ├── README.md
+        │   ├── cmp.lua
+        │   ├── init.lua
+        │   ├── lsp-format.lua
+        │   ├── lsp-settings.lua
+        │   ├── lspsaga.lua
+        │   ├── mason-lspconfig.lua
+        │   ├── mason-null-ls.lua
+        │   ├── null-ls.lua
+        │   └── typescript.lua
+        ├── tools
+        │   ├── README.md
+        │   ├── autoclose.lua
+        │   ├── ccc.lua
+        │   ├── init.lua
+        │   ├── jfind.lua
+        │   ├── map.lua
+        │   ├── markdown.lua
+        │   ├── neotree.lua
+        │   ├── nvim-tree.lua
+        │   ├── overseer.lua
+        │   ├── spectre.lua
+        │   ├── tabnine.lua
+        │   ├── telescope.lua
+        │   ├── todo-comments.lua
+        │   ├── toggleterm.lua
+        │   ├── trouble.lua
+        │   ├── ufo.lua
+        │   └── vgit.lua
+        ├── ui
+        │   ├── README.md
+        │   ├── alpha.lua
+        │   ├── barbar.lua
+        │   ├── catppuccin.lua
+        │   ├── cursorline.lua
+        │   ├── dashboard.lua
+        │   ├── heirline.lua
+        │   ├── indent-blankline.lua
+        │   ├── init.lua
+        │   ├── lualine.lua
+        │   ├── lualine.lua.bak
+        │   ├── quickui.lua
+        │   ├── staline.lua
+        │   └── wilder.lua
+        ├── user
+        │   ├── README.md
+        │   └── init.lua
+        └── utils
+            ├── README.md
+            ├── autopairs.lua
+            ├── fine-cmdline.lua
+            ├── harpoon.lua
+            ├── init.lua
+            ├── noice.lua
+            ├── nui.lua
+            ├── persistence.lua
+            └── treesitter.lua
 ```
 ---
 
