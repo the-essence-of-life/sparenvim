@@ -1,9 +1,11 @@
+local Keys = require("spare.config.keymaps")
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     version = "v3.x",
     keys = function()
-      return require("spare.config.keymaps").neotree
+      return Keys.neotree
     end,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -17,14 +19,14 @@ return {
   {
     "numToStr/Comment.nvim",
     keys = function()
-      return require("spare.config.keymaps").comment
+      return Keys.comment
     end,
     config = true,
   },
   {
     "nvim-telescope/telescope.nvim",
     keys = function()
-      return require("spare.config.keymaps").telescope
+      return Keys.telescope
     end,
     event = "VimEnter",
     dependencies = {
@@ -135,7 +137,7 @@ return {
     "folke/which-key.nvim",
     -- event = "VeryLazy",
     keys = function()
-      return require("spare.config.keymaps").which_key
+      return Keys.which_key
     end,
     config = function()
       vim.o.timeout = true

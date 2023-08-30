@@ -78,6 +78,7 @@ M.lsp_server = function()
   require("lspconfig").bashls.setup({})
   require("lspconfig").pyright.setup({})
   require("lspconfig").jsonls.setup({})
+  require("lspconfig").clangd.setup({})
 end
 
 M.lsp_settings = function()

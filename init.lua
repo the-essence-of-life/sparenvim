@@ -1,3 +1,4 @@
 -- Input "gf" in normal mode to jump to configuration.
--- ~/.config/nvim/lua/bin/
-require("spare").setup()
+-- ~/.config/nvim/lua/user/
+require("user").setup()
+

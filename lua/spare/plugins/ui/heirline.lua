@@ -27,6 +27,8 @@ local colors = {
   git_change = utils.get_highlight("diffChanged").fg,
 }
 
+-- local colors = require("catppuccin.palettes").get_palette "frappe"
+
 local Ruler = {
   -- %l = current line number
   -- %L = number of lines in the buffer

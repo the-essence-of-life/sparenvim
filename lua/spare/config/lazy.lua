@@ -18,6 +18,8 @@ M.deployment_lazy = function()
     })
   end
   vim.opt.rtp:prepend(lazypath)
+  -- local path = "~/.config/nvim2/"
+  -- vim.opt.rtp:prepend(path)
 
   require("lazy").setup({
     spec = {
@@ -86,9 +88,12 @@ M.deployment_lazy_user = function()
     git = {
       url_format = "https://github.com/%s.git",
     },
-    -- install = {
-    --   colorscheme = { "catppuccin" },
-    -- },
+    install = {
+      colorscheme = {
+	      "catppuccin",
+	      "gruvbox",
+      },
+    },
     ui = {
       border = "rounded",
     },
