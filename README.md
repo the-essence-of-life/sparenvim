@@ -77,7 +77,7 @@ git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config
 
 ```
 
-**Step3** Then,uncomment these code.
+**Step3** Then,uncomment these code.  
 `cd ~/.config/nvim/lua/spare/`  
 `nvim init.lua`  
 ```lua
@@ -104,7 +104,7 @@ end
 
 return M
 ```
-**Tips**
+**Tips**  
 You can use `<c-v>` to select the line
 
 **Step4** Final,start your neovim.  
