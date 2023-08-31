@@ -4,7 +4,7 @@ local echo = function(str)
 end
 local M = {}
 
-M.deployment_lazy = function()
+M.pm_bootstraping = function()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then
     echo(" Installing the lazy.nvim to ~/.local/share/nvim/lazy/lazy.nvim...")
@@ -18,9 +18,9 @@ M.deployment_lazy = function()
     })
   end
   vim.opt.rtp:prepend(lazypath)
-  -- local path = "~/.config/nvim2/"
-  -- vim.opt.rtp:prepend(path)
+end
 
+M.deployment_lazy = function()
   require("lazy").setup({
     spec = {
       -- { "LazyVim/LazyVim", import = "lazyvim.config" },
@@ -61,20 +61,6 @@ M.deployment_lazy = function()
 end
 
 M.deployment_lazy_user = function()
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
-    echo(" Installing the lazy.nvim to ~/.local/share/nvim/lazy/lazy.nvim...")
-    vim.fn.system({
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
-      lazypath,
-    })
-  end
-  vim.opt.rtp:prepend(lazypath)
-
   require("lazy").setup({
     spec = {
       -- { "LazyVim/LazyVim", import = "lazyvim.config" },
