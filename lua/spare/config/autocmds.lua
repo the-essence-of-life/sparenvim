@@ -6,7 +6,6 @@
 --     vim.lsp.buf.format({ async = true })
 --   end
 -- })
-
 local M = {}
 
 M.directory = function()
@@ -48,6 +47,10 @@ end
 
 M.user = function ()
   -- local temp_test = vim.fn.input("Test:")
+end
+
+M.all = function()
+
 end
 
 return M

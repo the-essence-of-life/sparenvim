@@ -12,10 +12,11 @@ M.setup = function()
   -- [comment]set autocmds
   local autocmds = require("spare.config.autocmds")
   --- [comment]functions
-  autocmds:directory()
-  autocmds:lastplace()
-  autocmds:user()
-  autocmds:workspace()
+  -- autocmds:directory()
+  -- autocmds:lastplace()
+  -- autocmds:user()
+  -- autocmds:workspace()
+  autocmds:all()
   -- [comment]set plugin-manager
   local bs = require("spare.config.lazy")
   --- [comment]package-manager

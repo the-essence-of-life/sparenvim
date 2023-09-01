@@ -170,30 +170,39 @@ You can use `<c-v>` to select the line
 ## ➕ Add New Plugins
 
 You can see examples [here](https://github.com/folke/lazy.nvim#examples).  
-**Step1** Change the working directory and touch a config file(You can put longest config here.)  
-```bash
-cd ~/.config/nvim/lua/bin/plugins/user/
-touch <plugins-config>.lua
-```
-**Step2** Then copy these code to `user.lua`(run:`nvim user.lua`)
+**Step1** Edit init.lua(for example:`ui/`)
+`nvim ~/.config/nvim/lua/bin/plugins/ui/init.lua`  
+
+**Step2** Then copy these code to `noice.lua`(run:`nvim noice.lua`)
 
 ```lua
 return {
-  -- NOTE:Packer on 'requires' function are change on 'dependencies'.
-  "foo/bar",
+  -- [comment] Github url,dependencies are same reason.
+  -- e.g: https://github.com/folke/noice.nvim => "folke/noice.nvim"
+  "folke/noice.nvim", --[[use ","]]
+  -- [comment] Packer on 'requires' function are change on 'dependencies',to see more information,you can go to the url to see more information.
   dependencies = {},
-  -- [event,ft,keys,cmd] are lazy-loading.
+  -- [comment] (event,ft,keys,cmd) are lazy-loading settings.
   event = "VeryLazy",
-  -- [config,init,cond] are configruation.
+  -- [comment] (config,init,cond) are configruation settings.
   config = function()
-    require("bin.plugins.user.<plugins-config>")
+    require("bin.plugins.user.noice")
   end,
 }
 -- i to insert,<Esc> can quit the insert mode.
 -- Then :wq to save the files.
 ```
 
-**Step3** Finally,input `nvim user.lua` in your terminal again,you'll find these packages are auto installed.
+**Step3** Edit a config file(We will suggestions to put in plugins setup function in this file)  
+`nvim noice.lua`  
+```lua
+require("noice").setup({
+  -- configruation
+})
+
+```
+
+**Step4** Finally,reply `nvim` in your terminal again,you'll find these packages are auto installed.
 
 ---
 
@@ -321,7 +330,7 @@ lua
 
 ## 👋 THANKS SO
 
-@eggtoopain(Helps me to find git tools.)
+<!-- @eggtoopain(Helps me to find git tools.) -->
 
 > All the people who helped me.  
 > No need money!Love make lights!
