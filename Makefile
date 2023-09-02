@@ -9,7 +9,7 @@ update-repo:
 	git fetch
 debug:
 	bash ./scripts/debug.sh
-rec:
+clean-cache:
 	echo "You can use \"bash ./scripts/rec.sh\" to start a recovery."
 set-options:
 	nvim ~/.config/nvim/lua/bin/config/

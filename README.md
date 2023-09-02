@@ -27,11 +27,11 @@
 ## 🎉 Feature
 
 make file:(Not gcc,shell script.)
-
-- `make sync`:Sync the latest plugins(Ensure that the network is smooth).
-- `make update`:Update to latest config.
+`cd ~/.config/nvim/`  
+- `make sync`:Sync the latest plugins(Ensure that the network is smooth,depends on git).
+- `make update`:Update to latest config(depends on git).
 - `make debug`:Debug your neovim(Only applicable to versions above 10.0).
-- `make rec`:Delete your all neovim config.(Use with caution)
+- `make clean-cache`:Delete your all neovim local plugins.(Use with caution)
 - `make set-options`:Quick switch the config directory.
 - `make add-plugins`:Quick switch the plugins directory.
 
@@ -113,6 +113,7 @@ return M
 if you want to start all features,you can do this:  
 `rm ~/.config/nvim/lua/spare/init.lua && nvim ~/.config/nvim/lua/spare/init.lua`
 ```lua
+-- require("<path>") ==> require("~/.config/nvim/lua/<path>") --[[Note:it is wrong grammer,it only helps yourself to understand the work directory.]]
 local M = {}
 
 M.setup = function()
@@ -256,6 +257,23 @@ You can also input `:help lspconfig-all` in your neovim.
 [lsp](./lua/spare/plugins/lsp/) | [tools](./lua/bin/plugins/tools/) | [user](./lua/bin/plugins/user/) | [utils](./lua/bin/plugins/utils/) | [ui](./lua/bin/plugins/ui/)
 
 
+### change user plugins directory(`make set-options`,`make set-uoptions`,`make add-plugins`,`make add-uplugins` are same.)
+`nvim ~/.config/nvim/Makefile`  
+`14jA`  
+```bash
+-options:
+	nvim ~/.config/nvim/lua/bin/config/ => nvim <your-path>
+add-plugins:
+	nvim ~/.config/nvim/lua/bin/plugins/ => nvim <your-path>
+set-uoptions:
+	nvim ~/.config/nvim/lua/user/config/ => nvim <your-path>
+add-uplugins:
+	nvim ~/.config/nvim/lua/user/plugins/ => nvim <your-path>
+
+```
+### treesitter grammer install
+`:TSInstall <language>`  
+
 ### file directory
 ```
 lua
@@ -326,9 +344,10 @@ lua
             ├── persistence.lua
             └── treesitter.lua
 ```
----
+
 ### commit bug
 spare is a very freedom configruation,so you may backup your configruation and continue.
+---
 
 ## 👋 THANKS SO
 

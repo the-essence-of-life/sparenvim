@@ -1,6 +1,7 @@
 local M = {}
 
 M.setup = function()
+  -- require("<path>") ==> require("~/.config/nvim/lua/<path>") --[[Note:it is wrong grammer,it only helps yourself to understand the work directory.]]
   -- [comment]set options
 	local opts = require("spare.config.options")
   --- [comment]basic options
