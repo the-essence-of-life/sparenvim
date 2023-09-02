@@ -42,7 +42,7 @@ make file:(Not gcc,shell script.)
 <!-- <img height="12" width="12" src="https://cdn.simpleicons.org/<name>/<colors>" /> -->
 **Must:**  
 &ensp;&ensp;[nerdfont](https://www.nerdfonts.com/font-downloads) (To show the terminal icons.)  
-&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/neovim/00A500" /> `neovim` >= `0.10.0`  
+&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/neovim/00A500" /> `neovim` >= `0.9.0`  
 &ensp;&ensp;_Comment:_ In the future, version 0.83 will be adapted.  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/git/D76C00" /> `git` >= `2.41.0`  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/c/4E93D7" /> `clang(treesitter need)` >= `3.26.4`  
@@ -85,10 +85,10 @@ local M = {}
 
 M.setup = function()
   -- [comment]set options
-	--local opts = require("spare.config.options")
+  -- local opts = require("spare.config.options")
   --- [comment]basic options
-	-- opts:options()
-	-- opts:others()
+  -- opts:options()
+  -- opts:others()
   -- [comment]set keymaps
   -- local keys = require("spare.config.keymaps")
   -- keys.core()
@@ -117,10 +117,10 @@ local M = {}
 
 M.setup = function()
   -- [comment]set options
-	local opts = require("spare.config.options")
+  local opts = require("spare.config.options")
   --- [comment]basic options
-	opts:options()
-	opts:others()
+  opts:options()
+  opts:others()
   -- [comment]set keymaps
   local keys = require("spare.config.keymaps")
   keys.core()
@@ -253,7 +253,7 @@ You can also input `:help lspconfig-all` in your neovim.
 
 
 ### plugins
-[lsp](./lua/bin/plugins/lsp/) | [tools](./lua/bin/plugins/tools/) | [user](./lua/bin/plugins/user/) | [utils](./lua/bin/plugins/utils/) | [ui](./lua/bin/plugins/ui/)
+[lsp](./lua/spare/plugins/lsp/) | [tools](./lua/bin/plugins/tools/) | [user](./lua/bin/plugins/user/) | [utils](./lua/bin/plugins/utils/) | [ui](./lua/bin/plugins/ui/)
 
 
 ### file directory
