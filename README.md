@@ -327,10 +327,12 @@ lua
             └── treesitter.lua
 ```
 ---
+### commit bug
+spare is a very freedom configruation,so you may backup your configruation and continue.
 
 ## 👋 THANKS SO
 
-<!-- @eggtoopain(Helps me to find git tools.) -->
+@eggtoopain
 
 > All the people who helped me.  
 > No need money!Love make lights!
