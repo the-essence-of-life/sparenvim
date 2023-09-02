@@ -261,7 +261,7 @@ You can also input `:help lspconfig-all` in your neovim.
 `nvim ~/.config/nvim/Makefile`  
 `14jA`  
 ```bash
--options:
+set-options:
 	nvim ~/.config/nvim/lua/bin/config/ => nvim <your-path>
 add-plugins:
 	nvim ~/.config/nvim/lua/bin/plugins/ => nvim <your-path>
@@ -347,6 +347,7 @@ lua
 
 ### commit bug
 spare is a very freedom configruation,so you may backup your configruation and continue.
+
 ---
 
 ## 👋 THANKS SO
