@@ -46,7 +46,7 @@ make file:(Not gcc,shell script.)
 &ensp;&ensp;_Comment:_ In the future, version 0.83 will be adapted.  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/git/D76C00" /> `git` >= `2.41.0`  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/c/4E93D7" /> `clang(treesitter need)` >= `3.26.4`  
-&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/nodedotjs/1EA71E" /> `nodejs(mason need)` >= `19.*`
+&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/nodedotjs/1EA51E" /> `nodejs(mason need)` >= `19.*`
 &ensp;`luajit` >= 2.1.0-beta3
 
 **Oprional:**  
