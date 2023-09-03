@@ -46,7 +46,7 @@ make file:(Not gcc,shell script.)
 &ensp;&ensp;_Comment:_ In the future, version 0.83 will be adapted.  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/git/D76C00" /> `git` >= `2.41.0`  
 &ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/c/4E93D7" /> `clang(treesitter need)` >= `3.26.4`  
-&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/nodedotjs/74FF85" /> `nodejs(mason need)` >= `19.*`
+&ensp;&ensp;<img height="14" width="14" src="https://cdn.simpleicons.org/nodedotjs/1EA71E" /> `nodejs(mason need)` >= `19.*`
 &ensp;`luajit` >= 2.1.0-beta3
 
 **Oprional:**  
@@ -261,15 +261,14 @@ You can also input `:help lspconfig-all` in your neovim.
 `nvim ~/.config/nvim/Makefile`  
 `14jA`  
 ```bash
-set-options:
-	nvim ~/.config/nvim/lua/bin/config/ => nvim <your-path>
-add-plugins:
-	nvim ~/.config/nvim/lua/bin/plugins/ => nvim <your-path>
-set-uoptions:
-	nvim ~/.config/nvim/lua/user/config/ => nvim <your-path>
-add-uplugins:
-	nvim ~/.config/nvim/lua/user/plugins/ => nvim <your-path>
-
+  set-options:
+    nvim ~/.config/nvim/lua/bin/config/ => nvim <your-path>
+  add-plugins:
+    nvim ~/.config/nvim/lua/bin/plugins/ => nvim <your-path>
+  set-uoptions:
+    nvim ~/.config/nvim/lua/user/config/ => nvim <your-path>
+  add-uplugins:
+    nvim ~/.config/nvim/lua/user/plugins/ => nvim <your-path>
 ```
 ### treesitter grammer install
 `:TSInstall <language>`  
