@@ -35,22 +35,10 @@ M.lastplace = function()
   })
 end
 
+M.user = function()
+end
+
 M.workspace = function()
-  -- vim.api.nvim_create_user_command("AddWorkspace", function()
-  --   local path = "~/workspace/workspace/"
-  --   local dir = vim.fn.fnamemodify(path, ":p:h")
-  --   if vim.fn.isdirectory(dir) == 0 then
-  --     vim.fn.system("mkdir", "~/workspace/workspace/")
-  --   end
-  -- end, { desc = "Add a workspace directory" } )
-end
-
-M.user = function ()
-  -- local temp_test = vim.fn.input("Test:")
-end
-
-M.all = function()
-
 end
 
 return M

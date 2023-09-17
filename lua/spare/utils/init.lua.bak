@@ -1,0 +1,71 @@
+local M = {}
+
+-- M.option = function()
+--   -- require("<path>") ==> require("~/.config/nvim/lua/<path>") --[[Note:it is wrong grammer,it only helps yourself to understand the work directory.]]
+--   -- [comment]set options
+-- 	local opts = require("spare.config.options")
+--   --- [comment]basic options
+-- 	opts:options()
+-- 	opts:others()
+-- end
+
+-- M.options = {
+--   basic = function()
+-- 	  require("spare.config.options").options()
+--   end,
+--   settings = function()
+--     require("spare.config.options").others()
+--   end,
+--   all = function ()
+-- 	  require("spare.config.options").options()
+--     require("spare.config.options").others()
+--   end
+-- }
+
+function M.setup(config)
+  local cfg = require("spare.utils.tables"):set(config):get()
+  if cfg.options.basic then
+    require("spare.config.options").options()
+  end
+  if cfg.options.vimplugins then
+    require("spare.config.options").others()
+  end
+  if cfg.keymaps.enabled then
+    require("spare.config.keymaps").core()
+  end
+  if cfg.autocmds.lastplace then
+    require("spare.config.autocmds").lastplace()
+  end
+  if cfg.plugin.enabled then
+    require("spare.config.lazy").pm_bootstraping()
+    require("spare.config.lazy").deployment_lazy()
+  end
+end
+
+M.keymaps = function()
+  -- [comment]set keymaps
+  local keys = require("spare.config.keymaps")
+  keys.core()
+end
+
+M.autocmd = function()
+  -- [comment]set autocmds
+  local autocmds = require("spare.config.autocmds")
+  --- [comment]functions
+  -- autocmds:directory()
+  -- autocmds:lastplace()
+  -- autocmds:user()
+  -- autocmds:workspace()
+  autocmds:all()
+end
+
+M.plugins = function()
+  -- [comment]set plugin-manager
+  local bs = require("spare.config.lazy")
+  --- [comment]package-manager
+  bs:pm_bootstraping()
+  --- [comment]plugins
+  bs:deployment_lazy()
+end
+
+return M

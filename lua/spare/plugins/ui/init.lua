@@ -43,7 +43,8 @@ return {
     "goolord/alpha-nvim",
     event = "VimEnter",
     config = function()
-      require("spare.plugins.ui.alpha")
+      local config = require("spare.plugins.ui.alpha").config
+      require("alpha").setup(config)
     end,
   },
   {
