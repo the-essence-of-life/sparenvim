@@ -143,6 +143,31 @@ end
 return M
 ```
 
+<details>
+  <summary>You can also use table to manage your configruation.</summary>
+
+
+  ```lua
+  require("spare.config").setup({
+    options = {
+      basic = true,
+      vimplugins = true
+    },
+    keymaps = {
+      enabled = true
+    },
+    autocmds = {
+      lastplace = true,
+    },
+    plugin = {
+      enabled = true,
+    },
+  })
+  ```
+
+</details>
+
+
 **Tips**  
 You can use `<c-v>` to select the line
 
