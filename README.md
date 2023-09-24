@@ -81,7 +81,7 @@ git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config
 `cd ~/.config/nvim/lua/spare/`  
 `nvim init.lua`  
 ```lua
- M = {}
+local M = {}
 
 M.setup = function()
 require("spare.utils").setup({
