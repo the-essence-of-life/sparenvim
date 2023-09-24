@@ -4,9 +4,9 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     version = "v3.x",
-    keys = function()
-      return Keys.neotree
-    end,
+    -- keys = function ()
+    --   vim.keymap.set("n", "<ctrl>e", "<cmd>Neotree<cr>")
+    -- end,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended

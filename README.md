@@ -77,74 +77,35 @@ git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config
 
 ```
 
-**Step3** Then,uncomment these code.  
+**Step3** Then,set configruation.  
 `cd ~/.config/nvim/lua/spare/`  
 `nvim init.lua`  
 ```lua
-local M = {}
+ M = {}
 
 M.setup = function()
-  -- [comment]set options
-  -- local opts = require("spare.config.options")
-  --- [comment]basic options
-  -- opts:options()
-  -- opts:others()
-  -- [comment]set keymaps
-  -- local keys = require("spare.config.keymaps")
-  -- keys.core()
-  -- [comment]set autocmds
-  -- local autocmds = require("spare.config.autocmds")
-  --- [comment]functions
-  -- autocmds:directory()
-  -- autocmds:lastplace()
-  -- autocmds:user()
-  -- autocmds:workspace()
-  -- [comment]set plugin-manager
-  -- local bs = require("spare.config.lazy")
-  --- [comment]package-manager
-  -- bs:pm_bootstraping()
-  --- [comment]plugins
-  -- bs:deployment_lazy()
+require("spare.utils").setup({
+  options = {
+    basic = false,
+    vimplugins = false
+  },
+  keymaps = {
+    enabled = false
+  },
+  autocmds = {
+    lastplace = false,
+    directory = false,
+  },
+  plugin = {
+    mode = nil,
+  },
+})
 end
 
 return M
 ```
-**Note**
-if you want to start all features,you can do this:  
-`rm ~/.config/nvim/lua/spare/init.lua && nvim ~/.config/nvim/lua/spare/init.lua`
-```lua
--- require("<path>") ==> require("~/.config/nvim/lua/<path>") --[[Note:it is wrong grammer,it only helps yourself to understand the work directory.]]
-local M = {}
-
-M.setup = function()
-  -- [comment]set options
-  local opts = require("spare.config.options")
-  --- [comment]basic options
-  opts:options()
-  opts:others()
-  -- [comment]set keymaps
-  local keys = require("spare.config.keymaps")
-  keys.core()
-  -- [comment]set autocmds
-  local autocmds = require("spare.config.autocmds")
-  --- [comment]functions
-  autocmds:directory()
-  autocmds:lastplace()
-  autocmds:user()
-  autocmds:workspace()
-  -- [comment]set plugin-manager
-  local bs = require("spare.config.lazy")
-  --- [comment]package-manager
-  bs:pm_bootstraping()
-  --- [comment]plugins
-  bs:deployment_lazy()
-end
-
-return M
-```
-
 <details>
-  <summary>You can also use table to manage your configruation.</summary>
+  <summary>default configruation</summary>
 
 
   ```lua
@@ -176,22 +137,6 @@ You can use `<c-v>` to select the line
 
 ---
 
-## 📋 Plugins List
-
-| lsp                               | auto-competition               | tools                          | ui                                  | utils                           |
-| :-------------------------------- | :----------------------------- | :----------------------------- | :---------------------------------- | :------------------------------ |
-| glepnir/lspsaga.nvim              | hrsh7th/nvim-cmp               | nvim-tree/nvim-tree.lua        | catppuccin/nvim                     | MunifTanjim/nui.nvim            |
-| williamboman/mason.nvim           | hrsh7th/cmp-nvim-lsp           | ThePrimeagen/git-worktree.nvim | akinsho/bufferline.nvim             | nvim-treesitter/nvim-treesitter |
-| neovim/nvim-lspconfig             | amarakon/nvim-cmp-buffer-lines | numToStr/Comment.nvim          | nvim-lualine/lualine.nvim           | HiPhish/nvim-ts-rainbow2        |
-| jose-elias-alvarez/null-ls.nvim   | hrsh7th/cmp-path               | tanvirtin/vgit.nvim            | lukas-reineke/indent-blankline.nvim | MunifTanjim/nui.nvim            |
-| williamboman/mason-lspconfig.nvim | hrsh7th/cmp-cmdline            | luukvbaal/statuscol.nvim       | goolord/alpha-nvim                  | rcarriga/nvim-notify            |
-| nvim-treesitter/nvim-treesitter   | hrsh7th/cmp-buffer             | nvim-lua/plenary.nvim          | folke/noice.nvim                    | folke/persistence.nvim          |
-| williamboman/mason-lspconfig.nvim | L3MON4D3/LuaSnip               | ThePrimeagen/harpoon           |                                     |
-| mfussenegger/nvim-jdtls           | onsails/lspkind.nvim           | nvim-neo-tree/neo-tree.nvim    |
-|                                   | saadparwaiz1/cmp_luasnip       |
-|                                   | rafamadriz/friendly-snippets   |
-
----
 
 ## ➕ Add New Plugins
 
@@ -212,7 +157,7 @@ return {
   event = "VeryLazy",
   -- [comment] (config,init,cond) are configruation settings.
   config = function()
-    require("bin.plugins.user.noice")
+    require("spare.plugins.user.noice")
   end,
 }
 -- i to insert,<Esc> can quit the insert mode.
@@ -248,7 +193,68 @@ nvim ~/.config/nvim/lua/user/init.lua
 Finally,Remove this line:
 You can [Click it](./lua/user/init.lua#L7) to view the code.
 ```lua
-require("bin.config.lazy").deployment_lazy()
+require("spare.utils").setup({
+  options = {
+    enabled = true,
+    vimplugins = true,
+    settings = {
+      autowrite = true,           -- Enable auto write
+      clipboard = "unnamedplus",  -- Sync with system clipboard
+      completeopt = "menu,menuone,noselect",
+      conceallevel = 3,           -- Hide * markup for bold and italic
+      confirm = true,             -- Confirm to save changes before exiting modified buffer
+      cursorline = true,          -- Enable highlighting of the current line
+      expandtab = true,           -- Use spaces instead of tabs
+      formatoptions = "jcroqlnt", -- tcqj
+      grepformat = "%f:%l:%c:%m",
+      grepprg = "rg --vimgrep",
+      ignorecase = true,      -- Ignore case
+      inccommand = "nosplit", -- preview incremental substitute
+      laststatus = 0,
+      list = true,            -- Show some invisible characters (tabs...
+      mouse = "a",            -- Enable mouse mode
+      number = true,          -- Print line number
+      pumblend = 10,          -- Popup blend
+      relativenumber = true,  -- Relative line numbers
+      scrolloff = 4,          -- Lines of context
+      sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
+      shiftround = true,      -- Round indent
+      shiftwidth = 2,         -- Size of an indent
+      --	shortmess:append({ W = true, I = true, c = true }),
+      showmode = false,       -- Dont show mode since we have a statusline
+      sidescrolloff = 8,      -- Columns of context
+      signcolumn = "yes",     -- Always show the signcolumn, otherwise it would shift the text each time
+      smartcase = true,       -- Don't ignore case with capitals
+      smartindent = true,     -- Insert indents automatically
+      spelllang = { "en" },
+      splitbelow = true,      -- Put new windows below current
+      splitright = true,      -- Put new windows right of current
+      tabstop = 2,            -- Number of spaces tabs count for
+      termguicolors = true,   -- True color support
+      timeoutlen = 300,
+      undofile = true,
+      undolevels = 10000,
+      swapfile = false,
+      wildmode = "longest:full,full", -- Command-line completion mode
+      winminwidth = 5,                -- Minimum window width
+      wrap = false,                   -- Disable line wrap
+    },
+  },
+  keymaps = {
+    enabled = true,
+    { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
+    -- n = {},
+    -- v = {},
+  },
+  autocmds = {
+    lastplace = false,
+    directory = false,
+    -- { event = "", pattern = "", callback = function() end },
+  },
+  plugin = {
+    mode = "plugin-manager",
+  },
+})
 ```
 
 ### Language Support
@@ -297,6 +303,9 @@ You can also input `:help lspconfig-all` in your neovim.
 ```
 ### treesitter grammer install
 `:TSInstall <language>`  
+
+### add colorscheme
+`nvim ~/.config/nvim/lua/spare/plugins/ui/init.lua`
 
 ### file directory
 ```
