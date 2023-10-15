@@ -1,5 +1,3 @@
-local Keys = require("spare.config.keymaps")
-
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -18,16 +16,10 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    keys = function()
-      return Keys.comment
-    end,
     config = true,
   },
   {
     "nvim-telescope/telescope.nvim",
-    keys = function()
-      return Keys.telescope
-    end,
     event = "VimEnter",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -136,9 +128,6 @@ return {
   {
     "folke/which-key.nvim",
     -- event = "VeryLazy",
-    keys = function()
-      return Keys.which_key
-    end,
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300

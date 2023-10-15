@@ -3,18 +3,19 @@ local M = {}
 M.setup = function()
 require("spare.utils").setup({
   options = {
-    basic = false,
-    vimplugins = false
+    -- basic = true,
+    -- vimplugins = true,
   },
   keymaps = {
-    enabled = false
+    enabled = true,
+    import = "spare.config.keys",
   },
   autocmds = {
-    lastplace = false,
-    directory = false,
+    lastplace = true,
+    directory = true,
   },
   plugin = {
-    mode = nil,
+    mode = "plugins",
   },
 })
 end

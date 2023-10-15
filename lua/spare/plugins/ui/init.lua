@@ -1,20 +1,29 @@
 return {
+  -- {
+  --   "catppuccin/nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   name = "catppuccin",
+  --   config = function()
+  --     require("spare.plugins.ui.catppuccin")
+  --     local color = color or "catppuccin"
+  --     vim.cmd.color(color)
+  --   end,
+  -- },
   {
-    "catppuccin/nvim",
-    lazy = false,
-    priority = 1000,
-    name = "catppuccin",
+    'rose-pine/neovim',
+    name = 'rose-pine',
     config = function()
-      require("spare.plugins.ui.catppuccin")
-      local color = color or "catppuccin"
-      vim.cmd.color(color)
-    end,
+      require("rose-pine").setup({
+        disable_italics = true,
+      })
+      vim.cmd('colorscheme rose-pine')
+    end
   },
   {
     "akinsho/bufferline.nvim",
     event = "UIEnter",
     keys = function()
-      return require("spare.config.keymaps").bufferline
     end,
     config = function()
       require("bufferline").setup({})
@@ -48,12 +57,27 @@ return {
     end,
   },
   {
+    enabled = false,
     "rebelot/heirline.nvim",
+    dependencies = {
+      'rose-pine/neovim',
+    },
     -- You can optionally lazy-load heirline on UiEnter
     -- to make sure all required plugins and colorschemes are loaded before setup
     -- event = "UiEnter",
     config = function()
       require("spare.plugins.ui.heirline")
+    end
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+      require('lualine').setup({
+        options = { theme = 'rose-pine' },
+        extensions = { 'quickfix', "lazy" }
+      })
+      require('lualine').get_config()
     end
   },
 }

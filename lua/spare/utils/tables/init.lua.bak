@@ -55,7 +55,13 @@ local Config = {
     autocmds = {
       lastplace = false,
       directory = false,
-      -- { event = "", pattern = "", callback = function() end },
+      -- {
+      --   event = "VimEnter",
+      --   pattern = "*",
+      --   callback = function()
+      --     vim.opt.relativenumber = false
+      --   end
+      -- },
     },
     plugin = {
       mode = "plugin-manager",

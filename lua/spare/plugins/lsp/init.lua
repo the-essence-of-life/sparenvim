@@ -31,6 +31,7 @@ return {
     dependencies = {
       -- "neovim/nvim-lspconfig",
       "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
@@ -49,7 +50,7 @@ return {
       { "williamboman/mason-lspconfig.nvim" },
       -- {
       -- 	"folke/neodev.nvim",
-      -- 	config = true, --需要加上这个
+      -- 	config = true,
       -- },
     },
     -- dependencies = {

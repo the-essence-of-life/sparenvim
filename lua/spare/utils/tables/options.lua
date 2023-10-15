@@ -1,10 +1,5 @@
-local opt = vim.opt
-local M = {}
-M.options = function()
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = " "
-
-  local options = {
+return {
+  opt = {
     autowrite = true,           -- Enable auto write
     clipboard = "unnamedplus",  -- Sync with system clipboard
     completeopt = "menu,menuone,noselect",
@@ -45,36 +40,5 @@ M.options = function()
     wildmode = "longest:full,full", -- Command-line completion mode
     winminwidth = 5,                -- Minimum window width
     wrap = false,                   -- Disable line wrap
-  }
-
-  for k, v in pairs(options) do
-    opt[k] = v
-  end
-end
-
-M.others = function()
-  if vim.fn.has("nvim-0.9.0") == 1 then
-    opt.splitkeep = "screen"
-    opt.shortmess:append({ C = true })
-  end
-
-  opt.shortmess:append({ W = true, I = true, c = true })
-
-  -- Fix markdown indentation settings
-  vim.g.markdown_recommended_style = 0
-
-  vim.cmd("filetype plugin indent on")
-  vim.o.foldtext         = ""
-  vim.o.swap             = false
-
-  vim.g.netrw_liststyle  = 3
-  vim.g.netrw_preview    = 1
-  vim.g.netrw_alto       = 0
-  vim.g.netrw_chgwin     = 2
-  vim.cmd([[
-	au BufReadCmd *.zip,*.jar,*.xpi call zip#Browse(expand("<amatch>"))
-  ]])
-  -- vim.fn.system([[]])
-end
-
-return M
+  },
+}

@@ -23,68 +23,104 @@ local M = {}
 -- }
 
 function M.setup(config)
-  local cfg = require("spare.utils.tables"):set(config):get()
-  if cfg.options then
-    if cfg.options.basic then
-      require("spare.utils.options").options()
+  local Cfg = require("spare.utils.tables"):set(config):get()
+  if Cfg.options then
+    -- if Cfg.options.basic then
+    -- pcall(require("spare.utils.options").options())
+    -- end
+    -- if Cfg.options.vimplugins then
+    --  pcall(require("spare.utils.options").others())
+    -- end
+    if type(Cfg.options.import) == "string" then
+      local table = require(Cfg.options.import).opt
+      for k, v in pairs(table) do
+        vim.opt[k] = v
+      end
     end
-    if cfg.options.vimplugins then
-      require("spare.utils.options").others()
-    end
-    if type(cfg.options.settings) == "table" then    
-      for k, v in pairs(cfg.options.settings) do
+    if type(Cfg.options.settings) == "table" then
+      for k, v in pairs(Cfg.options.settings) do
         vim.opt[k] = v
       end
     end
   end
-  if cfg.keymaps then
-    if cfg.keymaps.enabled then
-      require("spare.utils.keymaps").core()
+  if Cfg.keymaps then
+    -- if Cfg.keymaps.enabled then
+    --   require("spare.utils.keymaps").core()
+    -- end
+    if type(Cfg.keymaps.import) == "string" then
+      local table = require(Cfg.keymaps.import) or require("user.config.options")
+      for _, mappings in ipairs(table) do
+        vim.keymap.set(mappings.mode, mappings.keys, mappings.exec)
+      end
     end
-    for _,mapping in ipairs(cfg.keymaps) do
+    for _, mapping in ipairs(Cfg.keymaps) do
       vim.keymap.set(mapping.mode, mapping.keys, mapping.exec)
     end
   end
-  if cfg.autocmds then
-    if cfg.autocmds.lastplace then
+  if Cfg.autocmds then
+    if Cfg.autocmds.lastplace then
       require("spare.utils.autocmds").lastplace()
     end
-    if cfg.autocmds.directory then
+    if Cfg.autocmds.directory then
       require("spare.utils.autocmds").directory()
     end
+    if type(Cfg.autocmds.import) == "string" then
+      local table = require(Cfg.autocmds.import)
+      for _, autocmds in ipairs(table) do
+        vim.api.nvim_create_autocmd(autocmds.event, {
+          pattern = autocmds.pattern,
+          callback = function()
+            autocmds.callback()
+          end
+        })
+      end
+    end
+    for _, autocmd in ipairs(Cfg.autocmds) do
+      if autocmd.event ~= nil and autocmd.pattern ~= nil and autocmd.callback ~= nil then
+        vim.api.nvim_create_autocmd(autocmd.event, {
+          pattern = autocmd.pattern,
+          callback = function()
+            autocmd.callback()
+          end
+        })
+      end
+    end
   end
-  if cfg.plugin.mode == "plugin-manager" then
+  if Cfg.plugin.mode == "plugin-manager" then
     require("spare.utils.lazy").pm_bootstraping()
-  elseif cfg.plugin.mode == "plugins" then
+  elseif Cfg.plugin.mode == "plugins" then
     require("spare.utils.lazy").pm_bootstraping()
     require("spare.utils.lazy").deployment_lazy()
   end
+  if type(Cfg.plugin.bootstraping) == "function" then
+    Cfg.plugin.bootstraping()
+  end
 end
 
-M.keymaps = function()
-  -- [comment]set keymaps
-  local keys = require("spare.config.keymaps")
-  keys.core()
-end
-
-M.autocmd = function()
-  -- [comment]set autocmds
-  local autocmds = require("spare.config.autocmds")
-  --- [comment]functions
-  -- autocmds:directory()
-  -- autocmds:lastplace()
-  -- autocmds:user()
-  -- autocmds:workspace()
-  autocmds:all()
-end
-
-M.plugins = function()
-  -- [comment]set plugin-manager
-  local bs = require("spare.config.lazy")
-  --- [comment]package-manager
-  bs:pm_bootstraping()
-  --- [comment]plugins
-  bs:deployment_lazy()
-end
+-- M.keymaps = function()
+--   -- [comment]set keymaps
+--   local keys = require("spare.config.keymaps")
+--   keys.core()
+-- end
+--
+-- M.autocmd = function()
+--   -- [comment]set autocmds
+--   local autocmds = require("spare.config.autocmds")
+--   --- [comment]functions
+--   -- autocmds:directory()
+--   -- autocmds:lastplace()
+--   -- autocmds:user()
+--   -- autocmds:workspace()
+--   autocmds:all()
+-- end
+--
+-- M.plugins = function()
+--   -- [comment]set plugin-manager
+--   local bs = require("spare.config.lazy")
+--   --- [comment]package-manager
+--   bs:pm_bootstraping()
+--   --- [comment]plugins
+--   bs:deployment_lazy()
+-- end
 
 return M
