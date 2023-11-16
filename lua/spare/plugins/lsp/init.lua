@@ -1,10 +1,12 @@
--- do
+local index = require("spare.plugins.lsp.index")
+
 return {
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     config = function()
-      require("spare.plugins.lsp.lspsaga")
+      -- require("spare.plugins.lsp.lspsaga")
+      index.lspsaga()
     end,
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
@@ -63,32 +65,16 @@ return {
     end,
   },
   {
-    enabled = false,
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("spare.plugins.lsp.mason-lspconfig")
     end
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     config = function()
       require("spare.plugins.lsp.null-ls")
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
   },
-  {
-    "jay-babu/mason-null-ls.nvim",
-    enabeld = false,
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
-    config = function()
-      require("spare.plugins.lsp.mason-null-ls") -- require your null-ls config here (example below)
-    end,
-  },
 }
--- end
-
--- vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { silent = true, buffer = 5 })

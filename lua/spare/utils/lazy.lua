@@ -4,6 +4,20 @@ local echo = function(str)
 end
 local M = {}
 
+M.spare_bootstraping = function()
+  local spare_path = vim.fn.stdpath("config") .. "/spare.nvim"
+  if not vim.loop.fs_stat(spare_path) then
+    vim.fn.system({
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "https://github.com/the-essence-of-life.git",
+      spare_path,
+    })
+    vim.fn.system("mv", spare_path .. "/lua/spare/", vim.fn.stdpath("config") .. "/lua/")
+  end
+end
+
 M.pm_bootstraping = function()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then
@@ -46,8 +60,8 @@ M.deployment_lazy = function()
     checker = {
       -- automatically check for plugin updates
       enabled = false,
-      concurrency = 1, --[email protected] number? set to 1 to check for updates very slowly
-      notify = false, -- get a notification when new updates are found
+      concurrency = 1,  --[email protected] number? set to 1 to check for updates very slowly
+      notify = false,   -- get a notification when new updates are found
       frequency = 3600, -- check for updates every hour
     },
     -- dev = {
@@ -76,8 +90,8 @@ M.deployment_lazy_user = function()
     },
     install = {
       colorscheme = {
-	      "catppuccin",
-	      "gruvbox",
+        "catppuccin",
+        "gruvbox",
       },
     },
     ui = {
@@ -86,8 +100,8 @@ M.deployment_lazy_user = function()
     checker = {
       -- automatically check for plugin updates
       enabled = false,
-      concurrency = 1, --[email protected] number? set to 1 to check for updates very slowly
-      notify = false, -- get a notification when new updates are found
+      concurrency = 1,  --[email protected] number? set to 1 to check for updates very slowly
+      notify = false,   -- get a notification when new updates are found
       frequency = 3600, -- check for updates every hour
     },
     -- dev = {

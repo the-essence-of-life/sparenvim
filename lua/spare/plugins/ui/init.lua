@@ -56,23 +56,23 @@ return {
       require("alpha").setup(config)
     end,
   },
-  {
-    enabled = false,
-    "rebelot/heirline.nvim",
-    dependencies = {
-      'rose-pine/neovim',
-    },
-    -- You can optionally lazy-load heirline on UiEnter
-    -- to make sure all required plugins and colorschemes are loaded before setup
-    -- event = "UiEnter",
-    config = function()
-      require("spare.plugins.ui.heirline")
-    end
-  },
+  -- {
+  --   enabled = false,
+  --   "rebelot/heirline.nvim",
+  --   dependencies = {
+  --     'rose-pine/neovim',
+  --   },
+  --   -- You can optionally lazy-load heirline on UiEnter
+  --   -- to make sure all required plugins and colorschemes are loaded before setup
+  --   -- event = "UiEnter",
+  --   config = function()
+  --     require("spare.plugins.ui.heirline")
+  --   end
+  -- },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
+    config = function()
       require('lualine').setup({
         options = { theme = 'rose-pine' },
         extensions = { 'quickfix', "lazy" }
@@ -80,4 +80,17 @@ return {
       require('lualine').get_config()
     end
   },
+  -- {
+  --   'dstein64/nvim-scrollview',
+  --   config = function()
+  --     require('scrollview').setup({
+  --       excluded_filetypes = {},
+  --       current_only = true,
+  --       base = 'buffer',
+  --       column = 80,
+  --       signs_on_startup = { 'all' },
+  --       diagnostics_severities = { vim.diagnostic.severity.ERROR }
+  --     })
+  --   end
+  -- },
 }

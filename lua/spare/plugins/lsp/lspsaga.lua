@@ -133,9 +133,9 @@ lspsaga.setup({
 		-- Border type can be single, double, rounded, solid, shadow.
 		border = "rounded",
 		winblend = 0,
-		expand = "",
-		collapse = "",
-		code_action = "",
+		expand = " ",
+		collapse = " ",
+		code_action = " ",
 		incoming = "I ",
 		outgoing = "O ",
 		hover = " ",

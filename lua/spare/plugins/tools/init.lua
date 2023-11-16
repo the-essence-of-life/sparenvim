@@ -109,22 +109,22 @@ return {
       require("spare.plugins.tools.markdown")
     end,
   },
-  {
-    "ziontee113/icon-picker.nvim",
-    cmd = {
-      "IconPickerInsert",
-      "IconPickerYank",
-      "IconPickerNormal",
-    },
-    dependencies = {
-      "stevearc/dressing.nvim",
-    },
-    config = function()
-      require("icon-picker").setup({
-        disable_legacy_commands = true,
-      })
-    end,
-  },
+  -- {
+  --   "ziontee113/icon-picker.nvim",
+  --   cmd = {
+  --     "IconPickerInsert",
+  --     "IconPickerYank",
+  --     "IconPickerNormal",
+  --   },
+  --   dependencies = {
+  --     "stevearc/dressing.nvim",
+  --   },
+  --   config = function()
+  --     require("icon-picker").setup({
+  --       disable_legacy_commands = true,
+  --     })
+  --   end,
+  -- },
   {
     "folke/which-key.nvim",
     -- event = "VeryLazy",
@@ -149,127 +149,127 @@ return {
       })
     end,
   },
-  {
-    "folke/edgy.nvim",
-    event = "WinNew",
-    init = function()
-      vim.opt.laststatus = 3
-      vim.opt.splitkeep = "screen"
-    end,
-    opts = {
-      animate = {
-        enabled = true,
-        fps = 100, -- frames per second
-        cps = 120, -- cells per second
-        on_begin = function()
-          vim.g.minianimate_disable = true
-        end,
-        on_end = function()
-          vim.g.minianimate_disable = false
-        end,
-        -- Spinner for pinned views that are loading.
-        -- if you have noice.nvim installed, you can use any spinner from it, like:
-        -- spinner = require("noice.util.spinners").spinners.circleFull,
-        spinner = {
-          frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-          interval = 80,
-        },
-      },
-      bottom = {
-        -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
-        {
-          ft = "toggleterm",
-          size = { height = 0.3 },
-          -- exclude floating windows
-          filter = function(buf, win)
-            return vim.api.nvim_win_get_config(win).relative == ""
-          end,
-        },
-        {
-          ft = "Trouble",
-          title = " Lsp Quickfix",
-        },
-        { ft = "qf", title = "QuickFix" },
-        {
-          ft = "help",
-          size = { height = 0.4 },
-          -- only show help buffers
-          filter = function(buf)
-            return vim.bo[buf].buftype == "help"
-          end,
-        },
-      },
-      left = {
-        -- {
-        -- 	ft = "NvimTree",
-        -- 	title = "NvimTree",
-        -- 	open = "NvimTreeToggle",
-        -- },
-      },
-    },
-  },
-  {
-    'mbbill/undotree',
-    config = function()
-      vim.keymap.set('n', '<leader>utt', vim.cmd.UndotreeToggle)
-    end
-  },
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    --[email protected] Flash.Config
-    opts = {
-      search = {
-        mode = "fuzzy",
-      },
-      label = {
-        rainbow = {
-          enabled = true,
-          shade = 5,
-        }
-      }
-    },
-    keys = {
-      {
-        "s",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash",
-      },
-      {
-        "S",
-        mode = { "n", "o", "x" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-      {
-        "r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
-      },
-      {
-        "R",
-        mode = { "o", "x" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Flash Treesitter Search",
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
-      },
-    },
-  },
+  -- {
+  --   "folke/edgy.nvim",
+  --   event = "WinNew",
+  --   init = function()
+  --     vim.opt.laststatus = 3
+  --     vim.opt.splitkeep = "screen"
+  --   end,
+  --   opts = {
+  --     animate = {
+  --       enabled = true,
+  --       fps = 100, -- frames per second
+  --       cps = 120, -- cells per second
+  --       on_begin = function()
+  --         vim.g.minianimate_disable = true
+  --       end,
+  --       on_end = function()
+  --         vim.g.minianimate_disable = false
+  --       end,
+  --       -- Spinner for pinned views that are loading.
+  --       -- if you have noice.nvim installed, you can use any spinner from it, like:
+  --       -- spinner = require("noice.util.spinners").spinners.circleFull,
+  --       spinner = {
+  --         frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+  --         interval = 80,
+  --       },
+  --     },
+  --     bottom = {
+  --       -- toggleterm / lazyterm at the bottom with a height of 40% of the screen
+  --       {
+  --         ft = "toggleterm",
+  --         size = { height = 0.3 },
+  --         -- exclude floating windows
+  --         filter = function(buf, win)
+  --           return vim.api.nvim_win_get_config(win).relative == ""
+  --         end,
+  --       },
+  --       {
+  --         ft = "Trouble",
+  --         title = " Lsp Quickfix",
+  --       },
+  --       { ft = "qf", title = "QuickFix" },
+  --       {
+  --         ft = "help",
+  --         size = { height = 0.4 },
+  --         -- only show help buffers
+  --         filter = function(buf)
+  --           return vim.bo[buf].buftype == "help"
+  --         end,
+  --       },
+  --     },
+  --     left = {
+  --       -- {
+  --       -- 	ft = "NvimTree",
+  --       -- 	title = "NvimTree",
+  --       -- 	open = "NvimTreeToggle",
+  --       -- },
+  --     },
+  --   },
+  -- },
+  -- {
+  --   'mbbill/undotree',
+  --   config = function()
+  --     vim.keymap.set('n', '<leader>utt', vim.cmd.UndotreeToggle)
+  --   end
+  -- },
+  -- {
+  --   "folke/flash.nvim",
+  --   event = "VeryLazy",
+  --   --[email protected] Flash.Config
+  --   opts = {
+  --     search = {
+  --       mode = "fuzzy",
+  --     },
+  --     label = {
+  --       rainbow = {
+  --         enabled = true,
+  --         shade = 5,
+  --       }
+  --     }
+  --   },
+  --   keys = {
+  --     {
+  --       "s",
+  --       mode = { "n", "x", "o" },
+  --       function()
+  --         require("flash").jump()
+  --       end,
+  --       desc = "Flash",
+  --     },
+  --     {
+  --       "S",
+  --       mode = { "n", "o", "x" },
+  --       function()
+  --         require("flash").treesitter()
+  --       end,
+  --       desc = "Flash Treesitter",
+  --     },
+  --     {
+  --       "r",
+  --       mode = "o",
+  --       function()
+  --         require("flash").remote()
+  --       end,
+  --       desc = "Remote Flash",
+  --     },
+  --     {
+  --       "R",
+  --       mode = { "o", "x" },
+  --       function()
+  --         require("flash").treesitter_search()
+  --       end,
+  --       desc = "Flash Treesitter Search",
+  --     },
+  --     {
+  --       "<c-s>",
+  --       mode = { "c" },
+  --       function()
+  --         require("flash").toggle()
+  --       end,
+  --       desc = "Toggle Flash Search",
+  --     },
+  --   },
+  -- },
 }

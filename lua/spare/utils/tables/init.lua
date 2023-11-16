@@ -1,17 +1,19 @@
 local Config = {
   config = {
     options = {
-      import = "spare.utils.tables.options",
+      -- import = "spare.utils.tables.options",
+      set = require("spare.utils.tables.index").options
     },
     keymaps = {
-      enabled = true,
-      { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
+      set = require("spare.utils.tables.index").keymaps
+      -- { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
       -- n = {},
       -- v = {},
     },
     autocmds = {
       lastplace = false,
       directory = false,
+      set = require("spare.utils.tables.index").autocmds
       -- {
       --   event = "VimEnter",
       --   pattern = "*",
