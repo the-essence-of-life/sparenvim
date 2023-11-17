@@ -22,14 +22,14 @@ function M.setup(config)
   if Cfg.autocmds then
     if Cfg.autocmds.enabled then
       if Cfg.autocmds.lastplace then
-        require("spare.utils.autocmds").lastplace()
+        require("spare.utils.tables.index").lastplace()
       end
       if Cfg.autocmds.directory then
-        require("spare.utils.autocmds").directory()
+        require("spare.utils.tables.index").directory()
       end
-      if type(Cfg.autocmds.set) ~= "table" then
+      if type(Cfg.autocmds.set) == "table" then
         for _, autocmds in ipairs(Cfg.autocmds.set) do
-          vim.api.nvim_create_autocmd(autocmds.event or "BufRead", {
+          vim.api.nvim_create_autocmd(autocmds.event or "VimEnter", {
             pattern = autocmds.pattern,
             callback = function()
               autocmds.callback()
@@ -39,12 +39,12 @@ function M.setup(config)
       end
     end
   end
-  if Cfg.autocmds.enabled then
+  if Cfg.plugin.enabled then
     if Cfg.plugin.mode == "plugin-manager" then
-      require("spare.utils.lazy").pm_bootstraping()
+      require("spare.utils.tables.index").pm_bootstraping()
     elseif Cfg.plugin.mode == "plugins" then
-      require("spare.utils.lazy").pm_bootstraping()
-      require("spare.utils.lazy").deployment_lazy()
+      require("spare.utils.tables.index").pm_bootstraping()
+      require("spare.utils.tables.index").deployment_lazy()
     end
     if type(Cfg.plugin.bootstraping) == "function" then
       Cfg.plugin.bootstraping()

@@ -4,9 +4,6 @@ M.setup = function()
   require("spare.utils").setup({
     options = {
       enabled = true,
-      set = {
-        relativenumber = false
-      },
     },
     keymaps = {
       enabled = true,

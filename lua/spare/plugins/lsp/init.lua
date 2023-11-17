@@ -1,12 +1,10 @@
-local index = require("spare.plugins.lsp.index")
-
 return {
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     config = function()
-      -- require("spare.plugins.lsp.lspsaga")
-      index.lspsaga()
+      require("spare.plugins.lsp.lspsaga")
+      -- index.lspsaga()
     end,
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
