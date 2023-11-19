@@ -3,7 +3,7 @@ return {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     config = function()
-      require("spare.plugins.lsp.lspsaga")
+      require("spare.plugins.lsp.index").lspsaga()
       -- index.lspsaga()
     end,
     dependencies = {
@@ -22,7 +22,7 @@ return {
       "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
-      require("spare.plugins.lsp.lsp-settings").mason()
+      require("spare.plugins.lsp.index").mason()
     end,
   },
   {
@@ -41,7 +41,7 @@ return {
       "rafamadriz/friendly-snippets",
     },
     config = function()
-      require("spare.plugins.lsp.cmp")
+      require("spare.plugins.lsp.index").competition()
     end,
   },
   {
@@ -57,21 +57,18 @@ return {
     -- 	"williamboman/mason-lspconfig.nvim",
     -- },
     config = function()
-      require("spare.plugins.lsp.lsp-settings").lspconfig_global()
-      require("spare.plugins.lsp.lsp-settings").lsp_settings()
-      require("spare.plugins.lsp.lsp-settings").lsp_server()
+      require("spare.plugins.lsp.index").lspconfig_global()
+      require("spare.plugins.lsp.index").lsp_settings()
+      require("spare.plugins.lsp.index").lsp_server()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("spare.plugins.lsp.mason-lspconfig")
-    end
   },
   {
     "nvimtools/none-ls.nvim",
     config = function()
-      require("spare.plugins.lsp.null-ls")
+      require("spare.plugins.lsp.index").null_ls()
     end,
     dependencies = { "nvim-lua/plenary.nvim" },
   },

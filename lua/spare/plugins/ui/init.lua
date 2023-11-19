@@ -1,24 +1,14 @@
 return {
-  -- {
-  --   "catppuccin/nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   name = "catppuccin",
-  --   config = function()
-  --     require("spare.plugins.ui.catppuccin")
-  --     local color = color or "catppuccin"
-  --     vim.cmd.color(color)
-  --   end,
-  -- },
   {
-    'rose-pine/neovim',
-    name = 'rose-pine',
+    "catppuccin/nvim",
+    lazy = false,
+    priority = 1000,
+    name = "catppuccin",
     config = function()
-      require("rose-pine").setup({
-        disable_italics = true,
-      })
-      vim.cmd('colorscheme rose-pine')
-    end
+      require("spare.plugins.ui.index").catppuccin()
+      local color = color or "catppuccin"
+      vim.cmd.color(color)
+    end,
   },
   {
     "akinsho/bufferline.nvim",
@@ -45,7 +35,7 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "UIEnter",
     config = function()
-      require("spare.plugins.ui.indent-blankline")
+      require("spare.plugins.ui.index").ibl()
     end,
   },
   {
@@ -74,7 +64,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('lualine').setup({
-        options = { theme = 'rose-pine' },
+        options = { theme = 'catppuccin' },
         extensions = { 'quickfix', "lazy" }
       })
       require('lualine').get_config()

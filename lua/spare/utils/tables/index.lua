@@ -111,6 +111,13 @@ M.deployment_lazy = function()
       notify = false,   -- get a notification when new updates are found
       frequency = 3600, -- check for updates every hour
     },
+    profiling = {
+      -- Enables extra stats on the debug tab related to the loader cache.
+      -- Additionally gathers stats about all package.loaders
+      loader = true,
+      -- Track each new require in the Lazy profiling tab
+      require = true,
+    },
     -- dev = {
     --   -- directory where you store your local plugin projects
     --   path = "~/projects",
