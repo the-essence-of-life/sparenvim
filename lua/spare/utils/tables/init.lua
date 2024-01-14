@@ -1,19 +1,30 @@
 local Config = {
   config = {
     options = {
+      enabled = false,
       -- import = "spare.utils.tables.options",
-      set = require("spare.utils.tables.index").options
+      --- @type table
+      set = require("spare.utils.tables.index").options,
+      -- global = require("spare.utils.tables.index").global_options,
     },
     keymaps = {
-      set = require("spare.utils.tables.index").keymaps
+      enabled = false,
+      --- @type table
+      set = require("spare.utils.tables.index").keymaps,
       -- { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
       -- n = {},
       -- v = {},
     },
     autocmds = {
+      enabled = false,
+      --- @type boolean?
       lastplace = false,
+      --- @type boolean?
       directory = false,
-      set = require("spare.utils.tables.index").autocmds
+      --- @type boolean?
+      based_term_support = true,
+      --- @type table
+      set = require("spare.utils.tables.index").autocmds,
       -- {
       --   event = "VimEnter",
       --   pattern = "*",
@@ -23,7 +34,12 @@ local Config = {
       -- },
     },
     plugin = {
+      enabled = false,
+      --- @type string
       mode = "plugin-manager",
+      --- @type boolean?
+      auto_clean_plugins = false,
+      -- colorscheme = "material",
     },
   },
 }

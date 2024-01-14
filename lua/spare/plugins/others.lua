@@ -1,3 +1,5 @@
+local Index = require("spare.plugins.index.utils")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -10,14 +12,15 @@ return {
       require("nvim-treesitter.install").update({ with_sync = true })
     end,
     config = function()
-      require("spare.plugins.utils.index").treesitter()
+      Index.treesitter()
       -- require("nvim-ts-autotag").setup()
     end,
   },
   {
     "folke/noice.nvim",
+    event = "UIEnter",
     config = function()
-      require("spare.plugins.utils.index").noice()
+      Index.noice()
     end,
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -30,31 +33,31 @@ return {
   },
   {
     "folke/persistence.nvim",
-    event = "VeryLazy", -- this will only start session saving when an actual file was opened
+    lazy = true, -- this will only start session saving when an actual file was opened
     -- module = "persistence",
     config = function()
-      require("spare.plugins.utils.index").persistence()
+      Index.persistence()
     end,
   },
   {
     "m4xshen/autoclose.nvim",
     event = "InsertEnter",
     config = function()
-      require("spare.plugins.utils.index").autoclose()
+      Index.autoclose()
     end,
   },
   {
     "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    config = true,
+    lazy = true,
   },
   {
     "ThePrimeagen/harpoon",
+    lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      require("spare.plugins.utils.index").harpoon()
+      Index.harpoon()
     end,
   },
 }

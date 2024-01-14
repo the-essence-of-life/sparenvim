@@ -1,19 +1,36 @@
--- Input "gf" in normal mode to jump to configuration.
--- ~/.config/nvim/lua/user/
--- local spare_path = vim.fn.stdpath("config") .. "/spare.nvim"
--- if not vim.loop.fs_stat(spare_path) then
---   vim.fn.system({
---     "git",
---     "clone",
---     "--filter=blob:none",
---     "https://github.com/the-essence-of-life.git",
---     spare_path,
---   })
---   local before_p = spare_path .. "/lua/spare/"
---   local after_p = vim.fn.stdpath("config") .. "/lua/"
---   vim.fn.system({"mv", before_p, after_p})
---   vim.fn.system({"rm", "-rf", spare_path})
+local user_path = vim.fn.stdpath("config") .. "/lua/user/"
+local user_config = vim.fn.stdpath("config") .. "/lua/user/config.lua"
+if not vim.loop.fs_stat(user_path) then
+  vim.fn.system("mkdir", user_path)
+end
+  if not vim.loop.fs_stat(user_config) then
+    local file = io.open(user_config, "w+")
+    io.output(file)
+    io.write([[
+return {
+  options = {
+    enabled = true,
+  },
+  keymaps = {
+    enabled = true,
+  },
+  autocmds = {
+    enabled = true,
+    lastplace = true,
+    directory = true,
+  },
+  plugin = {
+    enabled = true,
+    mode = "plugins",
+  },
+}
+  ]])
+    io.close(file)
+  end
+local options = require("user.config")
+require("spare.utils").setup(options)
+-- local function user_command(alias, cmd)
+--   vim.api.nvim_create_user_command(alias, cmd, { bang = true })
 -- end
--- require("spare").setup()
 
-require("spare").setup()
+-- user_command('SayHello', 'echo "Hello world!"')

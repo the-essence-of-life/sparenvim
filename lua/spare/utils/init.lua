@@ -8,6 +8,11 @@ function M.setup(config)
           vim.opt[k] = v
         end
       end
+      -- if type(Cfg.options.global) == "table" then
+      --   for k, v in pairs(Cfg.options.global) do
+      --     vim.g[k] = v
+      --   end
+      -- end
     end
   end
   if Cfg.keymaps then
@@ -26,6 +31,9 @@ function M.setup(config)
       end
       if Cfg.autocmds.directory then
         require("spare.utils.tables.index").directory()
+      end
+      if Cfg.autocmds.based_term_support then
+        require("spare.utils.tables.index").terminal()
       end
       if type(Cfg.autocmds.set) == "table" then
         for _, autocmds in ipairs(Cfg.autocmds.set) do
@@ -49,6 +57,18 @@ function M.setup(config)
     if type(Cfg.plugin.bootstraping) == "function" then
       Cfg.plugin.bootstraping()
     end
+    if Cfg.autocmds.auto_clean_plugins then
+      require("spare.utils.tables.index").plugin_cleaner()
+    end
+    -- if type(Cfg.plugin.colorscheme) == "string" then
+    -- local color = color or Cfg.plugin.colorscheme
+    --   vim.cmd.colorscheme(color)
+    -- end
   end
+  -- if type(merge) == "table" then
+  --   for _, módules in ipairs(merge) dp
+  --     require(modules)
+  --   end
+  -- end
 end
 return M

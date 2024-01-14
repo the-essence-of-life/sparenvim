@@ -77,126 +77,7 @@ git clone --depth=1 https://github.com/the-essence-of-life/space-nvim/ ~/.config
 
 ```
 
-**Step3** Then,set configruation.  
-`cd ~/.config/nvim/lua/spare/`  
-`nvim init.lua`  
-```lua
-local M = {}
-
-M.setup = function()
-require("spare.utils").setup({
-  options = {
-    basic = false,
-    vimplugins = false
-  },
-  keymaps = {
-    enabled = false
-  },
-  autocmds = {
-    lastplace = false,
-    directory = false,
-  },
-  plugin = {
-    mode = nil,
-  },
-})
-end
-
-return M
-```
-<details>
-  <summary>default configruation</summary>
-
-  ```lua
-  require("spare.config").setup({
-    options = {
-      basic = true,
-      vimplugins = true
-    },
-    keymaps = {
-      enabled = true
-    },
-    autocmds = {
-      lastplace = true,
-    },
-    plugin = {
-      enabled = true,
-    },
-  })
-  ```
-  ```lua
-  require("spare.utils").setup({
-    options = {
-      enabled = true,
-      vimplugins = true,
-      settings = {
-        autowrite = true,           -- Enable auto write
-        clipboard = "unnamedplus",  -- Sync with system clipboard
-        completeopt = "menu,menuone,noselect",
-        conceallevel = 3,           -- Hide * markup for bold and italic
-        confirm = true,             -- Confirm to save changes before exiting modified buffer
-        cursorline = true,          -- Enable highlighting of the current line
-        expandtab = true,           -- Use spaces instead of tabs
-        formatoptions = "jcroqlnt", -- tcqj
-        grepformat = "%f:%l:%c:%m",
-        grepprg = "rg --vimgrep",
-        ignorecase = true,      -- Ignore case
-        inccommand = "nosplit", -- preview incremental substitute
-        laststatus = 0,
-        list = true,            -- Show some invisible characters (tabs...
-        mouse = "a",            -- Enable mouse mode
-        number = true,          -- Print line number
-        pumblend = 10,          -- Popup blend
-        relativenumber = true,  -- Relative line numbers
-        scrolloff = 4,          -- Lines of context
-        sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
-        shiftround = true,      -- Round indent
-        shiftwidth = 2,         -- Size of an indent
-        --	shortmess:append({ W = true, I = true, c = true }),
-        showmode = false,       -- Dont show mode since we have a statusline
-        sidescrolloff = 8,      -- Columns of context
-        signcolumn = "yes",     -- Always show the signcolumn, otherwise it would shift the text each time
-        smartcase = true,       -- Don't ignore case with capitals
-        smartindent = true,     -- Insert indents automatically
-        spelllang = { "en" },
-        splitbelow = true,      -- Put new windows below current
-        splitright = true,      -- Put new windows right of current
-        tabstop = 2,            -- Number of spaces tabs count for
-        termguicolors = true,   -- True color support
-        timeoutlen = 300,
-        undofile = true,
-        undolevels = 10000,
-        swapfile = false,
-        wildmode = "longest:full,full", -- Command-line completion mode
-        winminwidth = 5,                -- Minimum window width
-        wrap = false,                   -- Disable line wrap
-      },
-    },
-    keymaps = {
-      enabled = true,
-      { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
-      -- n = {},
-      -- v = {},
-    },
-    autocmds = {
-      lastplace = false,
-      directory = false,
-      -- { event = "", pattern = "", callback = function() end },
-    },
-    plugin = {
-      -- [comment] string:plugin-manager,plugins
-      mode = "plugin-manager",
-    },
-  })
-  ```
-
-</details>
-
-
-**Tips**  
-You can use `<c-v>` to select the line
-
-**Step4** Final,start your neovim.  
+**Step3** Final,start your neovim.  
 `nvim`
 
 ---
@@ -205,8 +86,8 @@ You can use `<c-v>` to select the line
 ## ➕ Add New Plugins
 
 You can see examples [here](https://github.com/folke/lazy.nvim#examples).  
-**Step1** Edit init.lua(for example:`ui/`)
-`nvim ~/.config/nvim/lua/bin/plugins/ui/init.lua`  
+**Step1** Edit init.lua(for example:`ui.lua`)
+`nvim ~/.config/nvim/lua/spare/plugins/ui.lua`  
 
 **Step2** Then copy these code to `noice.lua`(run:`nvim noice.lua`)
 
@@ -324,64 +205,6 @@ lua
 │   │   └── options.lua
 │   ├── init.lua
 └───└── plugins
-        ├── lsp
-        │   ├── README.md
-        │   ├── cmp.lua
-        │   ├── init.lua
-        │   ├── lsp-format.lua
-        │   ├── lsp-settings.lua
-        │   ├── lspsaga.lua
-        │   ├── mason-lspconfig.lua
-        │   ├── mason-null-ls.lua
-        │   ├── null-ls.lua
-        │   └── typescript.lua
-        ├── tools
-        │   ├── README.md
-        │   ├── autoclose.lua
-        │   ├── ccc.lua
-        │   ├── init.lua
-        │   ├── jfind.lua
-        │   ├── map.lua
-        │   ├── markdown.lua
-        │   ├── neotree.lua
-        │   ├── nvim-tree.lua
-        │   ├── overseer.lua
-        │   ├── spectre.lua
-        │   ├── tabnine.lua
-        │   ├── telescope.lua
-        │   ├── todo-comments.lua
-        │   ├── toggleterm.lua
-        │   ├── trouble.lua
-        │   ├── ufo.lua
-        │   └── vgit.lua
-        ├── ui
-        │   ├── README.md
-        │   ├── alpha.lua
-        │   ├── barbar.lua
-        │   ├── catppuccin.lua
-        │   ├── cursorline.lua
-        │   ├── dashboard.lua
-        │   ├── heirline.lua
-        │   ├── indent-blankline.lua
-        │   ├── init.lua
-        │   ├── lualine.lua
-        │   ├── lualine.lua.bak
-        │   ├── quickui.lua
-        │   ├── staline.lua
-        │   └── wilder.lua
-        ├── user
-        │   ├── README.md
-        │   └── init.lua
-        └── utils
-            ├── README.md
-            ├── autopairs.lua
-            ├── fine-cmdline.lua
-            ├── harpoon.lua
-            ├── init.lua
-            ├── noice.lua
-            ├── nui.lua
-            ├── persistence.lua
-            └── treesitter.lua
 ```
 
 ### commit bug
@@ -390,8 +213,6 @@ spare is a very freedom configruation,so you may backup your configruation and c
 ---
 
 ## 👋 THANKS SO
-
-@eggtoopain
 
 > All the people who helped me.  
 > No need money!Love make lights!

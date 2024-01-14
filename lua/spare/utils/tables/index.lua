@@ -17,7 +17,7 @@ M.options = {
   grepprg = "rg --vimgrep",
   ignorecase = true,      -- Ignore case
   inccommand = "nosplit", -- preview incremental substitute
-  laststatus = 0,
+  -- laststatus = 2,
   list = true,            -- Show some invisible characters (tabs...
   mouse = "a",            -- Enable mouse mode
   number = true,          -- Print line number
@@ -27,7 +27,7 @@ M.options = {
   sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
   shiftround = true,      -- Round indent
   shiftwidth = 2,         -- Size of an indent
-  --	shortmess:append({ W = true, I = true, c = true }),
+  -- shortmess:append({ W = true, I = true, c = true }),
   showmode = false,       -- Dont show mode since we have a statusline
   sidescrolloff = 8,      -- Columns of context
   signcolumn = "yes",     -- Always show the signcolumn, otherwise it would shift the text each time
@@ -47,13 +47,17 @@ M.options = {
   wrap = false,                   -- Disable line wrap
 }
 
+M.global_options = {
+  mapleader = "<space>"
+}
+
 M.keymaps = {
   { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
-  {
-    mode = "n",
-    keys = "<a-e>",
-    exec = "<cmd>Neotree<cr>"
-  },
+  -- {
+  --   mode = "n",
+  --   keys = "<a-e>",
+  --   exec = "<cmd>Neotree<cr>"
+  -- },
 }
 
 M.autocmds = {
@@ -85,12 +89,15 @@ M.deployment_lazy = function()
   require("lazy").setup({
     spec = {
       -- { "LazyVim/LazyVim", import = "lazyvim.config" },
+      {
+        "abeldekat/lazyflex.nvim",
+        version = "*",
+        cond = true,
+        import = "lazyflex.hook",
+        opts = {},
+      },
       { import = "spare.plugins" },
-      -- { import = "spare.plugins.lsp" },
-      -- { import = "spare.plugins.tools" },
-      -- { import = "spare.plugins.ui" },
-      -- { import = "spare.plugins.utils" },
-      -- { import = "spare.plugins.user" },
+      -- { import = "user.plugins" },
     },
     git = {
       url_format = "https://github.com/%s.git",
@@ -99,11 +106,15 @@ M.deployment_lazy = function()
       colorscheme = {
         "github_dark",
         "catppuccin",
+        "material",
       },
     },
     ui = {
       border = "rounded",
     },
+    -- diff = {
+      -- cmd = "lazygit"
+    -- },
     checker = {
       -- automatically check for plugin updates
       enabled = false,
@@ -116,7 +127,12 @@ M.deployment_lazy = function()
       -- Additionally gathers stats about all package.loaders
       loader = true,
       -- Track each new require in the Lazy profiling tab
-      require = true,
+      require = false,
+    },
+    change_detection = {
+      -- automatically check for config file changes and reload the ui
+      enabled = true,
+      notify = false, -- get a notification when changes are found
     },
     -- dev = {
     --   -- directory where you store your local plugin projects
@@ -152,6 +168,38 @@ M.lastplace = function()
         vim.cmd("silent! foldopen")
       end
     end,
+  })
+end
+
+M.terminal = function()
+  vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+      vim.opt.number = false
+      vim.opt.relativenumber = false
+      vim.cmd("normal i")
+      vim.keymap.set('t', '<c-u>', function()
+        vim.cmd("res +2")
+      end)
+      vim.keymap.set('t', '<c-d>', function()
+        vim.cmd("res -2")
+      end)
+      vim.keymap.set('t', '<c-b>', function()
+        vim.cmd("res =")
+      end)
+    end
+  })
+end
+
+M.plugin_cleaner = function()
+  vim.api.nvim_create_autocmd("LazyClean", {
+    pattern = "*",
+    callback = function()
+      vim.ui.input({ propmt = "Clean Plugins?[N/y]" }, function(input)
+        if input == "y" then
+          vim.cmd("Lazy clean")
+        end
+      end)
+    end
   })
 end
 

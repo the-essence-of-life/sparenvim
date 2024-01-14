@@ -132,12 +132,7 @@ M.noice = function()
 end
 
 M.harpoon = function()
-  local status_ok, harpoon = pcall(require, "harpoon")
-  if not status_ok then
-    return
-  end
-
-  harpoon.setup({})
+  require("harpoon").setup({})
 
   vim.keymap.set("n", "<leader>nf", '<cmd>lua require("harpoon.mark").add_file()<cr>')
   vim.keymap.set("n", "<leader>la", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
@@ -158,7 +153,16 @@ M.treesitter = function()
   require('nvim-treesitter.configs').setup {
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = false,
+      additional_vim_regex_highlighting = true,
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = '<CR>',
+        node_incremental = '<CR>',
+        node_decremental = '<BS>',
+        scope_incremental = '<TAB>',
+      }
     },
   }
 end
@@ -166,8 +170,8 @@ end
 M.persistence = function()
   require("persistence").setup {
     dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"), -- directory where session files are saved
-    options = { "buffers", "curdir", "tabpages", "winsize" },   -- sessionoptions used for saving
-    pre_save = nil,                                             -- a function to call before saving the session
+    options = { "buffers", "curdir", "tabpages", "winsize" },     -- sessionoptions used for saving
+    pre_save = nil,                                               -- a function to call before saving the session
   }
 end
 
