@@ -23,15 +23,6 @@ return {
     end,
   },
   {
-    "KadoBOT/cmp-plugins",
-    config = function()
-      require("cmp-plugins").setup({
-        files = { ".*\\.lua" } -- default
-        -- files = { "plugins.lua", "some_path/plugins/" } -- Recommended: use static filenames or partial paths
-      })
-    end,
-  },
-  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {

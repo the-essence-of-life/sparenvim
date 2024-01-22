@@ -65,10 +65,20 @@ function M.setup(config)
     --   vim.cmd.colorscheme(color)
     -- end
   end
+  if type(Cfg.modules) == "table" then
+    local modules = Cfg.modules
+    for _, module in ipairs(modules) do
+      local ok = pcall(require, module)
+      if ok then
+        require(module)
+      end
+    end
+  end
   -- if type(merge) == "table" then
   --   for _, módules in ipairs(merge) dp
   --     require(modules)
   --   end
   -- end
 end
+
 return M

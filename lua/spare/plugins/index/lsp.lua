@@ -74,13 +74,13 @@ M.lspconfig_global = function()
 end
 
 M.lsp_server = function()
-  -- require("lspconfig").lua_ls.setup({})
-  -- require("lspconfig").bashls.setup({})
-  -- require("lspconfig").pyright.setup({})
-  -- require("lspconfig").jsonls.setup({})
-  -- require("lspconfig").clangd.setup({})
-  -- require("lspconfig").tsserver.setup({})
-  -- require("lspconfig").html.setup({})
+  require("lspconfig").lua_ls.setup({})
+  require("lspconfig").bashls.setup({})
+  require("lspconfig").pyright.setup({})
+  require("lspconfig").jsonls.setup({})
+  require("lspconfig").clangd.setup({})
+  require("lspconfig").tsserver.setup({})
+  require("lspconfig").html.setup({})
   -- require('lspconfig').tailwindcss.setup {
   --   tailwindCSS = {
   --     classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
@@ -96,13 +96,13 @@ M.lsp_server = function()
   --     validate = true
   --   }
   -- }
-  -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- capabilities.textDocument.completion.completionItem.snippetSupport = true
-  -- require 'lspconfig'.cssls.setup {
-  --   capabilities = capabilities,
-  -- }
-  -- -- require'lspconfig'.vuels.setup{}
-  -- require 'lspconfig'.volar.setup {}
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  require 'lspconfig'.cssls.setup {
+    capabilities = capabilities,
+  }
+  -- require'lspconfig'.vuels.setup{}
+  require 'lspconfig'.volar.setup {}
 end
 
 M.lsp_settings = function()

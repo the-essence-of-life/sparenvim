@@ -47,10 +47,6 @@ M.options = {
   wrap = false,                   -- Disable line wrap
 }
 
-M.global_options = {
-  mapleader = "<space>"
-}
-
 M.keymaps = {
   { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
   -- {
@@ -61,12 +57,12 @@ M.keymaps = {
 }
 
 M.autocmds = {
-  {
-    pattern = "*",
-    callback = function()
-      vim.opt.relativenumber = true
-    end
-  }
+  -- {
+  --   pattern = "*",
+  --   callback = function()
+  --     vim.opt.relativenumber = true
+  --   end
+  -- }
 }
 
 M.pm_bootstraping = function()
@@ -113,7 +109,7 @@ M.deployment_lazy = function()
       border = "rounded",
     },
     -- diff = {
-      -- cmd = "lazygit"
+    -- cmd = "lazygit"
     -- },
     checker = {
       -- automatically check for plugin updates
@@ -133,6 +129,13 @@ M.deployment_lazy = function()
       -- automatically check for config file changes and reload the ui
       enabled = true,
       notify = false, -- get a notification when changes are found
+    },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          "netrwPlugin"
+        }
+      }
     },
     -- dev = {
     --   -- directory where you store your local plugin projects

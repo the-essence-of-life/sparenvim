@@ -1,36 +1,26 @@
-local user_path = vim.fn.stdpath("config") .. "/lua/user/"
 local user_config = vim.fn.stdpath("config") .. "/lua/user/config.lua"
-if not vim.loop.fs_stat(user_path) then
-  vim.fn.system("mkdir", user_path)
-end
-  if not vim.loop.fs_stat(user_config) then
-    local file = io.open(user_config, "w+")
-    io.output(file)
-    io.write([[
-return {
-  options = {
-    enabled = true,
-  },
-  keymaps = {
-    enabled = true,
-  },
-  autocmds = {
-    enabled = true,
-    lastplace = true,
-    directory = true,
-  },
-  plugin = {
-    enabled = true,
-    mode = "plugins",
-  },
-}
-  ]])
-    io.close(file)
+if vim.loop.fs_stat(user_config) then
+  -- local user_path = vim.fn.stdpath("config") .. "/lua/user/"
+  -- if not vim.loop.fs_stat(user_path) then
+  --   vim.fn.system("mkdir", user_path)
+  -- end
+  local options = require("user.config")
+  if type(options) == "table" then
+    require("spare.utils").setup(options)
   end
-local options = require("user.config")
-require("spare.utils").setup(options)
--- local function user_command(alias, cmd)
---   vim.api.nvim_create_user_command(alias, cmd, { bang = true })
--- end
-
--- user_command('SayHello', 'echo "Hello world!"')
+  -- local p_opts = require("user.plugins")
+  -- require("spare.utils.funs").ps(p_opts)
+else
+  vim.api.nvim_echo({
+    {
+      "Welcome use spare!\n",
+      "WarningMsg"
+    },
+    {
+      "Press any key to start checkhealth.\n",
+      "MoreMsg"
+    },
+  }, true, {})
+  vim.fn.getchar()
+  vim.cmd("checkhealth spare.utils")
+end

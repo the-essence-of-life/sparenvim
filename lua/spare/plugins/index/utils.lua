@@ -21,13 +21,6 @@ M.autoclose = function()
 end
 
 M.noice = function()
-  -- require("noice.source.notify").setup{}
-  require("notify").setup({
-    -- render = {
-    render = "simple",
-    -- }
-  })
-
   require("noice").setup({
     -- you can enable a preset for easier configuration
     presets = {
@@ -78,6 +71,16 @@ M.noice = function()
         },
       },
     },
+    messages = {
+      -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+      -- This is a current Neovim limitation.
+      enabled = true,            -- enables the Noice messages UI
+      view = "mini",           -- default view for messages
+      view_error = "mini",     -- view for errors
+      view_warn = "mini",      -- view for warnings
+      view_history = "messages", -- view for :messages
+      view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+    },
     cmdline = {
       enabled = true,
       view = "cmdline_popup",
@@ -86,31 +89,16 @@ M.noice = function()
       },
     },
     notify = {
-      enabled = true,
-      view = "notify",
+      enabled = false,
     },
     commands = {
-      history = {
-        -- options for the message history that you get with `:Noice`
+      -- :Noice last
+      last = {
         view = "split",
         opts = { enter = true, format = "details" },
         filter = {
           any = {
-            { event = "notify" },
-            { error = true },
-            { warning = true },
-            { event = "msg_show", kind = { "" } },
-            { event = "lsp",      kind = "message" },
-          },
-        },
-      },
-      -- :Noice last
-      last = {
-        view = "notify",
-        opts = { enter = true, format = "details" },
-        filter = {
-          any = {
-            { event = "notify" },
+            { event = "split" },
             { error = true },
             { warning = true },
             { event = "msg_show", kind = { "" } },
@@ -122,7 +110,7 @@ M.noice = function()
       -- :Noice errors
       errors = {
         -- options for the message history that you get with `:Noice`
-        view = "notify",
+        view = "split",
         opts = { enter = true, format = "details" },
         filter = { error = true },
         filter_opts = { reverse = true },

@@ -45,6 +45,7 @@ return {
   },
   {
     'NvChad/nvim-colorizer.lua',
+    event = "InsertEnter",
     config = function()
       Index.colorizer()
     end
@@ -77,7 +78,7 @@ return {
   {
     "folke/todo-comments.nvim",
     event = { "BufRead", "BufReadPre" },
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       Index.todo_commets()
     end,
@@ -161,6 +162,7 @@ return {
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
+    event = "StdinReadPost",
     config = function()
       require('ts_context_commentstring').setup {
         enable_autocmd = false,

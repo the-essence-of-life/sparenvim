@@ -25,15 +25,11 @@ return {
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
     },
   },
   {
     "folke/persistence.nvim",
-    lazy = true, -- this will only start session saving when an actual file was opened
+    event = "StdinReadPost",
     -- module = "persistence",
     config = function()
       Index.persistence()
@@ -48,11 +44,11 @@ return {
   },
   {
     "stevearc/dressing.nvim",
-    lazy = true,
+    lazy = true
   },
   {
     "ThePrimeagen/harpoon",
-    lazy = true,
+    event = "StdinReadPost",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
