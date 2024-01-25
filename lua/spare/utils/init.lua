@@ -8,11 +8,11 @@ function M.setup(config)
           vim.opt[k] = v
         end
       end
-      -- if type(Cfg.options.global) == "table" then
-      --   for k, v in pairs(Cfg.options.global) do
-      --     vim.g[k] = v
-      --   end
-      -- end
+      if type(Cfg.options.global) == "table" then
+        for k, v in pairs(Cfg.options.global) do
+          vim.g[k] = v
+        end
+      end
     end
   end
   if Cfg.keymaps then
@@ -47,6 +47,15 @@ function M.setup(config)
       end
     end
   end
+  if type(Cfg.modules) == "table" then
+    local modules = Cfg.modules
+    for _, module in ipairs(modules) do
+      local ok = pcall(require, module)
+      if ok then
+        require(module)
+      end
+    end
+  end
   if Cfg.plugin.enabled then
     if Cfg.plugin.mode == "plugin-manager" then
       require("spare.utils.tables.index").pm_bootstraping()
@@ -64,15 +73,6 @@ function M.setup(config)
     -- local color = color or Cfg.plugin.colorscheme
     --   vim.cmd.colorscheme(color)
     -- end
-  end
-  if type(Cfg.modules) == "table" then
-    local modules = Cfg.modules
-    for _, module in ipairs(modules) do
-      local ok = pcall(require, module)
-      if ok then
-        require(module)
-      end
-    end
   end
   -- if type(merge) == "table" then
   --   for _, módules in ipairs(merge) dp

@@ -1,4 +1,5 @@
 return {
+  test = true,
   options = {
     enabled = true,
   },

@@ -5,6 +5,9 @@ local Config = {
       -- import = "spare.utils.tables.options",
       --- @type table
       set = require("spare.utils.tables.index").options,
+      global = {
+        mapleader = " "
+      },
       -- global = require("spare.utils.tables.index").global_options,
     },
     keymaps = {
