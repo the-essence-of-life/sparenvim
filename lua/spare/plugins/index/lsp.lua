@@ -76,6 +76,7 @@ M.lsp_server = function()
   require("lspconfig").clangd.setup({})
   require("lspconfig").tsserver.setup({})
   require("lspconfig").html.setup({})
+  require("lspconfig").pyre.setup({})
   -- require('lspconfig').tailwindcss.setup {
   --   tailwindCSS = {
   --     classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
@@ -114,7 +115,7 @@ end
 M.competition = function()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
-  local lspkind = require("lspkind")
+  -- local lspkind = require("lspkind")
 
   require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -137,6 +138,12 @@ M.competition = function()
     mapping = {
       ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- Up
       ["<C-f>"] = cmp.mapping.scroll_docs(4),  -- Down
+      ['<C-l>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          return cmp.complete_common_string()
+        end
+        fallback()
+      end, { 'i', 'c' }),
       -- ["<CR>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
       ["<CR>"] = cmp.mapping.confirm({
@@ -189,12 +196,16 @@ M.competition = function()
       -- },
     },
     sources = {
-      { name = 'nvim_lua' },
       { name = "nvim_lsp" },
-      { name = "path" },
       { name = "luasnip" },
+      { name = "path" },
+      { name = 'nvim_lua' },
       -- { name = 'plugins' },
       -- { name = 'nerdfont' },
+    },
+    performance = {
+      async_budget = 300,
+      max_view_entries = 20,
     },
     experimental = {
       ghost_text = true,

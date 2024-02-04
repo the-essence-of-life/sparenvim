@@ -8,27 +8,12 @@ return {
     version = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons",     -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
     },
     config = function()
       Index.neotree()
       vim.keymap.set("n", "<a-e>", "<cmd>Neotree<cr>")
-    end,
-  },
-  {
-    "numToStr/Comment.nvim",
-    dependencies = {
-      'JoosepAlviste/nvim-ts-context-commentstring',
-    },
-    keys = {
-      { "gcc", mode = "n" },
-      { "gc",  mode = "v" },
-    },
-    config = function()
-      require('Comment').setup {
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-      }
     end,
   },
   {
@@ -51,8 +36,23 @@ return {
     end
   },
   {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    keys = {
+      { "gcc", mode = "n" },
+      { "gc",  mode = "v" },
+    },
+    config = function()
+      require('Comment').setup {
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      }
+    end,
+  },
+  {
     "akinsho/toggleterm.nvim",
-    cmd = "ToggleTerm",
+    -- cmd = "ToggleTerm",
     version = "*",
     config = function()
       Index.toggleterm()
@@ -81,28 +81,6 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       Index.todo_commets()
-    end,
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    -- event = "BufEnter *.md",
-    keys = {
-      { "<leader>mp", "<cmd>MarkdownPreview<cr>", mode = "n", ft = 'markdown' }
-    },
-    -- ft = "md",
-    -- ft = "markdown",
-    build = "cd app && npm install",
-    config = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-  },
-  {
-    "ixru/nvim-markdown",
-    -- event = "BufEnter *.md",
-    ft = "markdown",
-    -- ft = "md",
-    config = function()
-      Index.markdown()
     end,
   },
   {
@@ -169,4 +147,153 @@ return {
       }
     end
   },
+  {
+    'stevearc/overseer.nvim',
+    dependencies = {
+      "akinsho/toggleterm.nvim",
+    },
+    opts = {
+      strategy = {
+        "toggleterm",
+        quit_on_exit = "success",
+      },
+      templates = { "builtin", "user.webserver" }
+    },
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    -- event = "BufEnter *.md",
+    keys = {
+      { "<leader>mp", "<cmd>MarkdownPreview<cr>", mode = "n", ft = 'markdown' }
+    },
+    -- ft = "md",
+    -- ft = "markdown",
+    build = "cd app && npm install",
+    config = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+  },
+  {
+    "ixru/nvim-markdown",
+    -- event = "BufEnter *.md",
+    ft = "markdown",
+    -- ft = "md",
+    config = function()
+      Index.markdown()
+    end,
+  },
+  {
+    'Pocco81/HighStr.nvim',
+    config = function()
+      local high_str = require("high-str")
+
+      high_str.setup({
+        verbosity = 0,
+        saving_path = vim.fn.stdpath("data") .. "/highstr/",
+        highlight_colors = {
+          -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
+          -- color_0 = { "#0c0d0e", "smart" }, -- Cosmic charcoal
+          color_1 = { "#C35966", "smart" },     -- Pastel yellow
+          color_2 = { "#C38547", "smart" },     -- Aqua menthe
+          color_3 = { "#B6C359", "smart" },     -- Proton purple
+          color_4 = { "#85C347", "smart" },     -- Orange red
+          color_5 = { "#599BC3", "smart" },     -- Office green
+          color_6 = { "#35B1C3", "smart" },     -- Just blue
+          color_7 = { "#8159C3", "smart" },     -- Blush pink
+          color_8 = { "#857CC3", "smart" },     -- Cosmic latte
+          color_9 = { "#8EB6C3", "smart" },     -- Fallow brown
+        }
+      })
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F1>",
+        ":<c-u>HSHighlight 1<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F2>",
+        ":<c-u>HSHighlight 2<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F3>",
+        ":<c-u>HSHighlight 3<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F4>",
+        ":<c-u>HSHighlight 4<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F5>",
+        ":<c-u>HSHighlight 5<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F6>",
+        ":<c-u>HSHighlight 6<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F7>",
+        ":<c-u>HSHighlight 7<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F8>",
+        ":<c-u>HSHighlight 8<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F9>",
+        ":<c-u>HSHighlight 9<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+      vim.api.nvim_set_keymap(
+        "v",
+        "<F9>",
+        ":<c-u>HSRmHighlight<CR>",
+        {
+          noremap = true,
+          silent = true
+        }
+      )
+    end
+  }
 }

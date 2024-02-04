@@ -107,6 +107,10 @@ M.deployment_lazy = function()
     },
     ui = {
       border = "rounded",
+      -- icons = {
+      --   loaded = "✓",
+      --   not_loaded = "✗",
+      -- }
     },
     -- diff = {
     -- cmd = "lazygit"

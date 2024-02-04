@@ -3,10 +3,13 @@ local Config = {
     options = {
       enabled = false,
       -- import = "spare.utils.tables.options",
-      --- @type table
+      --- @type tablelib
       set = require("spare.utils.tables.index").options,
+      --- @type tablelib
       global = {
-        mapleader = " "
+        --- @type string
+        mapleader = " ",
+        maplocalleader = " "
       },
       -- global = require("spare.utils.tables.index").global_options,
     },
@@ -43,6 +46,7 @@ local Config = {
       --- @type boolean?
       auto_clean_plugins = false,
       -- colorscheme = "material",
+      set = {}
     },
   },
 }

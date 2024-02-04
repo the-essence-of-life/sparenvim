@@ -12,36 +12,6 @@ return {
       vim.cmd.color(color)
     end,
   },
-  -- {
-  --   'ribru17/bamboo.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('bamboo').setup {
-  --       -- optional configuration here
-  --     }
-  --     require('bamboo').load()
-  --   end,
-  -- },
-  -- {
-  --   'marko-cerovac/material.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   init = function()
-  --     vim.g.material_style = "oceanic"
-  --     require('material').setup({
-  --       plugins = {
-  --         "gitsigns",
-  --         "nvim-cmp",
-  --         "nvim-web-devicons",
-  --         "trouble",
-  --         "which-key",
-  --       }
-  --     })
-  --     require('material.functions').toggle_eob()
-  --     vim.cmd 'colorscheme material'
-  --   end,
-  -- },
   {
     "akinsho/bufferline.nvim",
     config = function()
@@ -50,29 +20,15 @@ return {
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   event = "UIEnter",
-  --   enabled = false,
-  --   dependencies = { "nvim-tree/nvim-web-devicons" },
-  --   config = function()
-  --     vim.opt.laststatus = 2
-  --     require("spare.plugins.ui.lualine")
-  --   end,
-  -- },
   {
     'echasnovski/mini.indentscope',
     import = "lazyflex.hook",
     opts = { enable_match = false, kw = { "lazy" } },
     dependencies = {
-      -- "lukas-reineke/indent-blankline.nvim",
       'echasnovski/mini.nvim'
     },
     version = '*',
-    -- "lukas-reineke/indent-blankline.nvim",
-    -- event = "UIEnter",
     config = function()
-      -- Index.ibl()
       require('mini.indentscope').setup({
         draw = {
           delay = 100,
@@ -83,7 +39,6 @@ return {
           indent_at_cursor = true,
           try_as_border = false,
         },
-        -- symbol = '╎',
         symbol = '│',
       })
     end,
@@ -98,50 +53,9 @@ return {
       require("alpha").setup(config)
     end,
   },
-  -- {
-  --   enabled = false,
-  --   "rebelot/heirline.nvim",
-  --   dependencies = {
-  --     'rose-pine/neovim',
-  --   },
-  --   -- You can optionally lazy-load heirline on UiEnter
-  --   -- to make sure all required plugins and colorschemes are loaded before setup
-  --   -- event = "UiEnter",
-  --   config = function()
-  --     require("spare.plugins.ui.heirline")
-  --   end
-  -- },
-  -- {
-  --   'nvim-lualine/lualine.nvim',
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  --   config = function()
-  --     require('lualine').setup({
-  --       options = { theme = 'material' },
-  --       extensions = { 'quickfix', "lazy" }
-  --     })
-  --     require('lualine').get_config()
-  --   end
-  -- },
-  -- {
-  --   'dstein64/nvim-scrollview',
-  --   config = function()
-  --     require('scrollview').setup({
-  --       excluded_filetypes = {},
-  --       current_only = true,
-  --       base = 'buffer',
-  --       column = 80,
-  --       signs_on_startup = { 'all' },
-  --       diagnostics_severities = { vim.diagnostic.severity.ERROR }
-  --     })
-  --   end
-  -- },
   {
     "rebelot/heirline.nvim",
-    -- You can optionally lazy-load heirline on UiEnter
-    -- to make sure all required plugins and colorschemes are loaded before setup
-    -- event = "UiEnter",
     config = function()
-      -- vim.opt.showcmdloc = "statusline"
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")
       local colors = {
@@ -415,19 +329,46 @@ return {
       -- vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
     end
   },
-  -- {
-  --   "max397574/better-escape.nvim",
-  --   config = function()
-  --     require("better_escape").setup({
-  --       mapping = { "jk", "jj" },   -- a table with mappings to use
-  --       timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-  --       clear_empty_lines = true,   -- clear line after escaping if there is only whitespace
-  --       keys = "<Esc>",             -- keys used for escaping, if it is a function will use the result everytime
-  --       -- example(recommended)
-  --       -- keys = function()
-  --       --   return vim.api.nvim_win_get_cursor(0)[2] > 1 and '<esc>l' or '<esc>'
-  --       -- end,
-  --     })
-  --   end,
-  -- },
+  {
+    "luukvbaal/statuscol.nvim",
+    lazy = false,
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        setopt = true,
+        thousands = true,
+        relculright = true,
+        ft_ignore = { "alpha" },
+        segments = {
+          { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+          {
+            sign = {
+              namespace = { "gitsign" },
+              maxwidth = 1,
+              colwidth = 1,
+              auto = false,
+              wrap = false,
+            }
+          },
+          {
+            sign = {
+              name = { "Diagnostic" },
+              maxwidth = 1,
+              colwidth = 2,
+              auto = false,
+              wrap = false,
+            },
+            click = "v:lua.ScSa"
+          },
+        },
+        fold = {
+          width = 1, -- current width of the fold column
+          -- 'fillchars' option values:
+          close = "", -- foldclose
+          open = "", -- foldopen
+          sep = " " -- foldsep
+        },
+      })
+    end,
+  }
 }
