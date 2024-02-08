@@ -1,26 +1,26 @@
 local Index = require("spare.plugins.index.ui")
 
 return {
-  -- {
-  --   "catppuccin/nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   name = "catppuccin",
-  --   config = function()
-  --     Index.catppuccin()
-  --     local color = color or "catppuccin"
-  --     vim.cmd.color(color)
-  --   end,
-  -- },
   {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
     lazy = false,
     priority = 1000,
-    opts = {},
-    init = function ()
-      vim.cmd("colorscheme tokyonight-storm")
-    end
+    name = "catppuccin",
+    config = function()
+      Index.catppuccin()
+      local color = color or "catppuccin"
+      vim.cmd.color(color)
+    end,
   },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  --   init = function ()
+  --     vim.cmd("colorscheme tokyonight-storm")
+  --   end
+  -- },
   {
     'linrongbin16/lsp-progress.nvim',
     config = function()
