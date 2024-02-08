@@ -3,6 +3,7 @@ local Index = require("spare.plugins.index.lsp")
 return {
   {
     "williamboman/mason-lspconfig.nvim",
+    event = "LspAttach",
   },
   {
     "williamboman/mason.nvim",
@@ -10,17 +11,9 @@ return {
     --   -- vim.notify("You can use :Mason to install the lsp server.", "Info")
     --   return true
     -- end,
-    -- build = ":MasonUpdate", -- :MasonUpdate updates registry contents
-    dependencies = {
-      { "neovim/nvim-lspconfig" },
-      -- { "williamboman/mason-lspconfig.nvim" },
-      { "glepnir/lspsaga.nvim" },
-      "jose-elias-alvarez/null-ls.nvim",
-      'stevearc/dressing.nvim',
-    },
-    config = function()
-      Index.mason()
-    end,
+    build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+    dependencies = "neovim/nvim-lspconfig",
+    opts = Index.mason
   },
   {
     "hrsh7th/nvim-cmp",
@@ -45,6 +38,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    event = "LspAttach",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
@@ -57,6 +51,7 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    event = "LspAttach",
     config = function()
       Index.null_ls()
     end,
@@ -64,15 +59,12 @@ return {
   },
   {
     "glepnir/lspsaga.nvim",
-    -- event = "LspAttach",
-    config = function()
-      Index.lspsaga()
-      -- index.lspsaga()
-    end,
+    event = "LspAttach",
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
       --Please make sure you install markdown and markdown_inline parser
       { "nvim-treesitter/nvim-treesitter" },
     },
+    opts = Index.lspsaga,
   },
 }

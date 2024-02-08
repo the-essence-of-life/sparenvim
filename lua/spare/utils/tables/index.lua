@@ -1,7 +1,3 @@
-local echo = function(str)
-  vim.cmd("redraw")
-  vim.api.nvim_echo({ { str, "Bold" } }, true, {})
-end
 local M = {}
 
 M.options = {
@@ -48,21 +44,61 @@ M.options = {
 }
 
 M.keymaps = {
-  { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
-  -- {
-  --   mode = "n",
-  --   keys = "<a-e>",
-  --   exec = "<cmd>Neotree<cr>"
-  -- },
+  { "n", "<leader>ex", "<cmd>wq<cr>" },
+  { "n", "<leader>pm", function()
+    vim.ui.input({ prompt = 'Enter for your manage command: ' }, function(input)
+      vim.cmd("Lazy " .. input)
+    end)
+  end },
+  { "n", "<leader>H",  "<cmd>bprevious<cr>" },
+  { "n", "<leader>L",  "<cmd>bnext<cr>" },
+  { "n", "<leader>di", function()
+    vim.diagnostic.config({
+      update_in_insert = true
+    })
+  end },
+  { "n", "<leader>dn", function()
+    vim.diagnostic.config({
+      virtual_text = {
+        -- prefix = '●',
+        prefix = '',
+        spacing = 2,
+        format = function(diagnostic)
+          local icons = {
+            ERROR = "󰅚 ",
+            WARN = "󰀪 ",
+            HINT = "󰌶 ",
+            INFO = " ",
+          }
+          for level, icon in pairs(icons) do
+            if diagnostic.severity == vim.diagnostic.severity[level] then
+              -- return string.format("Error: %s", diagnostic.message)
+              return string.format(icon .. "%s", diagnostic.message)
+            end
+          end
+          return diagnostic.message
+        end,
+      }
+    })
+  end },
+  { "n", "<c-a>", "ggVG" },
+  { "n", "<leader>sv", "<c-w>v" },
+  { "n", "<leader>sh", "<c-w>s" },
+  { "n", "<leader>sx", "<c-w>c" },
+  { "n", "<leader>wh", "<c-w>H" },
+  { "n", "<leader>wj", "<c-w>J" },
+  { "n", "<leader>wk", "<c-w>K" },
+  { "n", "<leader>wl", "<c-w>L" },
 }
 
 M.autocmds = {
   -- {
+  --   event = "User",
   --   pattern = "*",
   --   callback = function()
-  --     vim.opt.relativenumber = true
+  --     vim.fn.system("echo", "hello")
   --   end
-  -- }
+  -- },
 }
 
 M.pm_bootstraping = function()
@@ -84,16 +120,7 @@ end
 M.deployment_lazy = function()
   require("lazy").setup({
     spec = {
-      -- { "LazyVim/LazyVim", import = "lazyvim.config" },
-      {
-        "abeldekat/lazyflex.nvim",
-        version = "*",
-        cond = true,
-        import = "lazyflex.hook",
-        opts = {},
-      },
       { import = "spare.plugins" },
-      -- { import = "user.plugins" },
     },
     git = {
       url_format = "https://github.com/%s.git",
@@ -103,18 +130,12 @@ M.deployment_lazy = function()
         "github_dark",
         "catppuccin",
         "material",
+        "tokyonight",
       },
     },
     ui = {
       border = "rounded",
-      -- icons = {
-      --   loaded = "✓",
-      --   not_loaded = "✗",
-      -- }
     },
-    -- diff = {
-    -- cmd = "lazygit"
-    -- },
     checker = {
       -- automatically check for plugin updates
       enabled = false,
@@ -141,13 +162,6 @@ M.deployment_lazy = function()
         }
       }
     },
-    -- dev = {
-    --   -- directory where you store your local plugin projects
-    --   path = "~/projects",
-    --   --[email protected] string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
-    --   patterns = {},    -- For example {"folke"}
-    --   fallback = false, -- Fallback to git when local plugin doesn't exist
-    -- },
   })
 end
 
@@ -198,16 +212,7 @@ M.terminal = function()
 end
 
 M.plugin_cleaner = function()
-  vim.api.nvim_create_autocmd("LazyClean", {
-    pattern = "*",
-    callback = function()
-      vim.ui.input({ propmt = "Clean Plugins?[N/y]" }, function(input)
-        if input == "y" then
-          vim.cmd("Lazy clean")
-        end
-      end)
-    end
-  })
+  vim.cmd("Lazy clean")
 end
 
 return M

@@ -3,37 +3,37 @@ local Index = require("spare.plugins.index.tools")
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    import = "lazyflex.hook",
-    opts = { enable_match = false, kw = { "lsp", "cmp" } },
+    keys = {
+      { "<a-e>", "<cmd>Neotree<cr>", mode = "n" }
+    },
     version = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",     -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
     },
     config = function()
       Index.neotree()
-      vim.keymap.set("n", "<a-e>", "<cmd>Neotree<cr>")
     end,
   },
   {
     "nvim-telescope/telescope.nvim",
-    event = "VimEnter",
+    event = 'VimEnter',
+    keys = {
+      { "<a-f>", "<cmd>Telescope find_files<cr>",   mode = { "n", "i" } },
+      { "<a-r>", "<cmd>Telescope live_grep<cr>",    mode = { "n", "i" } },
+      { "<a-g>", "<cmd>Telescope git_files<cr>",    mode = { "n", "i" } },
+      { "<a-b>", "<cmd>Telescope git_branches<cr>", mode = { "n", "i" } },
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "octarect/telescope-menu.nvim",
     },
-    config = function()
-      Index.telescope()
-      require("telescope").load_extension("menu")
-    end,
+    opts = Index.telescope,
   },
   {
     'NvChad/nvim-colorizer.lua',
     event = "InsertEnter",
-    config = function()
-      Index.colorizer()
-    end
+    opts = Index.colorizer
   },
   {
     "numToStr/Comment.nvim",
@@ -52,11 +52,9 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
-    -- cmd = "ToggleTerm",
+    cmd = "ToggleTerm",
     version = "*",
-    config = function()
-      Index.toggleterm()
-    end,
+    opts = Index.toggleterm
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -71,17 +69,13 @@ return {
       { "<a-t>", "<cmd>Trouble<cr>" },
     },
     -- event = "LspAttach",
-    config = function()
-      Index.trouble()
-    end,
+    opts = Index.trouble
   },
   {
     "folke/todo-comments.nvim",
     event = { "BufRead", "BufReadPre" },
     dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      Index.todo_commets()
-    end,
+    opts = Index.todo_commets
   },
   {
     "folke/which-key.nvim",
@@ -151,14 +145,9 @@ return {
     'stevearc/overseer.nvim',
     dependencies = {
       "akinsho/toggleterm.nvim",
+      "stevearc/dressing.nvim",
     },
-    opts = {
-      strategy = {
-        "toggleterm",
-        quit_on_exit = "success",
-      },
-      templates = { "builtin", "user.webserver" }
-    },
+    opts = Index.overseer
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -184,6 +173,18 @@ return {
   },
   {
     'Pocco81/HighStr.nvim',
+    keys = {
+      { "<F1>",       ":<c-u>HSHighlight 1<CR>", mode = "v", noremap = true, silent = true },
+      { "<F2>",       ":<c-u>HSHighlight 2<CR>", mode = "v", noremap = true, silent = true },
+      { "<F3>",       ":<c-u>HSHighlight 3<CR>", mode = "v", noremap = true, silent = true },
+      { "<F4>",       ":<c-u>HSHighlight 4<CR>", mode = "v", noremap = true, silent = true },
+      { "<F5>",       ":<c-u>HSHighlight 5<CR>", mode = "v", noremap = true, silent = true },
+      { "<F6>",       ":<c-u>HSHighlight 6<CR>", mode = "v", noremap = true, silent = true },
+      { "<F7>",       ":<c-u>HSHighlight 7<CR>", mode = "v", noremap = true, silent = true },
+      { "<F8>",       ":<c-u>HSHighlight 8<CR>", mode = "v", noremap = true, silent = true },
+      { "<F9>",       ":<c-u>HSHighlight 9<CR>", mode = "v", noremap = true, silent = true },
+      { "<leader>hc", ":<c-u>HSRmHighlight<CR>", mode = "v", noremap = true, silent = true },
+    },
     config = function()
       local high_str = require("high-str")
 
@@ -193,15 +194,15 @@ return {
         highlight_colors = {
           -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
           -- color_0 = { "#0c0d0e", "smart" }, -- Cosmic charcoal
-          color_1 = { "#C35966", "smart" },     -- Pastel yellow
-          color_2 = { "#C38547", "smart" },     -- Aqua menthe
-          color_3 = { "#B6C359", "smart" },     -- Proton purple
-          color_4 = { "#85C347", "smart" },     -- Orange red
-          color_5 = { "#599BC3", "smart" },     -- Office green
-          color_6 = { "#35B1C3", "smart" },     -- Just blue
-          color_7 = { "#8159C3", "smart" },     -- Blush pink
-          color_8 = { "#857CC3", "smart" },     -- Cosmic latte
-          color_9 = { "#8EB6C3", "smart" },     -- Fallow brown
+          color_1 = { "#C35966", "smart" }, -- Pastel yellow
+          color_2 = { "#C38547", "smart" }, -- Aqua menthe
+          color_3 = { "#B6C359", "smart" }, -- Proton purple
+          color_4 = { "#85C347", "smart" }, -- Orange red
+          color_5 = { "#599BC3", "smart" }, -- Office green
+          color_6 = { "#35B1C3", "smart" }, -- Just blue
+          color_7 = { "#8159C3", "smart" }, -- Blush pink
+          color_8 = { "#857CC3", "smart" }, -- Cosmic latte
+          color_9 = { "#8EB6C3", "smart" }, -- Fallow brown
         }
       })
       vim.api.nvim_set_keymap(
@@ -287,7 +288,7 @@ return {
       )
       vim.api.nvim_set_keymap(
         "v",
-        "<F9>",
+        "<leader>hc",
         ":<c-u>HSRmHighlight<CR>",
         {
           noremap = true,
@@ -295,5 +296,42 @@ return {
         }
       )
     end
-  }
+  },
+  {
+    "willothy/flatten.nvim",
+    -- config = true,
+    -- or pass configuration with
+    opts = {
+      window = {
+        open = "alternate"
+      }
+    },
+    -- Ensure that it runs first to minimize delay when opening file from terminal
+    lazy = false,
+    priority = 1001,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = 'VeryLazy',
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  {
+    'chentoast/marks.nvim',
+    config = function()
+      require 'marks'.setup {
+        default_mappings = true,
+        bookmark_0 = {
+          sign = '■',
+          virt_text = "<- last place",
+          annotate = false,
+        },
+        mappings = {}
+      }
+    end
+  },
 }

@@ -45,8 +45,55 @@ local Config = {
       mode = "plugin-manager",
       --- @type boolean?
       auto_clean_plugins = false,
+      --- @type table
+      -- user_plugins = "user.plugin",
       -- colorscheme = "material",
-      set = {}
+      set = {
+        spec = {
+          { import = "spare.plugins" },
+        },
+        git = {
+          url_format = "https://github.com/%s.git",
+        },
+        install = {
+          colorscheme = {
+            "github_dark",
+            "catppuccin",
+            "material",
+            "tokyonight",
+          },
+        },
+        ui = {
+          border = "rounded",
+        },
+        checker = {
+          -- automatically check for plugin updates
+          enabled = false,
+          concurrency = 1,  --[email protected] number? set to 1 to check for updates very slowly
+          notify = false,   -- get a notification when new updates are found
+          frequency = 3600, -- check for updates every hour
+        },
+        profiling = {
+          -- Enables extra stats on the debug tab related to the loader cache.
+          -- Additionally gathers stats about all package.loaders
+          loader = true,
+          -- Track each new require in the Lazy profiling tab
+          require = false,
+        },
+        change_detection = {
+          -- automatically check for config file changes and reload the ui
+          enabled = true,
+          notify = false, -- get a notification when changes are found
+        },
+        performance = {
+          rtp = {
+            disabled_plugins = {
+              "netrwPlugin"
+            }
+          }
+        },
+      },
+      -- colorscheme = "tokyonight-storm",
     },
   },
 }

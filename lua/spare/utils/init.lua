@@ -1,3 +1,7 @@
+local echo = function(str)
+  vim.cmd("redraw")
+  vim.api.nvim_echo({ { str, "Bold" } }, true, {})
+end
 local M = {}
 function M.setup(config)
   local Cfg = require("spare.utils.tables"):set(config):get()
@@ -19,7 +23,10 @@ function M.setup(config)
     if Cfg.keymaps.enabled then
       if type(Cfg.keymaps.set) == "table" then
         for _, mappings in ipairs(Cfg.keymaps.set) do
-          vim.keymap.set(mappings.mode, mappings.keys, mappings.exec)
+          local mode = mappings[1]
+          local keys = mappings[2]
+          local exec = mappings[3]
+          vim.keymap.set(mode, keys, exec)
         end
       end
     end
@@ -57,28 +64,34 @@ function M.setup(config)
     end
   end
   if Cfg.plugin.enabled then
-    if Cfg.plugin.mode == "plugin-manager" then
-      require("spare.utils.tables.index").pm_bootstraping()
-    elseif Cfg.plugin.mode == "plugins" then
-      require("spare.utils.tables.index").pm_bootstraping()
-      require("spare.utils.tables.index").deployment_lazy()
-    end
-    if type(Cfg.plugin.bootstraping) == "function" then
+    if type(Cfg.plugin.set) == "table" then
+      local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+      if not vim.loop.fs_stat(lazypath) then
+        echo(" Installing the lazy.nvim to ~/.local/share/nvim/lazy/lazy.nvim...")
+        vim.fn.system({
+          "git",
+          "clone",
+          "--filter=blob:none",
+          "https://github.com/folke/lazy.nvim.git",
+          "--branch=stable", -- latest stable release
+          lazypath,
+        })
+      end
+      vim.opt.rtp:prepend(lazypath)
+      require("lazy").setup(Cfg.plugin.set)
+    elseif type(Cfg.plugin.bootstraping) == "function" then
       Cfg.plugin.bootstraping()
+    elseif not Cfg.plugin.set then
+      return
     end
     if Cfg.autocmds.auto_clean_plugins then
       require("spare.utils.tables.index").plugin_cleaner()
     end
-    -- if type(Cfg.plugin.colorscheme) == "string" then
-    -- local color = color or Cfg.plugin.colorscheme
-    --   vim.cmd.colorscheme(color)
-    -- end
+    if type(Cfg.plugin.colorscheme) == "string" then
+    local color = color or Cfg.plugin.colorscheme
+      vim.cmd("colorscheme ".. color .."")
+    end
   end
-  -- if type(merge) == "table" then
-  --   for _, módules in ipairs(merge) dp
-  --     require(modules)
-  --   end
-  -- end
 end
 
 return M

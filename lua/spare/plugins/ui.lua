@@ -1,28 +1,51 @@
 local Index = require("spare.plugins.index.ui")
 
 return {
+  -- {
+  --   "catppuccin/nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   name = "catppuccin",
+  --   config = function()
+  --     Index.catppuccin()
+  --     local color = color or "catppuccin"
+  --     vim.cmd.color(color)
+  --   end,
+  -- },
   {
-    "catppuccin/nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    name = "catppuccin",
+    opts = {},
+    init = function ()
+      vim.cmd("colorscheme tokyonight-storm")
+    end
+  },
+  {
+    'linrongbin16/lsp-progress.nvim',
     config = function()
-      Index.catppuccin()
-      local color = color or "catppuccin"
-      vim.cmd.color(color)
-    end,
+      require('lsp-progress').setup()
+    end
   },
   {
     "akinsho/bufferline.nvim",
     config = function()
-      require("bufferline").setup({})
+      require("bufferline").setup({
+        options = {
+          numbers = "ordinal",
+          diagnostics = "nvim_lsp",
+          diagnostics_indicator = function(count, level)
+            local icon = level:match("error") and " " or ""
+            return icon .. " " .. count
+          end,
+        },
+      })
     end,
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
   {
     'echasnovski/mini.indentscope',
-    import = "lazyflex.hook",
     opts = { enable_match = false, kw = { "lazy" } },
     dependencies = {
       'echasnovski/mini.nvim'
@@ -46,7 +69,6 @@ return {
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
-    import = "lazyflex.hook",
     opts = { enable_match = false, kw = { "lsp", "treesitter" } },
     config = function()
       local config = require("spare.plugins.index.alpha").config
@@ -282,7 +304,6 @@ return {
         { provider = '%<' }                      -- this means that the statusline is cut here when there's not enough space
       )
 
-
       local LSPActive = {
         condition = conditions.lsp_attached,
         update    = { 'LspAttach', 'LspDetach' },
@@ -331,8 +352,7 @@ return {
   },
   {
     "luukvbaal/statuscol.nvim",
-    lazy = false,
-    config = function()
+    init = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
         setopt = true,
@@ -360,12 +380,21 @@ return {
             },
             click = "v:lua.ScSa"
           },
+          {
+            sign = {
+              name = { ".*" },
+              maxwidth = 1,
+              colwidth = 2,
+              auto = false,
+              wrap = false
+            },
+          },
         },
         fold = {
           width = 1, -- current width of the fold column
           -- 'fillchars' option values:
-          close = "", -- foldclose
-          open = "", -- foldopen
+          close = " ", -- foldclose
+          open = " ", -- foldopen
           sep = " " -- foldsep
         },
       })
