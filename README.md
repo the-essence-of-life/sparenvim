@@ -36,6 +36,7 @@ git clone --depth=1 https://gitee.com/the-essence-of-life/spare/ ~/.config/nvim/
 + git clone --depth=1 https://github.com/the-essence-of-life/spare/ ~/.config/nvim/
 
 ```
+
 </details>
 
 
@@ -48,6 +49,7 @@ git clone --depth=1 https://gitee.com/the-essence-of-life/spare/ ~/.config/nvim/
 
 <details>
 <summary>Copy these code on `~/.config/nvim/lua/user/config.lua`.</summary>
+
 ```lua
 return {
   options = {
@@ -67,10 +69,12 @@ return {
   },
 }
 ```
+
 </details>
 
 <details>
 <summary>If you want to set new options,you can add `set = {}`.It can auto merge.</summary>
+
 ```diff
 return {
   options = {
@@ -94,10 +98,12 @@ return {
   },
 }
 ```
+
 </details>
 
 <details>
 <summary>If you want to use your script,add `modules = {}` in your table.</summary>
+
 ```diff
 return {
   options = {
@@ -121,10 +127,12 @@ return {
   },
 }
 ```
+
 </details>
 
 <details>
 <summary>If you want to change your plugins path,add `plugin.set = { spec = { import = {} } }` can do it.</summary>
+
 ```diff
 return {
   options = {
@@ -149,4 +157,5 @@ return {
   },
 }
 ```
+
 </details>
