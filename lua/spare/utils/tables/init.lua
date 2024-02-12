@@ -34,6 +34,12 @@ local Config = {
       --   end
       -- },
     },
+    health = {
+      check = {
+        basic = true,
+        lsp = true,
+      },
+    },
     plugin = {
       enabled = false,
       --- @type string

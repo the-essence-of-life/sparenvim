@@ -36,28 +36,31 @@ function M.check()
   if vim.fn.executable("git") == 1 then
     health.ok("git installed.    #plugins download")
   else
-    health.error("install git?", "Try to exec `<your-system-package-manager> install git` in your terminal.")
+    health.error("Install git?", "Download the binary and add it for the $PATH.")
   end
-  if vim.fn.executable("node") == 1 then
-    health.ok("node installed.    #mason dependencies")
-  else
-    health.error("install node.js?", "Try to exec `<your-system-package-manager> install nodejs` in your terminal.")
+  local de_basic = {
+    rg = "Ripgrep",
+    fd = "Find-Files",
+  }
+  for dep, name in pairs(de_basic) do
+    if vim.fn.executable(dep) == 1 then
+      health.ok(name .. " installed.    #Basic")
+    else
+      if Cfg.health.check.basic then
+        health.warn("Invaild " .. dep .. "." , "Download the binary and add it for the $PATH.")
+      end
+    end
   end
-  if vim.fn.executable("rg") == 1 then
-    health.ok("ripgrep installed.    #telescope live-grep")
-  else
-    health.warn("install ripgrep?", "Try to exec `<your-system-package-manager> install ripgrep` in your terminal.")
-  end
-  if vim.fn.executable("fd") == 1 then
-    health.ok("fd installed.    #telescope find-files")
-  else
-    health.warn("install fd?", "Try to exec `<your-system-package-manager> install fd` in your terminal.")
-  end
-  if vim.fn.executable("lua-language-server") == 1 then
-    health.ok("lua-ls installed.    #default language-server")
-  else
-    health.warn("You should install it to get the language check.",
-      "Try to exec `<your-system-package-manager> install lua-language-server` in your terminal.")
+  local de_lsp = { "node", "lua-language-server" }
+  for _, de_lsp_check in ipairs(de_lsp) do
+    if vim.fn.executable(de_lsp_check) == 1 then
+      health.ok(de_lsp_check .. " installed.    #LSP")
+    else
+      if Cfg.health.check.lsp then
+        health.warn('Invaild' .. de_lsp_check .. '? Your language server cannot run correctly.',
+          'Download the binary and add it for the $PATH.')
+      end
+    end
   end
 
   health.start("Configruation:")
