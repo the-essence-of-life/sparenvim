@@ -1,0 +1,21 @@
+return {
+  options = {
+    enabled = true,
+  },
+  keymaps = {
+    enabled = true,
+  },
+  autocmds = {
+    enabled = true,
+    lastplace = true,
+    directory = true,
+  },
++ modules = {
++   "your.module.name",
++   "test.module",
++ },
+  plugin = {
+    enabled = true,
+    mode = "plugins",
+  },
+}

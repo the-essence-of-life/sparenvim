@@ -18,6 +18,15 @@ mv ~/.local/share/nvim/ ~/.local/share/nvim.bak/
 mv ~/.local/state/nvim/ ~/.local/state/nvim.bak/
 rm -rf ~/.cache/nvim/
 ```
+<details>
+<summary>If you use config on windows</summary>
+
+```bash
+Rename-Item -Path $env:LOCALAPPDATA\nvim -NewName $env:LOCALAPPDATA\nvim.bak
+Rename-Item -Path $env:LOCALAPPDATA\nvim-data -NewName $env:LOCALAPPDATA\nvim-data.bak
+```
+
+</details>
 
 **Step2** Clone this repo,ensure that dependencies are installed correctly.
 ```bash
@@ -28,8 +37,18 @@ git clone --depth=1 https://gitee.com/the-essence-of-life/spare/ ~/.config/nvim/
 <summary>If you're github user</summary>
 
 ```diff
-- git clone --depth=1 https://gitee.com/the-essence-of-life/spare/ ~/.config/nvim/
-+ git clone --depth=1 https://github.com/the-essence-of-life/spare/ ~/.config/nvim/
+- git clone --depth=1 https://github.com/the-essence-of-life/spare/ ~/.config/nvim/
++ git clone --depth=1 https://gitee.com/the-essence-of-life/spare/ ~/.config/nvim/
+
+```
+
+</details>
+<details>
+<summary>If you use config on windows</summary>
+
+```diff
+- git clone --depth=1 https://github.com/the-essence-of-life/spare/ ~/.config/nvim/
++ git clone --depth=1 https://githuh.com/the-essence-of-life/spare/ $env:LOCALAPPDATA\nvim
 
 ```
 
@@ -70,56 +89,37 @@ return {
 
 <details>
 <summary>If you want to set new options,you can add `set = {}`.It can auto merge.</summary>
+You can click [here](#./diff/new-options.diff) to see more information.
 
-```diff
+```lua
 return {
   options = {
-    enabled = true,
-+   set = {},
+    set = {},
   },
   keymaps = {
-    enabled = true,
-+   set = {},
+    set = {},
   },
   autocmds = {
-    enabled = true,
-    lastplace = true,
-    directory = true,
-+   set = {},
+    set = {},
   },
   plugin = {
-    enabled = true,
-    mode = "plugins",
-+   set = {},
+    set = {},
   },
 }
+
 ```
 
 </details>
 
 <details>
 <summary>If you want to use your script,add `modules = {}` in your table.</summary>
+You can click [here](#./diff/modules.diff) to see more information.
 
-```diff
+```lua
 return {
-  options = {
-    enabled = true,
-  },
-  keymaps = {
-    enabled = true,
-  },
-  autocmds = {
-    enabled = true,
-    lastplace = true,
-    directory = true,
-  },
-+ modules = {
-+   "your.module.name",
-+   "test.module",
-+ },
-  plugin = {
-    enabled = true,
-    mode = "plugins",
+  modules = {
+    "your.module.name",
+    "test.module",
   },
 }
 ```
@@ -128,29 +128,17 @@ return {
 
 <details>
 <summary>If you want to change your plugins path,add `plugin.set = { spec = { import = {} } }` can do it.</summary>
+You can click [here](#./diff/plugins-path.diff) to see more information.
 
-```diff
+```lua
 return {
-  options = {
-    enabled = true,
-  },
-  keymaps = {
-    enabled = true,
-  },
-  autocmds = {
-    enabled = true,
-    lastplace = true,
-    directory = true,
-  },
   plugin = {
-    enabled = true,
-    mode = "plugins",
-+   set = {
-+     spec = {
-+       { import = "your.module.path" },
-+     },
-+   },
-  },
+    set = {
+      spec = {
+        { import = "your.module.path" },
+      },
+    },
+  }
 }
 ```
 
