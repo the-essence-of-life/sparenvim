@@ -81,7 +81,7 @@ M.keymaps = {
       }
     })
   end },
-  { "n", "<c-a>", "ggVG" },
+  { "n", "<c-a>",      "ggVG" },
   { "n", "<leader>sv", "<c-w>v" },
   { "n", "<leader>sh", "<c-w>s" },
   { "n", "<leader>sx", "<c-w>c" },
@@ -99,6 +99,13 @@ M.autocmds = {
   --     vim.fn.system("echo", "hello")
   --   end
   -- },
+}
+
+M.global = {
+  --- @type string
+  mapleader = " ",
+  --- @type string
+  maplocalleader = " "
 }
 
 M.pm_bootstraping = function()

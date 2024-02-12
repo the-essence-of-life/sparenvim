@@ -3,15 +3,10 @@ local Config = {
     options = {
       enabled = false,
       -- import = "spare.utils.tables.options",
-      --- @type tablelib
+      --- @type table
       set = require("spare.utils.tables.index").options,
-      --- @type tablelib
-      global = {
-        --- @type string
-        mapleader = " ",
-        maplocalleader = " "
-      },
-      -- global = require("spare.utils.tables.index").global_options,
+      --- @type table
+      global = require("spare.utils.tables.index").global,
     },
     keymaps = {
       enabled = false,

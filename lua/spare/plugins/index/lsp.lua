@@ -372,7 +372,6 @@ M.null_ls = function()
       null_ls.builtins.formatting.prettier,
       null_ls.builtins.formatting.prettierd,
       null_ls.builtins.formatting.black,
-      null_ls.builtins.diagnostics.markuplint,
       null_ls.builtins.code_actions.eslint_d,
       -- null_ls.builtins.code_actions.shellcheck,
       null_ls.builtins.diagnostics.shellcheck, -- shell script diagnostics
