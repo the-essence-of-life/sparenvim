@@ -63,7 +63,15 @@ git clone --depth=1 https://gitee.com/the-essence-of-life/spare/ ~/.config/nvim/
 ## 🛠 Configruation
 
 <details>
-<summary>Copy these code on `~/.config/nvim/lua/user/config.lua`.</summary>
+<summary>Basic configruation</summary>
+
+**Make a directory.**  
+
+```bash
+mkdir -p ~/.config/nvim/lua/user/
+nvim ~/.config/nvim/lua/user/config.lua
+```
+**Copy these code.**
 
 ```lua
 return {
@@ -89,7 +97,7 @@ return {
 
 <details>
 <summary>If you want to set new options,you can add `set = {}`.It can auto merge.</summary>
-You can click [here](#./diff/new-options.diff) to see more information.
+You can click [here](./diff/new-options.diff) to see more information.
 
 ```lua
 return {
@@ -113,7 +121,7 @@ return {
 
 <details>
 <summary>If you want to use your script,add `modules = {}` in your table.</summary>
-You can click [here](#./diff/modules.diff) to see more information.
+You can click [here](./diff/modules.diff) to see more information.
 
 ```lua
 return {
@@ -128,7 +136,7 @@ return {
 
 <details>
 <summary>If you want to change your plugins path,add `plugin.set = { spec = { import = {} } }` can do it.</summary>
-You can click [here](#./diff/plugins-path.diff) to see more information.
+You can click [here](./diff/plugins-path.diff) to see more information.
 
 ```lua
 return {
