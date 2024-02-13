@@ -30,11 +30,11 @@ Rename-Item -Path $env:LOCALAPPDATA\nvim-data -NewName $env:LOCALAPPDATA\nvim-da
 
 **Step2** Clone this repo,ensure that dependencies are installed correctly.
 ```bash
-git clone --depth=1 https://gitee.com/the-essence-of-life/spare/ ~/.config/nvim/
+git clone --depth=1 https://github.com/the-essence-of-life/spare/ ~/.config/nvim/
 
 ```
 <details>
-<summary>If you're github user</summary>
+<summary>If you're gitee user</summary>
 
 ```diff
 - git clone --depth=1 https://github.com/the-essence-of-life/spare/ ~/.config/nvim/
