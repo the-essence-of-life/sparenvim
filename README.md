@@ -97,6 +97,7 @@ return {
 
 <details>
 <summary>If you want to set new options,you can add `set = {}`.It can auto merge.</summary>
+
 You can click [here](./diff/new-options.diff) to see more information.
 
 ```lua
@@ -121,6 +122,7 @@ return {
 
 <details>
 <summary>If you want to use your script,add `modules = {}` in your table.</summary>
+
 You can click [here](./diff/modules.diff) to see more information.
 
 ```lua
@@ -136,6 +138,7 @@ return {
 
 <details>
 <summary>If you want to change your plugins path,add `plugin.set = { spec = { import = {} } }` can do it.</summary>
+
 You can click [here](./diff/plugins-path.diff) to see more information.
 
 ```lua
