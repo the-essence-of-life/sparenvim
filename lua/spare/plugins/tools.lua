@@ -134,7 +134,7 @@ return {
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
-    event = "StdinReadPost",
+    event = "TextChanged",
     config = function()
       require('ts_context_commentstring').setup {
         enable_autocmd = false,
@@ -153,7 +153,7 @@ return {
     "iamcco/markdown-preview.nvim",
     -- event = "BufEnter *.md",
     keys = {
-      { "<leader>mp", "<cmd>MarkdownPreview<cr>", mode = "n", ft = 'markdown' }
+      { "<leader>mp", "<plug>MarkdownPreview", mode = "n", ft = 'markdown' }
     },
     -- ft = "md",
     -- ft = "markdown",

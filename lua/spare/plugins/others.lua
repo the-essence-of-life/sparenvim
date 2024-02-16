@@ -24,7 +24,7 @@ return {
   },
   {
     "folke/persistence.nvim",
-    event = "StdinReadPost",
+    event = "TextChanged",
     -- module = "persistence",
     opts = Index.persistence
   },
@@ -40,7 +40,7 @@ return {
   },
   {
     "ThePrimeagen/harpoon",
-    event = "StdinReadPost",
+    lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
     },

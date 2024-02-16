@@ -128,9 +128,8 @@ return {
           priority = 2,
         },
         options = {
-          border = 'both',
+          border = 'top',
           indent_at_cursor = true,
-          try_as_border = false,
         },
         symbol = '│',
       })
@@ -141,12 +140,13 @@ return {
     event = "VimEnter",
     opts = { enable_match = false, kw = { "lsp", "treesitter" } },
     config = function()
-      local config = require("spare.plugins.index.alpha").config
+      local config = require("spare.plugins.index.dashboard").config
       require("alpha").setup(config)
     end,
   },
   {
     'nvim-lualine/lualine.nvim',
+    lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('lualine').setup {
@@ -190,5 +190,22 @@ return {
         extensions = {}
       }
     end
+  },
+  {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        -- configuration goes here, for example:
+        relculright = true,
+        ft_ignore = { "alpha" },
+        segments = {
+          { text = { builtin.lnumfunc }, auto = true },
+          -- { text = { builtin.foldfunc }, bt_ignore = "alpha" },
+          { sign = { name = { "Diagnostic" }, auto = false, wrap = true }, },
+          { sign = { name = { ".*" }, auto = false }, },
+        },
+      })
+    end,
   },
 }

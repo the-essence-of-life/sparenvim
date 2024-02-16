@@ -47,7 +47,7 @@ function M.check()
       health.ok(name .. " installed.    #Basic")
     else
       if Cfg.health.check.basic then
-        health.warn("Invaild " .. dep .. "." , "Download the binary and add it for the $PATH.")
+        health.warn("Invaild " .. dep .. ".", "Download the binary and add it for the $PATH.")
       end
     end
   end
