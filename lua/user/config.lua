@@ -1,5 +1,4 @@
 return {
-  test = true,
   options = {
     enabled = true,
     set = {},
@@ -13,7 +12,6 @@ return {
     lastplace = true,
     directory = true,
   },
-  modules = {},
   plugin = {
     enabled = true,
     mode = "plugins",

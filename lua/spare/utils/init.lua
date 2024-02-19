@@ -1,69 +1,49 @@
---TODO:Require `spare.utils.index.lua` to use functions,tables provide configruation.
+---@class M
+---@module 'spare.utils.index'
 local Index = require("spare.utils.index")
+---@module 'spare.utils.builtin'
+local builtin = require("spare.utils.builtin")
 
+---@type function
 local echo = function(str)
   vim.cmd("redraw")
   vim.api.nvim_echo({ { str, "Bold" } }, true, {})
 end
 local M = {}
+---@type function
 function M.setup(config)
   local Cfg = require("spare.utils.tables"):set(config):get()
   if Cfg.options then
     if Cfg.options.enabled then
-      if type(Cfg.options.set) == "table" then
-        for k, v in pairs(Cfg.options.set) do
-          vim.opt[k] = v
-        end
-      end
-      if type(Cfg.options.global) == "table" then
-        for k, v in pairs(Cfg.options.global) do
-          vim.g[k] = v
-        end
-      end
+      builtin.options(Cfg.options.set, "options")
+      builtin.options(Cfg.options.global, "global_var")
     end
   end
   if Cfg.keymaps then
     if Cfg.keymaps.enabled then
-      if type(Cfg.keymaps.set.basic) == "table" then
-        for _, mappings in ipairs(Cfg.keymaps.set.basic) do
-          local opts = mappings.opts
-          local mode = mappings[1]
-          local keys = mappings[2]
-          local exec = mappings[3]
-          local desc = mappings[4] or "<none>"
-          local nowait = mappings.nowait or false
-          if opts then
-            vim.keymap.set(mode, keys, exec, {opts, desc})
-          end
-          vim.keymap.set(mode, keys, exec, {
-            desc = desc,
-            nowait = nowait,
-            expr = false,
-          })
-        end
-      end
-      if type(Cfg.keymaps.set.lsp) == "table" then
-        for _, lsp_mapping in ipairs(Cfg.keymaps.set.lsp) do
-          vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-            callback = function()
-              local mode = lsp_mapping[1]
-              local keys = lsp_mapping[2]
-              local exec = lsp_mapping[3]
-              local desc = lsp_mapping[4] or "<none>"
-              local nowait = lsp_mapping.nowait
-              local silent = lsp_mapping.silent
-              local expr = lsp_mapping.expr
-              vim.keymap.set(mode, keys, exec, {
-                desc = desc,
-                nowait = nowait,
-                expr = expr or false,
-                silent = silent or false,
-              })
-            end
-          })
-        end
-      end
+      builtin.keymaps(Cfg.keymaps.set.basic)
+      -- if type(Cfg.keymaps.set.lsp) == "table" then
+      --   for _, lsp_mapping in ipairs(Cfg.keymaps.set.lsp) do
+      --     vim.api.nvim_create_autocmd("LspAttach", {
+      --       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      --       callback = function()
+      --         local mode = lsp_mapping[1]
+      --         local keys = lsp_mapping[2]
+      --         local exec = lsp_mapping[3]
+      --         local desc = lsp_mapping[4] or "<none>"
+      --         local nowait = lsp_mapping.nowait
+      --         local silent = lsp_mapping.silent
+      --         local expr = lsp_mapping.expr
+      --         vim.keymap.set(mode, keys, exec, {
+      --           desc = desc,
+      --           nowait = nowait,
+      --           expr = expr or false,
+      --           silent = silent or false,
+      --         })
+      --       end
+      --     })
+      --   end
+      -- end
     end
   end
   if Cfg.autocmds then
@@ -103,8 +83,7 @@ function M.setup(config)
     end
   end
   if type(Cfg.modules) == "table" then
-    local modules = Cfg.modules
-    for _, module in ipairs(modules) do
+    for _, module in ipairs(Cfg.modules) do
       local ok = pcall(require, module)
       if ok then
         require(module)
@@ -126,8 +105,11 @@ function M.setup(config)
         })
       end
       vim.opt.rtp:prepend(lazypath)
+      ---@module 'lazy'
+      ---@type function
       require("lazy").setup(Cfg.plugin.set)
     elseif type(Cfg.plugin.set) == "function" then
+      ---@type function
       Cfg.plugin.set()
     elseif not Cfg.plugin.set then
       return
@@ -136,6 +118,7 @@ function M.setup(config)
       local color = color or Cfg.plugin.colorscheme
       vim.cmd("colorscheme " .. color .. "")
     elseif type(Cfg.plugin.colorscheme) == "function" then
+      ---@type function
       Cfg.plugin.colorscheme()
     end
   end
