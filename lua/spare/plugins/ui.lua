@@ -7,7 +7,7 @@ return {
     priority = 1000,
     name = "catppuccin",
     config = function()
-      Index.catppuccin()
+      -- Index.catppuccin()
       local color = color or "catppuccin"
       vim.cmd.color(color)
     end,
