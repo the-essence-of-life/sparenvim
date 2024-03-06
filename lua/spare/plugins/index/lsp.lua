@@ -75,7 +75,7 @@ end
 
 M.lsp_server = function()
   -- require("lspconfig").lua_ls.setup({})
-  -- require("lspconfig").bashls.setup({})
+  require("lspconfig").bashls.setup({})
   -- require("lspconfig").pyright.setup({})
   -- require("lspconfig").jsonls.setup({})
   -- require("lspconfig").clangd.setup({})

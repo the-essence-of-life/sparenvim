@@ -4,3 +4,4 @@ test-plugins.lua
 simple
 test*
 *.jar
+*.bak
