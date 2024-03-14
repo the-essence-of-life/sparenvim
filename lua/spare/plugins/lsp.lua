@@ -7,10 +7,9 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    -- cond = function()
-    --   -- vim.notify("You can use :Mason to install the lsp server.", "Info")
-    --   return true
-    -- end,
+    cond = function ()
+      return vim.fn.executable("npm") == 1
+    end,
     build = ":MasonUpdate", -- :MasonUpdate updates registry contents
     dependencies = "neovim/nvim-lspconfig",
     opts = Index.mason

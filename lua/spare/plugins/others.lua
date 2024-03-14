@@ -3,6 +3,9 @@ local Index = require("spare.plugins.index.others")
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    cond = function ()
+      return vim.fn.executable("gcc") == 1
+    end,
     event = "UIEnter",
     dependencies = {
       "HiPhish/nvim-ts-rainbow2",

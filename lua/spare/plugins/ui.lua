@@ -5,6 +5,9 @@ return {
     "catppuccin/nvim",
     lazy = false,
     priority = 1000,
+    cond = function ()
+      return vim.opt.termguicolors
+    end,
     name = "catppuccin",
     config = function()
       Index.catppuccin()
@@ -91,12 +94,6 @@ return {
   --     vim.cmd("colorscheme tokyonight-storm")
   --   end
   -- },
-  {
-    'linrongbin16/lsp-progress.nvim',
-    config = function()
-      require('lsp-progress').setup()
-    end
-  },
   {
     "akinsho/bufferline.nvim",
     config = function()

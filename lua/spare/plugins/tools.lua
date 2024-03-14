@@ -58,6 +58,9 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    cond = function ()
+      return vim.fn.executable("git") == 1
+    end,
     event = "BufReadPre",
     config = true,
   },
@@ -151,6 +154,9 @@ return {
   },
   {
     "iamcco/markdown-preview.nvim",
+    cond = function ()
+      return vim.fn.executable("npm") == 1
+    end,
     -- event = "BufEnter *.md",
     keys = {
       { "<leader>mp", "<plug>MarkdownPreview", mode = "n", ft = 'markdown' }

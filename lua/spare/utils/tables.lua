@@ -8,7 +8,6 @@ local Config = {
       --- @type table
       set = Index.options,
       --- @type table
-      global = Index.global,
     },
     keymaps = {
       enabled = false,
@@ -49,7 +48,10 @@ local Config = {
       --- @type boolean?
       auto_clean_plugins = true,
       --- @type table
-      set = Index.lazy
+      set = Index.lazy,
+      -- disabled = {
+      --   which_key = true
+      -- },
       -- user_plugins = "user.plugin",
       -- colorscheme = "material",
     },

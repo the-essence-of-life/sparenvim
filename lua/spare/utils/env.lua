@@ -10,7 +10,7 @@ _G.spare = {
   user = {
     plugins = Root .. "/user/plugins",
     root = Root .. "/user",
-    config_index = Root .. "/spare/user/index.lua",
+    config = Root .. "/spare/user/config.lua",
   },
   secret = {
     [[

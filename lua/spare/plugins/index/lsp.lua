@@ -92,8 +92,13 @@ M.lsp_settings = function()
   vim.diagnostic.config({
     signs = true,
     underline = true,
-    update_in_insert = false,
+    update_in_insert = true,
     severity_sort = true,
+    float = {
+      focused = true,
+      source = "always",
+      border = "rounded",
+    },
   })
   local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
   for type, icon in pairs(signs) do
@@ -369,12 +374,12 @@ M.null_ls = function()
   null_ls.setup({
     sources = {
       -- null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.prettier,
-      null_ls.builtins.formatting.prettierd,
-      null_ls.builtins.formatting.black,
-      null_ls.builtins.code_actions.eslint_d,
+      -- null_ls.builtins.formatting.prettier,
+      -- null_ls.builtins.formatting.prettierd,
+      -- null_ls.builtins.formatting.black,
+      -- null_ls.builtins.code_actions.eslint_d,
       -- null_ls.builtins.code_actions.shellcheck,
-      null_ls.builtins.diagnostics.shellcheck, -- shell script diagnostics
+      -- null_ls.builtins.diagnostics.shellcheck, -- shell script diagnostics
       -- null_ls.builtins.formatting.shellharden, -- shell script diagnostics
       -- null_ls.builtins.formatting.shfmt, -- shell script diagnostics
       -- null_ls.builtins.completion.luasnip,

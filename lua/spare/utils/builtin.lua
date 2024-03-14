@@ -1,25 +1,9 @@
 local M = {}
 
-M.options = function(tables, tags)
-  if tags == "options" then
-    if type(tables) == "table" then
-      for k, v in pairs(tables) do
-        vim.opt[k] = v
-      end
-    end
-  end
-  if tags == "global_options" then
-    if type(tables) == "table" then
-      for k, v in pairs(tables) do
-        vim.go[k] = v
-      end
-    end
-  end
-  if tags == "global_var" then
-    if type(tables) == "table" then
-      for k, v in pairs(tables) do
-        vim.g[k] = v
-      end
+M.options = function(tables)
+  for table, tags in pairs(tables) do
+    for settings, config in pairs(tags) do
+      vim[table][settings] = config
     end
   end
 end
