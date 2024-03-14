@@ -7,17 +7,26 @@ if vim.loop.fs_stat(user_config) then
   end
 else
   vim.opt.termguicolors = true
+<<<<<<< HEAD
   vim.cmd("colorscheme habamax")
+=======
+  vim.cmd("colorscheme evening")
+>>>>>>> ae361800f47b27cfc3e7721b25cc9ee96a337e9c
   local hl_gruop = {
     healthError = "red",
     healthWarning = "yellow",
     healthSuccess = "green",
     ModeMsg = "white",
+<<<<<<< HEAD
     MoreMsg = "#ffcb74",
+=======
+    MoreMsg = "white",
+>>>>>>> ae361800f47b27cfc3e7721b25cc9ee96a337e9c
   }
   for hl_name, color in pairs(hl_gruop) do
     vim.api.nvim_set_hl(0, hl_name, { fg = color })
   end
+<<<<<<< HEAD
   vim.ui.select({ 'Checkhealth', 'Default', 'Customize' }, {
     prompt = 'Getting Started:',
 }, function(choice)
@@ -52,4 +61,17 @@ end)
   -- }, true, {})
   -- vim.fn.getchar()
   -- vim.cmd("checkhealth spare.utils")
+=======
+  vim.api.nvim_echo({
+    {
+      "Welcome use spare!\n",
+    },
+    {
+      "Press any key to start checkhealth.\n",
+      "MoreMsg"
+    },
+  }, true, {})
+  vim.fn.getchar()
+  vim.cmd("checkhealth spare.utils")
+>>>>>>> ae361800f47b27cfc3e7721b25cc9ee96a337e9c
 end

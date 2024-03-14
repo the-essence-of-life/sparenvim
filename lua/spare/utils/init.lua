@@ -15,8 +15,13 @@ function M.setup(config)
   local Cfg = require("spare.utils.tables"):set(config):get()
   if Cfg.options then
     if Cfg.options.enabled then
+<<<<<<< HEAD
       builtin.options(Cfg.options.set)
       -- builtin.options(Cfg.options.global, "global_var")
+=======
+      builtin.options(Cfg.options.set, "options")
+      builtin.options(Cfg.options.global, "global_var")
+>>>>>>> ae361800f47b27cfc3e7721b25cc9ee96a337e9c
     end
   end
   if Cfg.keymaps then

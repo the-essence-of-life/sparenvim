@@ -8,6 +8,10 @@ local Config = {
       --- @type table
       set = Index.options,
       --- @type table
+<<<<<<< HEAD
+=======
+      global = Index.global,
+>>>>>>> ae361800f47b27cfc3e7721b25cc9ee96a337e9c
     },
     keymaps = {
       enabled = false,
@@ -48,10 +52,14 @@ local Config = {
       --- @type boolean?
       auto_clean_plugins = true,
       --- @type table
+<<<<<<< HEAD
       set = Index.lazy,
       -- disabled = {
       --   which_key = true
       -- },
+=======
+      set = Index.lazy
+>>>>>>> ae361800f47b27cfc3e7721b25cc9ee96a337e9c
       -- user_plugins = "user.plugin",
       -- colorscheme = "material",
     },

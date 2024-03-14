@@ -1,6 +1,10 @@
 local M = {}
 
+<<<<<<< HEAD
 M.package_setup = function(tbl)
+=======
+M.ps = function(tbl)
+>>>>>>> ae361800f47b27cfc3e7721b25cc9ee96a337e9c
   if type(tbl) == "table" then
     for key, value in pairs(tbl) do
       require(key).setup(value)
