@@ -130,6 +130,9 @@ M.lazy = {
       enabled = false
     },
   },
+  diff = {
+    cmd = "diffview.nvim"
+  },
   git = {
     url_format = "https://github.com/%s.git",
   },

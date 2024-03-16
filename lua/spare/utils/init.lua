@@ -21,7 +21,7 @@ function M.setup(config)
   end
   if Cfg.keymaps then
     if Cfg.keymaps.enabled then
-      builtin.keymaps(Cfg.keymaps.set.basic)
+      builtin.keymaps(Cfg.keymaps.set)
       -- if type(Cfg.keymaps.set.lsp) == "table" then
       --   for _, lsp_mapping in ipairs(Cfg.keymaps.set.lsp) do
       --     vim.api.nvim_create_autocmd("LspAttach", {

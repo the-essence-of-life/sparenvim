@@ -115,7 +115,10 @@ function M.check()
     for _, modules in ipairs(require_modules) do
       local ok = pcall(require, modules)
       if not ok then
-        health.error("Modules `" .. modules .. "` found some errors!")
+        local errors = vim.api.nvim_err_writeln("Error loading file: " .. modules .. "\n")
+        -- local trace = vim.notify("Module `" .. modules .. "` has some errors!", "TRACE", {})
+        health.error(errors)
+        -- health.error("Modules `" .. modules .. "` found some errors!")
       else
         health.ok("Modules `" .. modules .. "` loaded correctly!")
       end
