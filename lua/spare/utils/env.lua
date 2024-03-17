@@ -29,6 +29,4 @@ _G.spare = {
     Have a nice day :)
     ]],
   },
-  funs = require("spare.utils.funs"),
-  process = require("spare.utils.process")
 }

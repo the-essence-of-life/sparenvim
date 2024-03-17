@@ -1,49 +1,71 @@
----@class M
----@module 'spare.utils.index'
 local Index = require("spare.utils.index")
----@module 'spare.utils.builtin'
 local builtin = require("spare.utils.builtin")
-
----@type function
 local echo = function(str)
   vim.cmd("redraw")
   vim.api.nvim_echo({ { str, "Bold" } }, true, {})
 end
+
+---@class SpareConfig: SpareOptions
 local M = {}
----@type function
-function M.setup(config)
-  local Cfg = require("spare.utils.tables"):set(config):get()
+
+---@class SpareOptions
+local defaults = {
+  options = {
+    enabled = false,
+    -- import = "spare.utils.tables.options",
+    --- @type table
+    set = Index.options,
+    --- @type table
+  },
+  keymaps = {
+    enabled = false,
+    --- @type table
+    set = Index.keymaps,
+    -- { mode = "n", keys = "<c-c>", exec = "<cmd>wq<cr>" },
+    -- n = {},
+    -- v = {},
+  },
+  autocmds = {
+    enabled = false,
+    --- @type boolean?
+    lastplace = false,
+    --- @type boolean?
+    directory = false,
+    --- @type boolean?
+    based_term_support = true,
+  },
+  health = {
+    check = {
+      basic = true,
+      lsp = true,
+    },
+  },
+  plugin = {
+    enabled = false,
+    --- @type string
+    mode = "plugin-manager",
+    --- @type boolean?
+    auto_clean_plugins = true,
+    --- @type table
+    set = Index.lazy,
+    -- disabled = {
+    --   which_key = true
+    -- },
+    -- user_plugins = "user.plugin",
+    -- colorscheme = "material",
+  },
+}
+
+function M.setup(opts)
+  Cfg = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
   if Cfg.options then
     if Cfg.options.enabled then
       builtin.options(Cfg.options.set)
-      -- builtin.options(Cfg.options.global, "global_var")
     end
   end
   if Cfg.keymaps then
     if Cfg.keymaps.enabled then
       builtin.keymaps(Cfg.keymaps.set)
-      -- if type(Cfg.keymaps.set.lsp) == "table" then
-      --   for _, lsp_mapping in ipairs(Cfg.keymaps.set.lsp) do
-      --     vim.api.nvim_create_autocmd("LspAttach", {
-      --       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-      --       callback = function()
-      --         local mode = lsp_mapping[1]
-      --         local keys = lsp_mapping[2]
-      --         local exec = lsp_mapping[3]
-      --         local desc = lsp_mapping[4] or "<none>"
-      --         local nowait = lsp_mapping.nowait
-      --         local silent = lsp_mapping.silent
-      --         local expr = lsp_mapping.expr
-      --         vim.keymap.set(mode, keys, exec, {
-      --           desc = desc,
-      --           nowait = nowait,
-      --           expr = expr or false,
-      --           silent = silent or false,
-      --         })
-      --       end
-      --     })
-      --   end
-      -- end
     end
   end
   if Cfg.autocmds then
@@ -57,28 +79,8 @@ function M.setup(config)
       if Cfg.autocmds.based_term_support then
         Index.terminal()
       end
-      if type(Cfg.autocmds.set) == "table" then
-        for _, autocmds in ipairs(Cfg.autocmds.set) do
-          local first = autocmds[1]
-          local second = autocmds[2]
-          local third = autocmds[3]
-          local fourth = autocmds[4]
-          if type(third) == "string" then
-            vim.api.nvim_create_autocmd(first or "VimEnter", {
-              pattern = second,
-              desc = fourth,
-              command = third
-            })
-          elseif type(third) == "function" then
-            vim.api.nvim_create_autocmd(first or "VimEnter", {
-              pattern = second,
-              desc = fourth,
-              callback = function()
-                third()
-              end
-            })
-          end
-        end
+      if type(Cfg.autocmds.set) == "function" then
+        Cfg.autocmds.set()
       end
     end
   end
@@ -112,7 +114,7 @@ function M.setup(config)
       ---@type function
       Cfg.plugin.set()
     elseif not Cfg.plugin.set then
-      return
+      return {}
     end
     if type(Cfg.plugin.colorscheme) == "string" then
       local color = color or Cfg.plugin.colorscheme
@@ -123,5 +125,14 @@ function M.setup(config)
     end
   end
 end
+
+setmetatable(M, {
+  __index = function(_, key)
+    if Cfg == nil then
+      return vim.deepcopy(defaults)[key]
+    end
+    return Cfg[key]
+  end
+})
 
 return M

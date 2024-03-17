@@ -106,17 +106,6 @@ M.keymaps = {
     { "n", "<leader>wl", "<c-w>L" },
 }
 
----@type table <string>
-M.autocmds = {
-  -- {
-  --   "VimEnter", "*", function()
-  --     print("hello")
-  --     print("hello2")
-  --     print("hello3")
-  --   end
-  -- },
-}
-
 M.lazy = {
   spec = {
     {

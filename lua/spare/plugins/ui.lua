@@ -5,7 +5,7 @@ return {
     "catppuccin/nvim",
     lazy = false,
     priority = 1000,
-    cond = function ()
+    cond = function()
       return vim.opt.termguicolors
     end,
     name = "catppuccin",
@@ -96,7 +96,7 @@ return {
   -- },
   {
     "akinsho/bufferline.nvim",
-    event = {"BufRead", "BufReadPre" },
+    event = { "BufRead", "BufReadPre", "BufNewFile" },
     config = function()
       require("bufferline").setup({
         options = {
@@ -197,7 +197,7 @@ return {
         relculright = true,
         ft_ignore = { "alpha" },
         segments = {
-          { text = { builtin.lnumfunc }, auto = true },
+          { text = { builtin.lnumfunc },                                   auto = true },
           -- { text = { builtin.foldfunc }, bt_ignore = "alpha" },
           { sign = { name = { "Diagnostic" }, auto = false, wrap = true }, },
           { sign = { name = { ".*" }, auto = false }, },
