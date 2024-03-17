@@ -7,6 +7,7 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    event = { "BufRead", "BufAdd", "BufNewFile" },
     cond = function ()
       return vim.fn.executable("npm") == 1
     end,

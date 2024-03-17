@@ -2,6 +2,7 @@ lazy-lock.json
 lazy-lock*
 test-plugins.lua
 simple
+user*
 test*
 *.jar
 *.bak

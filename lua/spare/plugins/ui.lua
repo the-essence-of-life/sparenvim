@@ -96,6 +96,7 @@ return {
   -- },
   {
     "akinsho/bufferline.nvim",
+    event = {"BufRead", "BufReadPre" },
     config = function()
       require("bufferline").setup({
         options = {
@@ -113,7 +114,6 @@ return {
   },
   {
     'echasnovski/mini.indentscope',
-    opts = { enable_match = false, kw = { "lazy" } },
     dependencies = {
       'echasnovski/mini.nvim'
     },
@@ -135,7 +135,6 @@ return {
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
-    opts = { enable_match = false, kw = { "lsp", "treesitter" } },
     config = function()
       local config = require("spare.plugins.index.dashboard").config
       require("alpha").setup(config)
@@ -190,6 +189,7 @@ return {
   },
   {
     "luukvbaal/statuscol.nvim",
+    event = "BufRead",
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({

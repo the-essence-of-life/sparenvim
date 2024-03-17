@@ -130,6 +130,9 @@ M.lazy = {
       enabled = false
     },
   },
+  defaults = {
+    lazy = true
+  },
   diff = {
     cmd = "diffview.nvim"
   },

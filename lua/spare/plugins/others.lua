@@ -3,12 +3,11 @@ local Index = require("spare.plugins.index.others")
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    cond = function ()
+    cond = function()
       return vim.fn.executable("gcc") == 1
     end,
-    event = "UIEnter",
+    event = "BufRead",
     dependencies = {
-      "HiPhish/nvim-ts-rainbow2",
       "windwp/nvim-ts-autotag",
     },
     build = function()
@@ -27,7 +26,7 @@ return {
   },
   {
     "folke/persistence.nvim",
-    event = "TextChanged",
+    event = "BufRead",
     -- module = "persistence",
     opts = Index.persistence
   },
@@ -42,13 +41,34 @@ return {
     opts = Index.dressing
   },
   {
-    "ThePrimeagen/harpoon",
-    lazy = true,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    "HiPhish/rainbow-delimiters.nvim",
+    event ="BufRead",
     config = function()
-      Index.harpoon()
-    end,
+      local rainbow_delimiters = require 'rainbow-delimiters'
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+          vim = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        priority = {
+          [''] = 110,
+          lua = 210,
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      }
+    end
   },
 }
