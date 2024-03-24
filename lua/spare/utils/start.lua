@@ -1,7 +1,7 @@
 local user_config = vim.fn.stdpath("config") .. "/lua/user/config.lua"
 if vim.loop.fs_stat(user_config) then
   require("spare.utils.env")
-  local options = require("user.config")
+  local options = require("user.config") or require("user") or require("user.config").default
   if type(options) == "table" then
     require("spare.utils").setup(options)
   end
@@ -19,36 +19,28 @@ else
   end
   vim.ui.select({ 'Checkhealth', 'Default', 'Customize' }, {
     prompt = 'Getting Started:',
-}, function(choice)
-  if choice == "Checkhealth" then
-    vim.cmd("checkhealth spare.utils")
-  elseif choice == "Default" then
-    local default_config = vim.fn.stdpath("config") .. "/lua/spare/utils/default.txt"
-    local user_config = vim.fn.stdpath("config") .. "/lua/user/config.lua"
-    vim.fn.system({"cp", default_config, user_config})
-    vim.api.nvim_echo({
-      {
-        "\nPress ENTER to reload neovim.",
-        "MoreMsg"
-      }
-    }, true, {})
-    vim.fn.getchar()
-    vim.cmd("q")
-  elseif choice == "Customize" then
-    local config = vim.fn.stdpath("config") .. "/lua/user/config.lua"
-    vim.cmd.edit { config }
-  end
-end)
-
-  -- vim.api.nvim_echo({
-  --   {
-  --     "Welcome use spare!\n",
-  --   },
-  --   {
-  --     "Press any key to start checkhealth.\n",
-  --     "MoreMsg"
-  --   },
-  -- }, true, {})
-  -- vim.fn.getchar()
-  -- vim.cmd("checkhealth spare.utils")
+  }, function(choice)
+    if choice == "Checkhealth" then
+      vim.cmd("checkhealth spare.utils")
+    elseif choice == "Default" then
+      local default_config = vim.fn.stdpath("config") .. "/lua/spare/utils/default.txt"
+      local user = vim.fn.stdpath("config") .. "/lua/user/config.lua"
+      if vim.fn.has("win") == 1 then
+        vim.fn.system({ "Move-Item", "-Path", default_config, "-Destination", user })
+      else
+        vim.fn.system({ "cp", default_config, user })
+      end
+      vim.api.nvim_echo({
+        {
+          "\nPress ENTER to reload neovim.",
+          "MoreMsg"
+        }
+      }, true, {})
+      vim.fn.getchar()
+      vim.cmd("q")
+    elseif choice == "Customize" then
+      local config = vim.fn.stdpath("config") .. "/lua/user/config.lua"
+      vim.cmd.edit { config }
+    end
+  end)
 end

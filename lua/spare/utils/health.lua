@@ -1,5 +1,3 @@
-local Cfg = require("spare.utils.tables"):set(config):get()
-
 local health = {
   start = vim.health.start or vim.health.report_start,
   info = vim.health.info or vim.health.report_info,
@@ -9,6 +7,27 @@ local health = {
 }
 
 local M = {}
+
+local function check_valid(settings)
+  for key in pairs(settings) do
+    if not vim.tbl_contains(M.valid, key) then
+      health.warn("Invalid key: <" .. key .. "> (keycheck)")
+    end
+  end
+end
+
+M.valid = {
+  1,
+  "set",
+  "enabled",
+  "lastplace",
+  "directory",
+  "auto_clean_plugins",
+  "colorscheme",
+  "mode",
+  "check",
+  "based_term_support",
+}
 
 function M.check()
   -- logo
@@ -66,46 +85,26 @@ function M.check()
   health.start("Configruation:")
   health.info("Tips:use `set = {}` can load the neovim api.")
   local configruation = vim.fn.stdpath("config") .. "/lua/user/config.lua"
+  local list = function()
+    health.info("Commonly api: " .. table.concat(M.valid, ", "))
+  end
   if vim.loop.fs_stat(configruation) then
-    local options = Cfg.options
-    if options.enabled == false then
-      health.info("You can use `options = { enabled = true }` to set options.")
-    end
-    if options.set == nil then
-      health.info("You can use `options = { set = {} }` to set options.")
-    end
-    local keymaps = Cfg.keymaps
-    if keymaps.enabled == false then
-      health.info("You can use `keymaps = { enabled = true }` to set keymaps.")
-    end
-    if keymaps.set == nil then
-      health.info("You can use `keymaps = { set = {} }` to set keymaps.")
-    end
-    local autocmds = Cfg.autocmds
-    if autocmds.enabled == false then
-      health.info("You can use `autocmds = { enabled = true }` to set autocmds.")
-    end
-    if autocmds.set == nil then
-      health.info("You can use `autocmds = { set = {} }` to set autocmds.")
-    end
-    local plugins = Cfg.plugin
-    if plugins.enabled == false then
-      health.info("You can use `plugin = { enabled = true }` to install plugins.")
-    end
-    -- for _,check in pairs(Cfg.options) do
-    --   M.set_options(check)
-    -- end
     local user_config = vim.fn.stdpath("config") .. "/lua/user/"
     if vim.loop.fs_stat(user_config) then
-      health.ok("user config defind.")
-      health.info("All configruations are set,options always set.")
+      health.ok("Defind `config.lua`.")
       health.info("You can check https://github.com/the-essence-of-life/spare for check more information.")
       health.info("You can use `:checkhealth spare.utils` to open it again.")
+      list()
     end
   else
     health.start("Error:")
     health.error("Config not found!",
       "You should create a user config in `~/.config/nvim/lua/user/config.lua`.Use `mkdir -p ~/.config/nvim/lua/user/ && touch config.lua` to create it.")
+    list()
+  end
+
+  for _, check in pairs(Cfg) do
+    check_valid(check)
   end
 
   local user_modules = Cfg.modules

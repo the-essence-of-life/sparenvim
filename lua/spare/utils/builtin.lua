@@ -10,20 +10,38 @@ end
 
 M.keymaps = function(tables)
   if type(tables) == "table" then
-    for _, lsp_mapping in ipairs(tables) do
-      local mode = lsp_mapping[1]
-      local keys = lsp_mapping[2]
-      local exec = lsp_mapping[3]
-      local desc = lsp_mapping[4] or "<none>"
-      local nowait = lsp_mapping.nowait
-      local silent = lsp_mapping.silent
-      local expr = lsp_mapping.expr
-      vim.keymap.set(mode, keys, exec, {
-        desc = desc,
-        nowait = nowait,
-        expr = expr or false,
-        silent = silent or false,
-      })
+    for mode, mode_mapping in pairs(tables) do
+      for mappings, settings in pairs(mode_mapping) do
+        if type(settings) == 'table' then
+          local keys_mode = mode
+          local keys = settings.remap or mappings
+          local exec = settings[1]
+          local pattern = settings.pattern or nil
+          local desc = settings.desc or "<none>"
+          local nowait = settings.nowait or false
+          local silent = settings.silent or false
+          local expr = settings.expr or false
+          vim.keymap.set(keys_mode, keys, exec, {
+            desc = desc,
+            nowait = nowait,
+            expr = expr,
+            silent = silent,
+          })
+          if type(pattern) == 'string' and not nil then
+            vim.api.nvim_create_autocmd("BufRead", {
+              pattern = pattern,
+              callback = function()
+                vim.keymap.set(keys_mode, keys, exec, {
+                  desc = desc,
+                  nowait = nowait,
+                  expr = expr,
+                  silent = silent,
+                })
+              end
+            })
+          end
+        end
+      end
     end
   end
 end

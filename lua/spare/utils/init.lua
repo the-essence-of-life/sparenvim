@@ -46,13 +46,10 @@ local defaults = {
     mode = "plugin-manager",
     --- @type boolean?
     auto_clean_plugins = true,
+    --- @type string?
+    colorscheme = "catppuccin",
     --- @type table
     set = Index.lazy,
-    -- disabled = {
-    --   which_key = true
-    -- },
-    -- user_plugins = "user.plugin",
-    -- colorscheme = "material",
   },
 }
 
@@ -102,7 +99,7 @@ function M.setup(opts)
           "clone",
           "--filter=blob:none",
           "https://github.com/folke/lazy.nvim.git",
-          "--branch=stable", -- latest stable release
+          "--branch=stable",
           lazypath,
         })
       end
@@ -117,7 +114,10 @@ function M.setup(opts)
       return {}
     end
     if type(Cfg.plugin.colorscheme) == "string" then
-      local color = color or Cfg.plugin.colorscheme
+      local color = Cfg.plugin.colorscheme or "habamax"
+      vim.cmd("colorscheme " .. color .. "")
+    elseif type(Cfg.plugin.colorscheme) == "nil" then
+      local color = "habamax"
       vim.cmd("colorscheme " .. color .. "")
     elseif type(Cfg.plugin.colorscheme) == "function" then
       ---@type function

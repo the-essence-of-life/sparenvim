@@ -3,46 +3,46 @@ local M = {}
 ---@type table
 M.options = {
   opt = {
-    autowrite = true,         -- Enable auto write
-    clipboard = "unnamedplus", -- Sync with system clipboard
+    autowrite = true,           -- Enable auto write
+    clipboard = "unnamedplus",  -- Sync with system clipboard
     completeopt = "menu,menuone,noselect",
-    conceallevel = 3,         -- Hide * markup for bold and italic
-    confirm = true,           -- Confirm to save changes before exiting modified buffer
-    cursorline = true,        -- Enable highlighting of the current line
-    expandtab = true,         -- Use spaces instead of tabs
+    conceallevel = 3,           -- Hide * markup for bold and italic
+    confirm = true,             -- Confirm to save changes before exiting modified buffer
+    cursorline = true,          -- Enable highlighting of the current line
+    expandtab = true,           -- Use spaces instead of tabs
     formatoptions = "jcroqlnt", -- tcqj
     grepformat = "%f:%l:%c:%m",
     grepprg = "rg --vimgrep",
-    ignorecase = true,    -- Ignore case
-    smartcase = true,     -- Don't ignore case with capitals
+    ignorecase = true,      -- Ignore case
+    smartcase = true,       -- Don't ignore case with capitals
     inccommand = "nosplit", -- preview incremental substitute
     -- laststatus = 2,
-    list = true,          -- Show some invisible characters (tabs...
-    mouse = "a",          -- Enable mouse mode
-    number = true,        -- Print line number
+    list = true,            -- Show some invisible characters (tabs...
+    mouse = "a",            -- Enable mouse mode
+    number = true,          -- Print line number
     relativenumber = true,
-    pumblend = 10,        -- Popup blend
-    scrolloff = 4,        -- Lines of context
+    pumblend = 10,          -- Popup blend
+    scrolloff = 4,          -- Lines of context
     sessionoptions = { "buffers", "curdir", "tabpages", "winsize" },
-    shiftround = true,    -- Round indent
-    shiftwidth = 2,       -- Size of an indent
+    shiftround = true,      -- Round indent
+    shiftwidth = 2,         -- Size of an indent
     -- shortmess:append({ W = true, I = true, c = true }),
-    showmode = false,     -- Dont show mode since we have a statusline
-    sidescrolloff = 8,    -- Columns of context
-    signcolumn = "yes",   -- Always show the signcolumn, otherwise it would shift the text each time
-    smartindent = true,   -- Insert indents automatically
+    showmode = false,       -- Dont show mode since we have a statusline
+    sidescrolloff = 8,      -- Columns of context
+    signcolumn = "yes",     -- Always show the signcolumn, otherwise it would shift the text each time
+    smartindent = true,     -- Insert indents automatically
     spelllang = { "en" },
-    splitbelow = true,    -- Put new windows below current
-    splitright = true,    -- Put new windows right of current
-    tabstop = 2,          -- Number of spaces tabs count for
-    termguicolors = true, -- True color support
+    splitbelow = true,      -- Put new windows below current
+    splitright = true,      -- Put new windows right of current
+    tabstop = 2,            -- Number of spaces tabs count for
+    termguicolors = true,   -- True color support
     timeoutlen = 300,
     undofile = true,
     undolevels = 10000,
     swapfile = false,
     wildmode = "longest:full,full", -- Command-line completion mode
-    winminwidth = 5,              -- Minimum window width
-    wrap = false,                 -- Disable line wrap
+    winminwidth = 5,                -- Minimum window width
+    wrap = false,                   -- Disable line wrap
   },
   g = {
     --- @type string
@@ -53,57 +53,68 @@ M.options = {
 }
 
 ---@type table <string, boolean, function>
-M.keymaps = {
-    { "n", "<leader>pm", "<cmd>Lazy<cr>",      "package manager" },
-    { "n", "<leader>H",  "<cmd>bprevious<cr>", "last buffer" },
-    { "n", "<leader>L",  "<cmd>bnext<cr>",     "next buffer" },
-    {
-      "n",
-      "<leader>di",
-      function()
-        vim.diagnostic.config({
-          update_in_insert = true
-        })
-      end,
-      "update-in-insert"
-    },
-    {
-      "n",
-      "<leader>dn",
-      function()
-        vim.diagnostic.config({
-          virtual_text = {
-            -- prefix = '●',
-            prefix = '',
-            spacing = 2,
-            format = function(diagnostic)
-              local icons = {
-                ERROR = "󰅚 ",
-                WARN = "󰀪 ",
-                HINT = "󰌶 ",
-                INFO = " ",
-              }
-              for level, icon in pairs(icons) do
-                if diagnostic.severity == vim.diagnostic.severity[level] then
-                  -- return string.format("Error: %s", diagnostic.message)
-                  return string.format(icon .. "%s", diagnostic.message)
-                end
+M.keymaps_bak = {
+  { "n", "<leader>pm", "<cmd>Lazy<cr>",      "package manager" },
+  { "n", "<leader>H",  "<cmd>bprevious<cr>", "last buffer" },
+  { "n", "<leader>L",  "<cmd>bnext<cr>",     "next buffer" },
+  {
+    "n",
+    "<leader>di",
+    function()
+      vim.diagnostic.config({
+        update_in_insert = true
+      })
+    end,
+    "update-in-insert"
+  },
+  {
+    "n",
+    "<leader>dn",
+    function()
+      vim.diagnostic.config({
+        virtual_text = {
+          -- prefix = '●',
+          prefix = '',
+          spacing = 2,
+          format = function(diagnostic)
+            local icons = {
+              ERROR = "󰅚 ",
+              WARN = "󰀪 ",
+              HINT = "󰌶 ",
+              INFO = " ",
+            }
+            for level, icon in pairs(icons) do
+              if diagnostic.severity == vim.diagnostic.severity[level] then
+                -- return string.format("Error: %s", diagnostic.message)
+                return string.format(icon .. "%s", diagnostic.message)
               end
-              return diagnostic.message
-            end,
-          }
-        })
-      end,
-      "diagnostic icon"
+            end
+            return diagnostic.message
+          end,
+        }
+      })
+    end,
+    "diagnostic icon"
+  },
+  { "n", "<c-a>",      "ggVG",   "select all" },
+  { "n", "<leader>sv", "<c-w>v", "split vertial" },
+  { "n", "<leader>sh", "<c-w>s", "split horsial" },
+  { "n", "<leader>sx", "<c-w>c", "close buffer window" },
+  { "n", "<leader>wh", "<c-w>H", "windows navgition" },
+  { "n", "<leader>wj", "<c-w>J", "windows nacgition" },
+  { "n", "<leader>wk", "<c-w>K" },
+  { "n", "<leader>wl", "<c-w>L" },
+}
+
+M.keymaps = {
+  n = {
+    ["H"] = {
+      "<cmd>bprevious<cr>",
     },
-    { "n", "<c-a>",      "ggVG",   "select all" },
-    { "n", "<leader>sv", "<c-w>v", "split vertial" },
-    { "n", "<leader>sh", "<c-w>s", "split horsial" },
-    { "n", "<leader>sx", "<c-w>c", "close buffer window" },
-    { "n", "<leader>wh", "<c-w>H", "windows navgition" },
-    { "n", "<leader>wj", "<c-w>J", "windows nacgition" },
-    { "n", "<leader>wk", "<c-w>K" },
-    { "n", "<leader>wl", "<c-w>L" },
+    ["L"] = {
+      "<cmd>bnext<cr>",
+    },
+  },
 }
 
 M.lazy = {
