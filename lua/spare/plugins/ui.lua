@@ -5,6 +5,9 @@ return {
     "catppuccin/nvim",
     lazy = false,
     priority = 1000,
+    cond = function()
+      return vim.opt.termguicolors
+    end,
     name = "catppuccin",
     config = function()
       Index.catppuccin()
@@ -13,77 +16,118 @@ return {
     end,
   },
   -- {
-  --   'ribru17/bamboo.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('bamboo').setup {
-  --       -- optional configuration here
-  --     }
-  --     require('bamboo').load()
-  --   end,
-  -- },
-  -- {
   --   'marko-cerovac/material.nvim',
   --   lazy = false,
   --   priority = 1000,
   --   init = function()
-  --     vim.g.material_style = "oceanic"
+  --     vim.g.material_style = "palenight"
   --     require('material').setup({
-  --       plugins = {
+  --       contrast = {
+  --         terminal = false,            -- Enable contrast for the built-in terminal
+  --         sidebars = false,            -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+  --         floating_windows = false,    -- Enable contrast for floating windows
+  --         cursor_line = false,         -- Enable darker background for the cursor line
+  --         non_current_windows = false, -- Enable contrasted background for non-current windows
+  --         filetypes = {},              -- Specify which filetypes get the contrasted (darker) background
+  --       },
+  --       styles = {                     -- Give comments style such as bold, italic, underline etc.
+  --         comments = { --[[ italic = true ]] },
+  --         strings = { --[[ bold = true ]] },
+  --         keywords = { --[[ underline = true ]] },
+  --         functions = { --[[ bold = true, undercurl = true ]] },
+  --         variables = {},
+  --         operators = {},
+  --         types = {},
+  --       },
+  --       plugins = { -- Uncomment the plugins that you use to highlight them
+  --         -- Available plugins:
+  --         -- "dap",
+  --         -- "dashboard",
+  --         -- "eyeliner",
+  --         -- "fidget",
+  --         -- "flash",
   --         "gitsigns",
+  --         -- "harpoon",
+  --         -- "hop",
+  --         -- "illuminate",
+  --         -- "indent-blankline",
+  --         "lspsaga",
+  --         "mini",
+  --         -- "neogit",
+  --         -- "neotest",
+  --         "neo-tree",
+  --         -- "neorg",
+  --         "noice",
   --         "nvim-cmp",
+  --         -- "nvim-navic",
+  --         -- "nvim-tree",
   --         "nvim-web-devicons",
+  --         -- "rainbow-delimiters",
+  --         -- "sneak",
+  --         "telescope",
   --         "trouble",
   --         "which-key",
-  --       }
+  --         -- "nvim-notify",
+  --       },
+  --       disable = {
+  --         colored_cursor = false, -- Disable the colored cursor
+  --         borders = false,        -- Disable borders between verticaly split windows
+  --         background = false,     -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
+  --         term_colors = true,     -- Prevent the theme from setting terminal colors
+  --         eob_lines = true       -- Hide the end-of-buffer lines
+  --       },
+  --       high_visibility = {
+  --         lighter = false,    -- Enable higher contrast text for lighter style
+  --         darker = false      -- Enable higher contrast text for darker style
+  --       },
+  --       async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
   --     })
-  --     require('material.functions').toggle_eob()
   --     vim.cmd 'colorscheme material'
-  --   end,
+  --   end
+  -- },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  --   init = function ()
+  --     vim.cmd("colorscheme tokyonight-storm")
+  --   end
   -- },
   {
     "akinsho/bufferline.nvim",
+    event = { "BufRead", "BufReadPre", "BufNewFile" },
     config = function()
-      require("bufferline").setup({})
+      require("bufferline").setup({
+        options = {
+          numbers = "ordinal",
+          diagnostics = "nvim_lsp",
+          diagnostics_indicator = function(count, level)
+            local icon = level:match("error") and " " or ""
+            return icon .. " " .. count
+          end,
+        },
+      })
     end,
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   event = "UIEnter",
-  --   enabled = false,
-  --   dependencies = { "nvim-tree/nvim-web-devicons" },
-  --   config = function()
-  --     vim.opt.laststatus = 2
-  --     require("spare.plugins.ui.lualine")
-  --   end,
-  -- },
   {
     'echasnovski/mini.indentscope',
-    import = "lazyflex.hook",
-    opts = { enable_match = false, kw = { "lazy" } },
     dependencies = {
-      -- "lukas-reineke/indent-blankline.nvim",
       'echasnovski/mini.nvim'
     },
     version = '*',
-    -- "lukas-reineke/indent-blankline.nvim",
-    -- event = "UIEnter",
     config = function()
-      -- Index.ibl()
       require('mini.indentscope').setup({
         draw = {
           delay = 100,
           priority = 2,
         },
         options = {
-          border = 'both',
+          border = 'top',
           indent_at_cursor = true,
-          try_as_border = false,
         },
-        -- symbol = '╎',
         symbol = '│',
       })
     end,
@@ -91,343 +135,74 @@ return {
   {
     "goolord/alpha-nvim",
     event = "VimEnter",
-    import = "lazyflex.hook",
-    opts = { enable_match = false, kw = { "lsp", "treesitter" } },
     config = function()
-      local config = require("spare.plugins.index.alpha").config
+      local config = require("spare.plugins.index.dashboard").config
       require("alpha").setup(config)
     end,
   },
-  -- {
-  --   enabled = false,
-  --   "rebelot/heirline.nvim",
-  --   dependencies = {
-  --     'rose-pine/neovim',
-  --   },
-  --   -- You can optionally lazy-load heirline on UiEnter
-  --   -- to make sure all required plugins and colorschemes are loaded before setup
-  --   -- event = "UiEnter",
-  --   config = function()
-  --     require("spare.plugins.ui.heirline")
-  --   end
-  -- },
-  -- {
-  --   'nvim-lualine/lualine.nvim',
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  --   config = function()
-  --     require('lualine').setup({
-  --       options = { theme = 'material' },
-  --       extensions = { 'quickfix', "lazy" }
-  --     })
-  --     require('lualine').get_config()
-  --   end
-  -- },
-  -- {
-  --   'dstein64/nvim-scrollview',
-  --   config = function()
-  --     require('scrollview').setup({
-  --       excluded_filetypes = {},
-  --       current_only = true,
-  --       base = 'buffer',
-  --       column = 80,
-  --       signs_on_startup = { 'all' },
-  --       diagnostics_severities = { vim.diagnostic.severity.ERROR }
-  --     })
-  --   end
-  -- },
   {
-    "rebelot/heirline.nvim",
-    -- You can optionally lazy-load heirline on UiEnter
-    -- to make sure all required plugins and colorschemes are loaded before setup
-    -- event = "UiEnter",
+    'nvim-lualine/lualine.nvim',
+    lazy = false,
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      -- vim.opt.showcmdloc = "statusline"
-      local conditions = require("heirline.conditions")
-      local utils = require("heirline.utils")
-      local colors = {
-        bright_bg = utils.get_highlight("Folded").bg,
-        bright_fg = utils.get_highlight("Folded").fg,
-        red = utils.get_highlight("DiagnosticError").fg,
-        dark_red = utils.get_highlight("DiffDelete").bg,
-        green = utils.get_highlight("String").fg,
-        blue = utils.get_highlight("Function").fg,
-        gray = utils.get_highlight("NonText").fg,
-        orange = utils.get_highlight("Constant").fg,
-        purple = utils.get_highlight("Statement").fg,
-        cyan = utils.get_highlight("Special").fg,
-        diag_warn = utils.get_highlight("DiagnosticWarn").fg,
-        diag_error = utils.get_highlight("DiagnosticError").fg,
-        diag_hint = utils.get_highlight("DiagnosticHint").fg,
-        diag_info = utils.get_highlight("DiagnosticInfo").fg,
-        git_del = utils.get_highlight("diffDeleted").fg,
-        git_add = utils.get_highlight("diffAdded").fg,
-        git_change = utils.get_highlight("diffChanged").fg,
-      }
-      local Align = { provider = "%=" }
-      local Space = { provider = " " }
-      local Pretty = {
-        provider = "■ ",
-        hl = { fg = "orange" },
-      }
-
-      local ViMode = {
-        -- get vim current mode, this information will be required by the provider
-        -- and the highlight functions, so we compute it only once per component
-        -- evaluation and store it as a component attribute
-        init = function(self)
-          self.mode = vim.fn.mode(1) -- :h mode()
-        end,
-        -- Now we define some dictionaries to map the output of mode() to the
-        -- corresponding string and color. We can put these into `static` to compute
-        -- them at initialisation time.
-        static = {
-          mode_names = { -- change the strings if you like it vvvvverbose!
-            n = "N",
-            no = "N?",
-            nov = "N?",
-            noV = "N?",
-            ["no\22"] = "N?",
-            niI = "Ni",
-            niR = "Nr",
-            niV = "Nv",
-            nt = "Nt",
-            v = "V",
-            vs = "Vs",
-            V = "V_",
-            Vs = "Vs",
-            ["\22"] = "^V",
-            ["\22s"] = "^V",
-            s = "S",
-            S = "S_",
-            ["\19"] = "^S",
-            i = "I",
-            ic = "Ic",
-            ix = "Ix",
-            R = "R",
-            Rc = "Rc",
-            Rx = "Rx",
-            Rv = "Rv",
-            Rvc = "Rv",
-            Rvx = "Rv",
-            c = "C",
-            cv = "Ex",
-            r = "...",
-            rm = "M",
-            ["r?"] = "?",
-            ["!"] = "!",
-            t = "T",
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = 'material',
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
           },
-          mode_colors = {
-            n = "red",
-            i = "green",
-            v = "cyan",
-            V = "cyan",
-            ["\22"] = "cyan",
-            c = "orange",
-            s = "purple",
-            S = "purple",
-            ["\19"] = "purple",
-            R = "orange",
-            r = "orange",
-            ["!"] = "red",
-            t = "red",
+          ignore_focus = {},
+          always_divide_middle = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
           }
         },
-        -- We can now access the value of mode() that, by now, would have been
-        -- computed by `init()` and use it to index our strings dictionary.
-        -- note how `static` fields become just regular attributes once the
-        -- component is instantiated.
-        -- To be extra meticulous, we can also add some vim statusline syntax to
-        -- control the padding and make sure our string is always at least 2
-        -- characters long. Plus a nice Icon.
-        provider = function(self)
-          return "%2(" .. self.mode_names[self.mode] .. "%)"
-        end,
-        -- Same goes for the highlight. Now the foreground will change according to the current mode.
-        hl = function(self)
-          local mode = self.mode:sub(1, 1) -- get only the first mode character
-          return { fg = self.mode_colors[mode], bold = true, }
-        end,
-        -- Re-evaluate the component only on ModeChanged event!
-        -- Also allows the statusline to be re-evaluated when entering operator-pending mode
-        update = {
-          "ModeChanged",
-          pattern = "*:*",
-          callback = vim.schedule_wrap(function()
-            vim.cmd("redrawstatus")
-          end),
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' }
         },
-      }
-
-      local FileNameBlock = {
-        -- let's first set up some attributes needed by this component and it's children
-        init = function(self)
-          self.filename = vim.api.nvim_buf_get_name(0)
-        end,
-      }
-      -- We can now define some children separately and add them later
-
-      local FileIcon = {
-        init = function(self)
-          local filename = self.filename
-          local extension = vim.fn.fnamemodify(filename, ":e")
-          self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(filename, extension,
-            { default = true })
-        end,
-        provider = function(self)
-          return self.icon and (self.icon .. " ")
-        end,
-        hl = function(self)
-          return { fg = self.icon_color }
-        end
-      }
-
-      local FileName = {
-        provider = function(self)
-          -- first, trim the pattern relative to the current directory. For other
-          -- options, see :h filename-modifers
-          local filename = vim.fn.fnamemodify(self.filename, ":.")
-          if filename == "" then return "[No Name]" end
-          -- now, if the filename would occupy more than 1/4th of the available
-          -- space, we trim the file path to its initials
-          -- See Flexible Components section below for dynamic truncation
-          if not conditions.width_percent_below(#filename, 0.25) then
-            filename = vim.fn.pathshorten(filename)
-          end
-          return filename
-        end,
-        hl = { fg = utils.get_highlight("Directory").fg },
-      }
-
-      local FileFlags = {
-        {
-          condition = function()
-            return vim.bo.modified
-          end,
-          provider = "[+]",
-          hl = { fg = "green" },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { 'filename' },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {}
         },
-        {
-          condition = function()
-            return not vim.bo.modifiable or vim.bo.readonly
-          end,
-          provider = "",
-          hl = { fg = "orange" },
-        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {}
       }
-
-      -- Now, let's say that we want the filename color to change if the buffer is
-      -- modified. Of course, we could do that directly using the FileName.hl field,
-      -- but we'll see how easy it is to alter existing components using a "modifier"
-      -- component
-
-      local FileNameModifer = {
-        hl = function()
-          if vim.bo.modified then
-            -- use `force` because we need to override the child's hl foreground
-            return { fg = "cyan", bold = true, force = true }
-          end
-        end,
-      }
-
-      local WorkDir = {
-        provider = function()
-          local icon = (vim.fn.haslocaldir(0) == 1 and "l" or "g") .. " " .. " "
-          local cwd = vim.fn.getcwd(0)
-          cwd = vim.fn.fnamemodify(cwd, ":~")
-          if not conditions.width_percent_below(#cwd, 0.25) then
-            cwd = vim.fn.pathshorten(cwd)
-          end
-          local trail = cwd:sub(-1) == '/' and '' or "/"
-          return icon .. cwd .. trail
-        end,
-        hl = { fg = "blue", bold = true },
-      }
-
-      -- I take no credits for this! :lion:
-      local ScrollBar = {
-        static = {
-          sbar = { '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█' }
-          -- Another variant, because the more choice the better.
-          -- sbar = { '🭶', '🭷', '🭸', '🭹', '🭺', '🭻' }
-        },
-        provider = function(self)
-          local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-          local lines = vim.api.nvim_buf_line_count(0)
-          local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-          return string.rep(self.sbar[i], 2)
-        end,
-        hl = { fg = "blue", bg = "bright_bg" },
-      }
-
-      -- let's add the children to our FileNameBlock component
-      FileNameBlock = utils.insert(FileNameBlock,
-        FileIcon,
-        utils.insert(FileNameModifer, FileName), -- a new table where FileName is a child of FileNameModifier
-        FileFlags,
-        { provider = '%<' }                      -- this means that the statusline is cut here when there's not enough space
-      )
-
-
-      local LSPActive = {
-        condition = conditions.lsp_attached,
-        update    = { 'LspAttach', 'LspDetach' },
-
-        -- You can keep it simple,
-        -- provider = " [LSP]",
-
-        -- Or complicate things a bit and get the servers names
-        provider  = function()
-          local names = {}
-          for i, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-            table.insert(names, server.name)
-          end
-          return " " .. table.concat(names, " ") .. ""
-        end,
-        hl        = { fg = "green", bold = true },
-      }
-
-      require("heirline").setup({
-        statusline = {
-          Space,
-          Pretty,
-          -- Space,
-          ViMode,
-          Space,
-          Space,
-          FileNameBlock,
-          Space,
-          Space,
-          Align,
-          WorkDir,
-          Space,
-          LSPActive,
-          Space,
-          Space,
-          ScrollBar,
-          Space,
-        },
-        opts = {
-          colors = colors,
-        }
-      })
-      -- vim.o.showtabline = 2
-      -- vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
     end
   },
-  -- {
-  --   "max397574/better-escape.nvim",
-  --   config = function()
-  --     require("better_escape").setup({
-  --       mapping = { "jk", "jj" },   -- a table with mappings to use
-  --       timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-  --       clear_empty_lines = true,   -- clear line after escaping if there is only whitespace
-  --       keys = "<Esc>",             -- keys used for escaping, if it is a function will use the result everytime
-  --       -- example(recommended)
-  --       -- keys = function()
-  --       --   return vim.api.nvim_win_get_cursor(0)[2] > 1 and '<esc>l' or '<esc>'
-  --       -- end,
-  --     })
-  --   end,
-  -- },
+  {
+    "luukvbaal/statuscol.nvim",
+    event = "BufRead",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        -- configuration goes here, for example:
+        relculright = true,
+        ft_ignore = { "alpha" },
+        segments = {
+          { text = { builtin.lnumfunc },                                   auto = true },
+          -- { text = { builtin.foldfunc }, bt_ignore = "alpha" },
+          { sign = { name = { "Diagnostic" }, auto = false, wrap = true }, },
+          { sign = { name = { ".*" }, auto = false }, },
+        },
+      })
+    end,
+  },
 }

@@ -3,8 +3,9 @@ local Index = require("spare.plugins.index.tools")
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    import = "lazyflex.hook",
-    opts = { enable_match = false, kw = { "lsp", "cmp" } },
+    keys = {
+      { "<a-e>", "<cmd>Neotree<cr>", mode = "n" }
+    },
     version = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -13,8 +14,20 @@ return {
     },
     config = function()
       Index.neotree()
-      vim.keymap.set("n", "<a-e>", "<cmd>Neotree<cr>")
     end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<a-f>", "<cmd>Telescope find_files<cr>",   mode = { "n", "i" } },
+      { "<a-r>", "<cmd>Telescope live_grep<cr>",    mode = { "n", "i" } },
+      { "<a-g>", "<cmd>Telescope git_files<cr>",    mode = { "n", "i" } },
+      { "<a-b>", "<cmd>Telescope git_branches<cr>", mode = { "n", "i" } },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = Index.telescope,
   },
   {
     "numToStr/Comment.nvim",
@@ -32,33 +45,16 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
-    event = "VimEnter",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "octarect/telescope-menu.nvim",
-    },
-    config = function()
-      Index.telescope()
-      require("telescope").load_extension("menu")
-    end,
-  },
-  {
-    'NvChad/nvim-colorizer.lua',
-    config = function()
-      Index.colorizer()
-    end
-  },
-  {
     "akinsho/toggleterm.nvim",
     cmd = "ToggleTerm",
     version = "*",
-    config = function()
-      Index.toggleterm()
-    end,
+    opts = Index.toggleterm
   },
   {
     "lewis6991/gitsigns.nvim",
+    cond = function()
+      return vim.fn.executable("git") == 1
+    end,
     event = "BufReadPre",
     config = true,
   },
@@ -70,23 +66,59 @@ return {
       { "<a-t>", "<cmd>Trouble<cr>" },
     },
     -- event = "LspAttach",
-    config = function()
-      Index.trouble()
-    end,
+    opts = Index.trouble
   },
   {
     "folke/todo-comments.nvim",
     event = { "BufRead", "BufReadPre" },
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    opts = Index.todo_commets
+  },
+  {
+    "folke/which-key.nvim",
+    keys = {
+      { "<ctrl>",   mode = { "n", "i", "v" } },
+      { "<alt>",    mode = { "n", "i", "v" } },
+      { "<leader>", mode = { "n", "i", "v" } },
+      { "<esc>",    mode = { "n", "i", "v" } },
+    },
+    -- event = "VeryLazy",
     config = function()
-      Index.todo_commets()
+      Index.which_key()
     end,
   },
   {
+    "folke/zen-mode.nvim",
+    keys = {
+      { "<c-z>", "<cmd>ZenMode<cr>" }
+    },
+    config = function()
+      require("zen-mode").setup()
+      -- vim.api.nvim_create_autocmd("InsertEnter",{callback = function ()
+      --   vim.cmd("ZenMode")
+      -- end})
+      -- vim.api.nvim_create_autocmd("InsertLeave",{callback = function ()
+      --   vim.cmd("q")
+      -- end})
+    end,
+  },
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    event = "BufRead",
+    config = function()
+      require('ts_context_commentstring').setup {
+        enable_autocmd = false,
+      }
+    end
+  },
+  {
     "iamcco/markdown-preview.nvim",
+    cond = function()
+      return vim.fn.executable("npm") == 1
+    end,
     -- event = "BufEnter *.md",
     keys = {
-      { "<leader>mp", "<cmd>MarkdownPreview<cr>", mode = "n", ft = 'markdown' }
+      { "<leader>mp", "<plug>MarkdownPreview", mode = "n", ft = 'markdown' }
     },
     -- ft = "md",
     -- ft = "markdown",
@@ -105,66 +137,47 @@ return {
     end,
   },
   {
-    "folke/which-key.nvim",
-    keys = {
-      { "<ctrl>",   mode = { "n", "i", "v" } },
-      { "<alt>",    mode = { "n", "i", "v" } },
-      { "<leader>", mode = { "n", "i", "v" } },
-      { "<esc>",    mode = { "n", "i", "v" } },
-    },
-    -- event = "VeryLazy",
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = 'BufRead',
     config = function()
-      Index.which_key()
-    end,
-  },
-  -- {
-  --   "potamides/pantran.nvim",
-  --   config = function()
-  --     local pantran = require("pantran")
-  --     local actions = require("pantran.ui.actions")
-  --     local engines = require("pantran.engines")
-  --     local async = require("pantran.async")
-  --     pantran.setup({
-  --       default_engine = "argos"
-  --     })
-  --     -- local function translate(sentence)
-  --     --   -- Engine methods can throw errors (e.g., due to timeouts or other network
-  --     --   -- errors), which is why we use pcall.
-  --     --   local ok, translation = pcall(engines.argos.translate, sentence)
-  --     --   if ok then
-  --     --     print(translation.text)
-  --     --   end
-  --     -- end
-  --
-  --     async.run(translate, "Hello!") -- prints "Hello World!"
-  --     local opts = { noremap = true, silent = true, expr = true }
-  --     vim.keymap.set("n", "<leader>tr", pantran.motion_translate, opts)
-  --     vim.keymap.set("n", "<leader>trr", function() return pantran.motion_translate() .. "_" end, opts)
-  --     vim.keymap.set("x", "<leader>tr", pantran.motion_translate, opts)
-  --   end
-  -- },
-  -- Lua
-  {
-    "folke/zen-mode.nvim",
-    keys = {
-      { "<c-z>", "<cmd>ZenMode<cr>" }
-    },
-    config = function()
-      require("zen-mode").setup()
-      -- vim.api.nvim_create_autocmd("InsertEnter",{callback = function ()
-      --   vim.cmd("ZenMode")
-      -- end})
-      -- vim.api.nvim_create_autocmd("InsertLeave",{callback = function ()
-      --   vim.cmd("q")
-      -- end})
-    end,
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
   },
   {
-    'JoosepAlviste/nvim-ts-context-commentstring',
+    'chentoast/marks.nvim',
+    event = 'BufRead',
     config = function()
-      require('ts_context_commentstring').setup {
-        enable_autocmd = false,
+      require 'marks'.setup {
+        default_mappings = true,
+        bookmark_0 = {
+          sign = '■',
+          virt_text = "<- last place",
+          annotate = false,
+        },
+        mappings = {}
       }
     end
+  },
+  { "sindrets/diffview.nvim" },
+  {
+    'stevearc/oil.nvim',
+    opts = {
+      columns = {
+        "icon",
+        "size",
+      },
+      view_options = {
+        show_hidden = true,
+        natural_order = false,
+      },
+    },
+    keys = {
+      { "-", '<cmd>Oil<cr>' }
+    },
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 }

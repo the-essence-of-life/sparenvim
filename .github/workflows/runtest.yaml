@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+      - 2.0
+    paths-ignore:
+      - "user/**"
+jobs:
+  job1:
+    name: push log
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        env:
+          PROJECT: spare
+        run: |
+          echo Hello! This is $PROJECT

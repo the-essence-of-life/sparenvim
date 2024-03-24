@@ -2,6 +2,11 @@ lazy-lock.json
 lazy-lock*
 test-plugins.lua
 simple
+user*
 test*
 *.jar
 *.bak
+<<<<<<< HEAD
+=======
+tutor/*.txt
+>>>>>>> 2.0

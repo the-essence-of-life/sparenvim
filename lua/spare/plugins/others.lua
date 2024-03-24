@@ -1,63 +1,74 @@
-local Index = require("spare.plugins.index.utils")
+local Index = require("spare.plugins.index.others")
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "UIEnter",
+    cond = function()
+      return vim.fn.executable("gcc") == 1
+    end,
+    event = "BufRead",
     dependencies = {
-      "HiPhish/nvim-ts-rainbow2",
       "windwp/nvim-ts-autotag",
     },
     build = function()
       require("nvim-treesitter.install").update({ with_sync = true })
     end,
-    config = function()
-      Index.treesitter()
-      -- require("nvim-ts-autotag").setup()
-    end,
+    opts = Index.treesitter
   },
   {
     "folke/noice.nvim",
     event = "UIEnter",
-    config = function()
-      Index.noice()
-    end,
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
     },
+    opts = Index.noice
   },
   {
     "folke/persistence.nvim",
-    lazy = true, -- this will only start session saving when an actual file was opened
+    event = "BufRead",
     -- module = "persistence",
-    config = function()
-      Index.persistence()
-    end,
+    opts = Index.persistence
   },
   {
     "m4xshen/autoclose.nvim",
     event = "InsertEnter",
-    config = function()
-      Index.autoclose()
-    end,
+    opts = Index.autoclose
   },
   {
     "stevearc/dressing.nvim",
     lazy = true,
+    opts = Index.dressing
   },
   {
-    "ThePrimeagen/harpoon",
-    lazy = true,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+    "HiPhish/rainbow-delimiters.nvim",
+    event ="BufRead",
     config = function()
-      Index.harpoon()
-    end,
+      local rainbow_delimiters = require 'rainbow-delimiters'
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+          vim = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        priority = {
+          [''] = 110,
+          lua = 210,
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      }
+    end
   },
 }
