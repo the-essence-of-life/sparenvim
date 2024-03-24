@@ -24,11 +24,14 @@ else
       vim.cmd("checkhealth spare.utils")
     elseif choice == "Default" then
       local default_config = vim.fn.stdpath("config") .. "/lua/spare/utils/default.txt"
-      local user = vim.fn.stdpath("config") .. "/lua/user/config.lua"
+      local user_folder = vim.fn.stdpath("config") .. "/lua/user/"
+      if not vim.loop.fs_stat(user_folder) then
+	vim.fn.mkdir(user_folder)
+      end
       if vim.fn.has("win") == 1 then
-        vim.fn.system({ "Move-Item", "-Path", default_config, "-Destination", user })
+        vim.fn.system({ "Move-Item", "-Path", default_config, "-Destination", user_config })
       else
-        vim.fn.system({ "cp", default_config, user })
+        vim.fn.system({ "cp", default_config, user_config })
       end
       vim.api.nvim_echo({
         {
