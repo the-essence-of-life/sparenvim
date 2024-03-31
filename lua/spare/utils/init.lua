@@ -53,6 +53,11 @@ local defaults = {
   },
 }
 
+---@class SpareMergeConfigTable
+local migration = {
+  import = "https://github.com/the-essence-of-life/spare",
+}
+
 function M.setup(opts)
   Cfg = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
   if Cfg.options then
@@ -124,12 +129,30 @@ function M.setup(opts)
       Cfg.plugin.colorscheme()
     end
   end
+  Mgr = vim.tbl_deep_extend("force", migration, opts or {}) or {}
+  if type(Mgr.import) == "table" then
+    for _, modules in ipairs(Mgr.import) do
+      require(modules)
+    end
+  end
+  if type(Mgr.rtp) == "string" then
+    vim.opt.rtp:prepend(Mgr.rtp)
+  end
+  if type(Mgr.options) == "boolean" then
+    require("user.options")
+  end
+  if type(Mgr.keymaps) == "boolean" then
+    require("user.keymaps")
+  end
+  if type(Mgr.options) == "boolean" then
+    require("user.autocmds")
+  end
 end
 
 setmetatable(M, {
   __index = function(_, key)
     if Cfg == nil then
-      return vim.deepcopy(defaults)[key]
+      return vim.deepcopy(defaults)[key] and vim.deepcopy(migration)[key]
     end
     return Cfg[key]
   end

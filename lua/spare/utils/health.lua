@@ -65,7 +65,7 @@ function M.check()
     if vim.fn.executable(dep) == 1 then
       health.ok(name .. " installed.    #Basic")
     else
-        health.warn("Invaild " .. dep .. ".", "Download the binary and add it for the $PATH.")
+      health.warn("Invaild " .. dep .. ".", "Download the binary and add it for the $PATH.")
     end
   end
   local de_lsp = { "node", "lua-language-server" }
@@ -73,8 +73,8 @@ function M.check()
     if vim.fn.executable(de_lsp_check) == 1 then
       health.ok(de_lsp_check .. " installed.    #LSP")
     else
-        health.warn('Invaild' .. de_lsp_check .. '? Your language server cannot run correctly.',
-          'Download the binary and add it for the $PATH.')
+      health.warn('Invaild' .. de_lsp_check .. '? Your language server cannot run correctly.',
+        'Download the binary and add it for the $PATH.')
     end
   end
 
@@ -100,9 +100,9 @@ function M.check()
   end
 
   if type(Cfg) ~= "nil" then
-  for _, check in pairs(Cfg) do
-    check_valid(check)
-  end
+    for _, check in pairs(Cfg) do
+      check_valid(check)
+    end
   end
 
   if user_modules then

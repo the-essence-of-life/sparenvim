@@ -111,21 +111,27 @@ return {
       }
     end
   },
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   cond = function()
+  --     return vim.fn.executable("npm") == 1
+  --   end,
+  --   -- event = "BufEnter *.md",
+  --   keys = {
+  --     { "<leader>mp", "<plug>MarkdownPreview", mode = "n", ft = 'markdown' }
+  --   },
+  --   -- ft = "md",
+  --   -- ft = "markdown",
+  --   build = "cd app && npm install",
+  --   config = function()
+  --     vim.g.mkdp_filetypes = { "markdown" }
+  --   end,
+  -- },
   {
-    "iamcco/markdown-preview.nvim",
-    cond = function()
-      return vim.fn.executable("npm") == 1
-    end,
-    -- event = "BufEnter *.md",
-    keys = {
-      { "<leader>mp", "<plug>MarkdownPreview", mode = "n", ft = 'markdown' }
-    },
-    -- ft = "md",
-    -- ft = "markdown",
-    build = "cd app && npm install",
-    config = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
+    "ellisonleao/glow.nvim",
+    config = true,
+    cmd = "Glow",
+    ft = "markdown",
   },
   {
     "ixru/nvim-markdown",
