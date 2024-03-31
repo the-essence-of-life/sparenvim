@@ -7,3 +7,5 @@ test*
 *.jar
 *.bak
 tutor/*.txt
+lua/spare/utils/init
+lua/spare/utils/runtime
