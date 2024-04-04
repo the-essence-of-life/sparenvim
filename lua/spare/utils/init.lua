@@ -150,7 +150,7 @@ end
 setmetatable(M, {
   __index = function(_, key)
     if Cfg == nil then
-      return vim.deepcopy(defaults)[key] and vim.deepcopy(migration)[key]
+      return vim.deepcopy(defaults)[key]
     end
     return Cfg[key]
   end
