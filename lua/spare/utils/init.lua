@@ -53,8 +53,8 @@ local defaults = {
   },
 }
 
--- ---@class SpareMergeConfigTable
--- local migration = {}
+---@class SpareMergeConfigTable
+local migration = {}
 
 function M.setup(opts)
   Cfg = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
@@ -127,24 +127,23 @@ function M.setup(opts)
       Cfg.plugin.colorscheme()
     end
   end
-  -- Mgr = vim.tbl_deep_extend("force", migration, opts or {}) or {}
-  -- if type(Mgr.import) == "table" then
-  --   for _, modules in ipairs(Mgr.import) do
-  --     require(modules)
-  --   end
-  -- end
-  -- if type(Mgr.rtp) == "string" then
-  --   vim.opt.rtp:prepend(Mgr.rtp)
-  -- end
-  -- if type(Mgr.options) == "boolean" then
-  --   require("user.options")
-  -- end
-  -- if type(Mgr.keymaps) == "boolean" then
-  --   require("user.keymaps")
-  -- end
-  -- if type(Mgr.options) == "boolean" then
-  --   require("user.autocmds")
-  -- end
+end
+
+function M.sync(mgr)
+  Mgr = vim.tbl_deep_extend("force", migration, mgr or {}) or {}
+  for _, config in ipairs(Mgr) do
+    local config_type = config[1]
+    local modules = config.import
+    if type(config_type) == "string" and config_type == "option" then
+      require(modules)
+    end
+    if type(config_type) == "string" and config_type == "keymap" then
+      require(modules)
+    end
+    if type(config_type) == "string" and config_type == "autocmd" then
+      require(modules)
+    end
+  end
 end
 
 setmetatable(M, {
@@ -152,7 +151,10 @@ setmetatable(M, {
     if Cfg == nil then
       return vim.deepcopy(defaults)[key]
     end
-    return Cfg[key]
+    if Mgr == nil then
+      return vim.deepcopy(defaults)[key]
+    end
+    return Cfg[key] and Mgr[key]
   end
 })
 

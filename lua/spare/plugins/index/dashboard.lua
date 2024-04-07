@@ -52,12 +52,11 @@ function M.buttons()
     callback = function(_)
       local buf_keys = vim.api.nvim_buf_set_keymap
       buf_keys(0, "n", "n", "<cmd>e Empty<CR>", keybind_opts)
-      buf_keys(0, "n", "c", "<cmd>Lazy sync<CR>", keybind_opts)
-      buf_keys(0, "n", "f", "<cmd>Telescope find_files<CR>", keybind_opts)
+      buf_keys(0, "n", "s", "<cmd>Lazy sync<CR>", keybind_opts)
       buf_keys(0, "n", "l", "<cmd>Lazy<CR>", keybind_opts)
+      buf_keys(0, "n", "u", "<cmd>Lazy clean<CR>", keybind_opts)
       buf_keys(0, "n", "q", "<cmd>q<CR>", keybind_opts)
-      buf_keys(0, "n", "e", "<cmd>Neotree<CR>", keybind_opts)
-      buf_keys(0, "n", "s", "<cmd>e ~/.config/nvim/lua/spare/init.lua<CR>", keybind_opts)
+      buf_keys(0, "n", "p", "<cmd>e ~/.config/nvim/lua/core/config.lua<CR>", keybind_opts)
     end,
   })
 
@@ -70,27 +69,16 @@ function M.buttons()
     {
       type = "text",
       val = {
-        -- "",
         "  New file      n  │    Lazy UI       l",
-        "  Find file     f  │    Find Bugs     b",
-        "  Recent        r  │    Sync          c",
-        "  Settings      s  │    New Terms     t",
-        "  Menu          m  │    File Tree     e",
-        "→  Quit NVIM     q  │    Profile       p",
-        -- "",
+        "  Profile       p  │    Sync          s",
+        "→  Exit          q  │    Uninstall     u",
       },
       opts = {
         position = "center",
         hl = {
-          -- buttons_hl,
           buttons_hl,
           buttons_hl,
           buttons_hl,
-          buttons_hl,
-          buttons_hl,
-          buttons_hl,
-          -- quit_hl,
-          -- buttons_hl,
         },
       },
     },
