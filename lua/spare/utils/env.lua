@@ -1,17 +1,22 @@
-local Root = vim.fn.stdpath("config") .. "/lua"
+local Root = vim.fn.stdpath("config") .. "/lua/core"
 
 -- HACK:Don't put global var set `vim`,or you'll can't open the neovim.
 _G.spare = {}
 
----@type table<string>
-spare.stdpath = {
-  d_plugins = Root .. "/spare/plugins",
-  d_utils = Root .. "/spare/utils",
-  d_config_index = Root .. "/spare/utils/index.lua",
-  u_plugins = Root .. "/user/plugins",
-  u_root = Root .. "/user",
-  u_config = Root .. "/spare/user/config.lua",
-}
+---@type function<string>
+function spare.stdpath(self)
+  if self == "config" then
+    return Root .. "/config.lua"
+  end
+end
+-- spare.stdpath = {
+--   d_plugins = Root .. "/spare/plugins",
+--   d_utils = Root .. "/spare/utils",
+--   d_config_index = Root .. "/spare/utils/index.lua",
+--   u_plugins = Root .. "/user/plugins",
+--   u_root = Root .. "/user",
+--   u_config = Root .. "/spare/user/config.lua",
+-- }
 
 ---@type table<string>
 spare.secret = {

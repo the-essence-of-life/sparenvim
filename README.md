@@ -31,13 +31,13 @@ git clone https://github.com/the-essence-of-life/starter ~/.config/nvim/ && nvim
 ### Functions :desktop_computer:  
 
 **Global:**  
-`enabled:` @type:string Enabled the feature.  
-`set:` @type:table Invoke neovim api.  
+`enabled:` <font color=#"aeffa2">@type:string</font> Enabled the feature.  
+`set:` <font color=#""ffdca2>@type:table</font> Invoke neovim api.  
 
 **Spec:**  
-`options:` @type:table Set neovim options,like `vim.opt` `vim.g` and so on.  
-`keymaps:` @type:table Add and change the default keymaps.  
-`autocmds:` @type:table Open more features.  
+`options:` <font color=#"ffdca2">@type:table</font> Set neovim options,like `vim.opt` `vim.g` and so on.  
+`keymaps:` <font color=#"ffdca2">@type:table</font> Add and change the default keymaps.  
+`autocmds:` <font color=#"ffdca2">@type:table</font> Open more features.  
 
 **Example:**  
 
@@ -45,8 +45,10 @@ git clone https://github.com/the-essence-of-life/starter ~/.config/nvim/ && nvim
 return {
   options = {
     ---@type boolean
+    -- Enable the default options.
     enabled = true,
     ---@type table
+    -- Setting options:
     set = {
       -- vim.opt.number = true
       -- same as:
@@ -57,8 +59,10 @@ return {
   },
   keymaps = {
     ---@type boolean
+    -- Enable the default keymaps.
     enabled = true,
     ---@type table
+    -- Setting keymaps:
     set = {
       -- vim.keymap.set("n", ":q", "<cmd>wq<cr>")
       -- same as:
@@ -71,6 +75,7 @@ return {
   },
   autocmds = {
     ---@type boolean
+    -- Enable the default autocmds.
     enabled = true,
     -- more specs are develop......
   },
@@ -79,3 +84,10 @@ return {
 
 ### Setup :gear:  
 #### Colorscheme :rainbow:  
+
+```lua
+return {
+  -- When nil,it will load default colorscheme(habamax).
+  colorscheme = "habamax"
+}
+```
