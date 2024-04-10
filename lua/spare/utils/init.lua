@@ -1,9 +1,9 @@
 local Index = require("spare.utils.index")
 local builtin = require("spare.utils.builtin")
-local echo = function(str)
-  vim.cmd("redraw")
-  vim.api.nvim_echo({ { str, "Bold" } }, true, {})
-end
+-- local echo = function(str)
+--   vim.cmd("redraw")
+--   vim.api.nvim_echo({ { str, "Bold" } }, true, {})
+-- end
 
 ---@class SpareConfig: SpareOptions
 local M = {}
@@ -33,6 +33,7 @@ local defaults = {
     directory = false,
     --- @type boolean?
     based_term_support = true,
+    set = {},
   },
   health = {
     check = {
@@ -40,16 +41,10 @@ local defaults = {
       lsp = true,
     },
   },
-  plugin = {
-    enabled = false,
-    --- @type string
-    mode = "plugin-manager",
-    --- @type boolean?
-    auto_clean_plugins = true,
-    --- @type string?
-    colorscheme = "catppuccin",
-    --- @type table
-    set = Index.lazy,
+  colorscheme = "catppuccin",
+  safe_uninstall_plugins = {
+    -- others = true,
+    -- others2 = true,
   },
 }
 
@@ -79,8 +74,10 @@ function M.setup(opts)
       if Cfg.autocmds.based_term_support then
         Index.terminal()
       end
-      if type(Cfg.autocmds.set) == "function" then
-        Cfg.autocmds.set()
+      if type(Cfg.autocmds.set) == "table" then
+        for events, keys in pairs(Cfg.autocmds.set) do
+          vim.api.nvim_create_autocmd(events, keys)
+        end
       end
     end
   end
@@ -92,41 +89,17 @@ function M.setup(opts)
       end
     end
   end
-  if Cfg.plugin.enabled then
-    if type(Cfg.plugin.set) == "table" then
-      local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-      if not vim.loop.fs_stat(lazypath) then
-        echo(" Installing the lazy.nvim to ~/.local/share/nvim/lazy/lazy.nvim...")
-        vim.fn.system({
-          "git",
-          "clone",
-          "--filter=blob:none",
-          "https://github.com/folke/lazy.nvim.git",
-          "--branch=stable",
-          lazypath,
-        })
-      end
-      vim.opt.rtp:prepend(lazypath)
-      ---@module 'lazy'
-      ---@type function
-      require("lazy").setup(Cfg.plugin.set)
-    elseif type(Cfg.plugin.set) == "function" then
-      ---@type function
-      Cfg.plugin.set()
-    elseif not Cfg.plugin.set then
-      return {}
-    end
-    if type(Cfg.plugin.colorscheme) == "string" then
-      local color = Cfg.plugin.colorscheme or "habamax"
-      vim.cmd("colorscheme " .. color .. "")
-    elseif type(Cfg.plugin.colorscheme) == "nil" then
-      local color = "habamax"
-      vim.cmd("colorscheme " .. color .. "")
-    elseif type(Cfg.plugin.colorscheme) == "function" then
-      ---@type function
-      Cfg.plugin.colorscheme()
-    end
+  if type(Cfg.colorscheme) == "string" then
+    local color = Cfg.colorscheme or "habamax"
+    vim.cmd("colorscheme " .. color .. "")
+  elseif type(Cfg.colorscheme) == "nil" then
+    local color = "habamax"
+    vim.cmd("colorscheme " .. color .. "")
+  elseif type(Cfg.colorscheme) == "function" then
+    ---@type function
+    Cfg.plugin.colorscheme()
   end
+  return Cfg
 end
 
 function M.sync(mgr)

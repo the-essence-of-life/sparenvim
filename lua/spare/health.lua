@@ -105,19 +105,19 @@ function M.check()
     end
   end
 
-  if user_modules then
-    health.start("Modules:")
-    local require_modules = Cfg.modules
-    for _, modules in ipairs(require_modules) do
-      local ok = pcall(require, modules)
-      if not ok then
-        local errors = vim.api.nvim_err_writeln("Error loading file: " .. modules .. "\n")
-        health.error(errors)
-      else
-        health.ok("Modules `" .. modules .. "` loaded correctly!")
-      end
-    end
-  end
+  -- if user_modules then
+  --   health.start("Modules:")
+  --   local require_modules = Cfg.modules
+  --   for _, modules in ipairs(require_modules) do
+  --     local ok = pcall(require, modules)
+  --     if not ok then
+  --       local errors = vim.api.nvim_err_writeln("Error loading file: " .. modules .. "\n")
+  --       health.error(errors)
+  --     else
+  --       health.ok("Modules `" .. modules .. "` loaded correctly!")
+  --     end
+  --   end
+  -- end
   health.start("International Storage:")
   if vim.fn.has("termux") then
     local printin = vim.fn.system({ 'df', '-h', '/storage/emulated/0' })

@@ -30,14 +30,13 @@ git clone https://github.com/the-essence-of-life/starter ~/.config/nvim/ && nvim
 ```
 ### Functions :desktop_computer:  
 
-**Global:**  
-`enabled:` <font color=#aeffa2>@type:string</font> Enabled the feature.  
-`set:` <font color=#ffdca2>@type:table</font> Invoke neovim api.  
-
-**Spec:**  
-`options:` <font color=#ffdca2>@type:table</font> Set neovim options,like `vim.opt` `vim.g` and so on.  
-`keymaps:` <font color=#ffdca2>@type:table</font> Add and change the default keymaps.  
-`autocmds:` <font color=#ffdca2>@type:table</font> Open more features.  
+| Property | Type | Description |
+|---|----|-----|
+| `enabled` | @global:string | Enabled the feature. |
+| `set` | @global:table | Invoke neovim api. |
+| `options` | @config_type:table | Set neovim options,like `vim.opt` `vim.g` and so on. |
+| `keymaps` | @config_type:table | Add and change the default keymaps. |
+| `autocmds` | @config_type:table | Open more features. |
 
 **Example:**  
 
