@@ -1,6 +1,9 @@
 ## \_spare\_  
 ![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)  
-### Installation :inbox_tray:  
+
+**spare.nvim** is a freedom configruation, you can easily disable some functions in your settings.  
+
+### :card_file_box: Getting Started  
 
 ```shell
 mv ~/.config/nvim/ ~/.config/nvim.bak/
@@ -13,7 +16,6 @@ rm -rf ~/.cache/nvim/
 Rename-Item -Path $env:LOCALAPPDATA\nvim -NewName $env:LOCALAPPDATA\nvim.bak
 Rename-Item -Path $env:LOCALAPPDATA\nvim-data -NewName $env:LOCALAPPDATA\nvim-data.bak
 ```
-### Getting Start :card_file_box:  
 
 **Requirements:**  
 `nvim:` >= `0.9.5`  
@@ -28,17 +30,9 @@ Rename-Item -Path $env:LOCALAPPDATA\nvim-data -NewName $env:LOCALAPPDATA\nvim-da
 ```shell
 git clone https://github.com/the-essence-of-life/starter ~/.config/nvim/ && nvim
 ```
-### Functions :desktop_computer:  
+### :gear: Configruation  
 
-| Property | Type | Description |
-|---|----|-----|
-| `enabled` | @global:string | Enabled the feature. |
-| `set` | @global:table | Invoke neovim api. |
-| `options` | @config_type:table | Set neovim options,like `vim.opt` `vim.g` and so on. |
-| `keymaps` | @config_type:table | Add and change the default keymaps. |
-| `autocmds` | @config_type:table | Open more features. |
-
-**Example:**  
+**spare.nvim** has some options:  
 
 ```lua
 return {
@@ -78,11 +72,35 @@ return {
     enabled = true,
     -- more specs are develop......
   },
+  health = {
+    check = {
+      basic = true,
+      lsp = true,
+    },
+  },
+  lsp = {
+    server = {
+      -- <lsp-server-name> = {<settings>}
+      lua_ls = {},
+      bashls = {},
+    },
+    icons = true,
+    diagnostics = {
+      signs = true,
+      underline = true,
+      update_in_insert = true,
+      severity_sort = true,
+      float = {
+        focused = true,
+        source = "always",
+        border = "rounded",
+      },
+    },
+  },
 }
 ```
 
-### Setup :gear:  
-#### Colorscheme :rainbow:  
+### :rainbow: Colorscheme
 
 ```lua
 return {

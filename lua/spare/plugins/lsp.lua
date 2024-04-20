@@ -45,7 +45,7 @@ return {
     },
     config = function()
       Index.lspconfig_global()
-      Index.lsp_settings()
+      -- Index.lsp_settings()
       Index.lsp_server()
     end,
   },

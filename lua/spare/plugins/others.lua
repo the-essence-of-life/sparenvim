@@ -1,4 +1,5 @@
 local Index = require("spare.plugins.index.others")
+local Utils = require("spare.utils").safe_uninstall_plugins
 
 return {
   {
@@ -70,5 +71,5 @@ return {
         },
       }
     end
-  },
+  }
 }

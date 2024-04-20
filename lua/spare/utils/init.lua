@@ -42,14 +42,24 @@ local defaults = {
     },
   },
   colorscheme = "catppuccin",
-  safe_uninstall_plugins = {
-    -- others = true,
-    -- others2 = true,
+  lsp = {
+    server = {
+      lua_ls = {},
+    },
+    icons = true,
+    diagnostics = {
+      signs = true,
+      underline = true,
+      update_in_insert = true,
+      severity_sort = true,
+      float = {
+        focused = true,
+        source = "always",
+        border = "rounded",
+      },
+    },
   },
 }
-
----@class SpareMergeConfigTable
-local migration = {}
 
 function M.setup(opts)
   Cfg = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
@@ -99,24 +109,38 @@ function M.setup(opts)
     ---@type function
     Cfg.plugin.colorscheme()
   end
-  return Cfg
-end
-
-function M.sync(mgr)
-  Mgr = vim.tbl_deep_extend("force", migration, mgr or {}) or {}
-  for _, config in ipairs(Mgr) do
-    local config_type = config[1]
-    local modules = config.import
-    if type(config_type) == "string" and config_type == "option" then
-      require(modules)
-    end
-    if type(config_type) == "string" and config_type == "keymap" then
-      require(modules)
-    end
-    if type(config_type) == "string" and config_type == "autocmd" then
-      require(modules)
+  if type(Cfg.migration) == "string" then
+    local migration = require(Cfg.migration)
+    for _, config in ipairs(migration) do
+      local config_type = config[1]
+      local modules = config.import
+      if type(config_type) == "string" and config_type == "options" then
+        require(modules)
+      end
+      if type(config_type) == "string" and config_type == "keymaps" then
+        require(modules)
+      end
+      if type(config_type) == "string" and config_type == "autocmds" then
+        require(modules)
+      end
     end
   end
+  if type(Cfg.lsp) == "table" then
+    for lsp_server, settings in pairs(Cfg.lsp.server) do
+      require("lspconfig")[lsp_server].setup(settings)
+    end
+    vim.diagnostic.config(vim.deepcopy(Cfg.lsp.diagnostics))
+    if Cfg.lsp.icons then
+      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+    end
+  elseif not Cfg.lsp then
+    return
+  end
+  return Cfg
 end
 
 setmetatable(M, {
@@ -127,7 +151,7 @@ setmetatable(M, {
     if Mgr == nil then
       return vim.deepcopy(defaults)[key]
     end
-    return Cfg[key] and Mgr[key]
+    return Cfg[key]
   end
 })
 

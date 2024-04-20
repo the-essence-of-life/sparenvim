@@ -3,16 +3,13 @@ local Index = require("spare.plugins.index.ui")
 return {
   {
     "catppuccin/nvim",
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     cond = function()
       return vim.opt.termguicolors
     end,
     name = "catppuccin",
     config = function()
       Index.catppuccin()
-      local color = color or "catppuccin"
-      vim.cmd.color(color)
     end,
   },
   -- {
