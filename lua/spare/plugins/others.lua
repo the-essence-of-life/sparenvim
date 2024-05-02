@@ -1,5 +1,4 @@
 local Index = require("spare.plugins.index.others")
-local Utils = require("spare.utils").safe_uninstall_plugins
 
 return {
   {
@@ -26,20 +25,16 @@ return {
     opts = Index.noice
   },
   {
+    "folke/todo-comments.nvim",
+    event = { "BufRead", "BufReadPre" },
+    dependencies = "nvim-lua/plenary.nvim",
+    opts = Index.todo_commets
+  },
+  {
     "folke/persistence.nvim",
     event = "BufRead",
     -- module = "persistence",
     opts = Index.persistence
-  },
-  {
-    "m4xshen/autoclose.nvim",
-    event = "InsertEnter",
-    opts = Index.autoclose
-  },
-  {
-    "stevearc/dressing.nvim",
-    lazy = true,
-    opts = Index.dressing
   },
   {
     "HiPhish/rainbow-delimiters.nvim",

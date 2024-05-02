@@ -58,7 +58,6 @@ return {
     event = "BufReadPre",
     config = true,
   },
-
   {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
@@ -69,10 +68,9 @@ return {
     opts = Index.trouble
   },
   {
-    "folke/todo-comments.nvim",
-    event = { "BufRead", "BufReadPre" },
-    dependencies = "nvim-lua/plenary.nvim",
-    opts = Index.todo_commets
+    "m4xshen/autoclose.nvim",
+    event = "InsertEnter",
+    opts = Index.autoclose
   },
   {
     "folke/which-key.nvim",

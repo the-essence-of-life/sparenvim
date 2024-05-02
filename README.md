@@ -5,34 +5,45 @@
 
 ### :card_file_box: Getting Started  
 
-```shell
-mv ~/.config/nvim/ ~/.config/nvim.bak/
-mv ~/.local/share/nvim/ ~/.local/share/nvim.bak/
-mv ~/.local/state/nvim/ ~/.local/state/nvim.bak/
-rm -rf ~/.cache/nvim/
-```
+#### Requirements:  
+- `nvim:` >= `0.9.5`  
+- `git:` Install the plugins and manage version.
+- `fd:` Telescope find files.  
+- `rg:` Telescope ripgrep.  
+- `nerdfont:` Terminal icon.  
+- `c:` Treesitter highlight.  
 
-```pwsh
-Rename-Item -Path $env:LOCALAPPDATA\nvim -NewName $env:LOCALAPPDATA\nvim.bak
-Rename-Item -Path $env:LOCALAPPDATA\nvim-data -NewName $env:LOCALAPPDATA\nvim-data.bak
-```
+> [!IMPORTANT]
+> You should **backup** your old neovim configruation:  
+> ###### For linux:  
+>
+> ```shell
+> mv ~/.config/nvim/ ~/.config/nvim.bak/
+> mv ~/.local/share/nvim/ ~/.local/share/nvim.bak/
+> mv ~/.local/state/nvim/ ~/.local/state/nvim.bak/
+> rm -rf ~/.cache/nvim/
+> ```
+> ###### For windows:  
+>
+> ```pwsh
+> Rename-Item -Path $env:LOCALAPPDATA\nvim -NewName $env:LOCALAPPDATA\nvim.bak
+> Rename-Item -Path $env:LOCALAPPDATA\nvim-data -NewName $env:LOCALAPPDATA\nvim-data.bak
+> ```
 
-**Requirements:**  
-`nvim:` >= `0.9.5`  
-`git:` Install the plugins and manage version.
-`fd:` Telescope find files.  
-`rg:` Telescope ripgrep.  
-`nerdfont:` Terminal icon.  
-`c:` Treesitter highlight.  
-
-**Install:**  
+#### Install:  
 
 ```shell
 git clone https://github.com/the-essence-of-life/starter ~/.config/nvim/ && nvim
 ```
+
 ### :gear: Configruation  
 
-**spare.nvim** has some options:  
+> [!NOTE]
+> **spare.nvim** has some options:  
+> Copy this command can quickly open:  
+> ```sh
+> nvim ~/.config/nvim/lua/core/config.lua
+> ```
 
 ```lua
 return {
@@ -105,6 +116,27 @@ return {
 ```lua
 return {
   -- When nil,it will load default colorscheme(habamax).
-  colorscheme = "habamax"
+  colorscheme = nil,
+
+  -- You can also use function:
+  colorscheme = function()
+    require("tokyonight").load()
+  end,
+
+  -- You can set a string, it will auto load `vim.cmd.colorscheme()`
+  colorscheme = "habamax",
+}
+```
+
+### Language Server
+
+```lua
+return {
+  lsp = {
+    server = {
+      -- Put your server config here!
+      bashls = {},
+    }
+  }
 }
 ```

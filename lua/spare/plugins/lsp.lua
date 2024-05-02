@@ -43,11 +43,6 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
-    config = function()
-      Index.lspconfig_global()
-      -- Index.lsp_settings()
-      Index.lsp_server()
-    end,
   },
   {
     "nvimtools/none-ls.nvim",

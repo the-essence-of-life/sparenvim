@@ -12,6 +12,12 @@ return {
       Index.catppuccin()
     end,
   },
+  {
+    'stevearc/dressing.nvim',
+    lazy = false,
+    dependencies = "williamboman/mason.nvim",
+    opts = {},
+  },
   -- {
   --   'marko-cerovac/material.nvim',
   --   lazy = false,

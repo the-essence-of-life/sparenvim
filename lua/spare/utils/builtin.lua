@@ -46,4 +46,8 @@ M.keymaps = function(tables)
   end
 end
 
+M.notify = function(info, level)
+  vim.notify("spare:" .. info, vim.log.levels[level], { title = "spare.nvim" })
+end
+
 return M

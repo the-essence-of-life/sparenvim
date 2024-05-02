@@ -8,27 +8,6 @@ local health = {
 
 local M = {}
 
-local function check_valid(settings)
-  for key in pairs(settings) do
-    if not vim.tbl_contains(M.valid, key) then
-      health.warn("Invalid key: <" .. key .. "> (keycheck)")
-    end
-  end
-end
-
-M.valid = {
-  1,
-  "set",
-  "enabled",
-  "lastplace",
-  "directory",
-  "auto_clean_plugins",
-  "colorscheme",
-  "mode",
-  "check",
-  "based_term_support",
-}
-
 function M.check()
   -- logo
   health.info([[   _________  ____ _________]])
@@ -76,59 +55,6 @@ function M.check()
       health.warn('Invaild' .. de_lsp_check .. '? Your language server cannot run correctly.',
         'Download the binary and add it for the $PATH.')
     end
-  end
-
-  health.start("Configruation:")
-  health.info("Tips:use `set = {}` can load the neovim api.")
-  local configruation = vim.fn.stdpath("config") .. "/lua/user/config.lua"
-  local list = function()
-    health.info("Commonly api: " .. table.concat(M.valid, ", "))
-  end
-  if vim.loop.fs_stat(configruation) then
-    local user_config = vim.fn.stdpath("config") .. "/lua/user/"
-    if vim.loop.fs_stat(user_config) then
-      health.ok("Defind `config.lua`.")
-      health.info("You can check https://github.com/the-essence-of-life/spare for check more information.")
-      health.info("You can use `:checkhealth spare.utils` to open it again.")
-      list()
-    end
-  else
-    health.start("Error:")
-    health.error("Config not found!",
-      "You should create a user config in `~/.config/nvim/lua/user/config.lua`.Use `mkdir -p ~/.config/nvim/lua/user/ && touch config.lua` to create it.")
-    list()
-  end
-
-  if type(Cfg) ~= "nil" then
-    for _, check in pairs(Cfg) do
-      check_valid(check)
-    end
-  end
-
-  -- if user_modules then
-  --   health.start("Modules:")
-  --   local require_modules = Cfg.modules
-  --   for _, modules in ipairs(require_modules) do
-  --     local ok = pcall(require, modules)
-  --     if not ok then
-  --       local errors = vim.api.nvim_err_writeln("Error loading file: " .. modules .. "\n")
-  --       health.error(errors)
-  --     else
-  --       health.ok("Modules `" .. modules .. "` loaded correctly!")
-  --     end
-  --   end
-  -- end
-  health.start("International Storage:")
-  if vim.fn.has("termux") then
-    local printin = vim.fn.system({ 'df', '-h', '/storage/emulated/0' })
-    health.info(printin)
-  elseif vim.fn.has("windows") then
-    local printin = vim.fn.system({ 'Get-Volume', '|',
-      'Select-Object, DriveLetter, FileSystemLabel, Capacity, Sizeremaining' })
-    health.info(printin)
-  else
-    local printin = vim.fn.system({ 'df', '-h', '/' })
-    health.info(printin)
   end
 end
 
