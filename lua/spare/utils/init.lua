@@ -11,6 +11,7 @@ local M = {}
 ---@class SpareOptions
 local defaults = {
   options = {
+    mode = nil,
     enabled = false,
     -- import = "spare.utils.tables.options",
     --- @type table
@@ -18,6 +19,7 @@ local defaults = {
     --- @type table
   },
   keymaps = {
+    mode = nil,
     enabled = false,
     --- @type table
     set = Index.keymaps,
@@ -26,6 +28,7 @@ local defaults = {
     -- v = {},
   },
   autocmds = {
+    mode = nil,
     enabled = false,
     --- @type boolean?
     lastplace = false,
@@ -73,30 +76,66 @@ local defaults = {
 
 function M.setup(opts)
   Cfg = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
+  local sfc = {
+    opts = "config.options",
+    keymaps = "config.keymaps"
+  }
   if Cfg.options then
     if Cfg.options.enabled then
-      builtin.options(Cfg.options.set)
+      if Cfg.options.mode == "single-file" then
+        local ok = pcall(require, sfc.opts)
+        if ok then
+          options = require(sfc.opts)
+        end
+        if
+            type(options) == "table" and not nil
+        then
+          builtin.options(options)
+        else
+          pcall(require(options))
+        end
+      else
+        builtin.options(Cfg.options.set)
+      end
     end
-  end
-  if Cfg.keymaps then
-    if Cfg.keymaps.enabled then
-      builtin.keymaps(Cfg.keymaps.set)
+    if Cfg.keymaps then
+      if Cfg.keymaps.enabled then
+        if Cfg.keymaps.mode == 'single-file' then
+          local ok = pcall(require, sfc.keymaps)
+          if ok then
+            keymaps = require(sfc.keymaps)
+          end
+          if
+              type(keymaps) == "table" and not nil
+          then
+            builtin.keymaps(keymaps)
+          else
+            pcall(require(keymaps))
+          end
+        end
+      else
+        builtin.keymaps(Cfg.keymaps.set)
+      end
     end
-  end
-  if Cfg.autocmds then
-    if Cfg.autocmds.enabled then
-      if Cfg.autocmds.lastplace then
-        builtin.notify("This options are deprated, you should use `features.lastplace` instead.", "INFO")
-      end
-      if Cfg.autocmds.directory then
-        builtin.notify("This options are deprated, you should use `features.directory` instead.", "INFO")
-      end
-      if Cfg.autocmds.based_term_support then
-        builtin.notify("This options are deprated, you should use `features.based_term_support` instead.", "INFO")
-      end
-      if type(Cfg.autocmds.set) == "table" then
-        for events, keys in pairs(Cfg.autocmds.set) do
-          vim.api.nvim_create_autocmd(events, keys)
+    if Cfg.autocmds then
+      if Cfg.autocmds.enabled then
+        if Cfg.autocmds.lastplace then
+          builtin.notify("This options are deprated, you should use `features.lastplace` instead.", "INFO")
+        end
+        if Cfg.autocmds.directory then
+          builtin.notify("This options are deprated, you should use `features.directory` instead.", "INFO")
+        end
+        if Cfg.autocmds.based_term_support then
+          builtin.notify("This options are deprated, you should use `features.based_term_support` instead.", "INFO")
+        end
+        if Cfg.autocmds.mode == "single-file" then
+          return
+        else
+          if type(Cfg.autocmds.set) == "table" then
+            for events, keys in pairs(Cfg.autocmds.set) do
+              vim.api.nvim_create_autocmd(events, keys)
+            end
+          end
         end
       end
     end
@@ -129,22 +168,6 @@ function M.setup(opts)
   elseif type(Cfg.colorscheme) == "function" then
     ---@type function
     Cfg.plugin.colorscheme()
-  end
-  if type(Cfg.migration) == "string" then
-    local migration = require(Cfg.migration)
-    for _, config in ipairs(migration) do
-      local config_type = config[1]
-      local modules = config.import
-      if type(config_type) == "string" and config_type == "options" then
-        require(modules)
-      end
-      if type(config_type) == "string" and config_type == "keymaps" then
-        require(modules)
-      end
-      if type(config_type) == "string" and config_type == "autocmds" then
-        require(modules)
-      end
-    end
   end
   if type(Cfg.lsp) == "table" then
     for lsp_server, settings in pairs(Cfg.lsp.server) do
@@ -206,6 +229,9 @@ function M.setup(opts)
         end,
       })
     end
+    vim.keymap.set("n", "<leader>t", function()
+      require("spare.utils.views"):setup_view()
+    end)
   elseif not Cfg.lsp then
     return
   end
